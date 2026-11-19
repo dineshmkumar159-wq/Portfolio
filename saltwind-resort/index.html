@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saltwind Resort &amp; Spa | Beach resort</title>
+<meta name="description" content="Saltwind Resort & Spa is a sample beach resort website built like a slide deck: video title slide, 3D room carousel, photo wall and a stay estimator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,500;1,700&amp;family=DM+Sans:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --emerald: #0B3D2E;
+  --emerald-2: #0F5A43;
+  --forest: #072A20;
+  --ivory: #FAF6EE;
+  --sage: #E3EBE2;
+  --gold: #C8A25D;
+  --gold-hi: #E8CB8C;
+  --gold-ink: #8A6A2B;
+  --charcoal: #1B1F1D;
+  --f-display: "Playfair Display", "Didot", "Bodoni 72", Georgia, serif;
+  --f-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-snap-type: y proximity; }
+body { margin: 0; background: var(--forest); color: var(--charcoal); font-family: var(--f-body); font-size: 17px; line-height: 1.65; overflow-x: hidden; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 8px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; margin: 0; line-height: 1.04; letter-spacing: -0.015em; text-wrap: balance; }
+em { font-style: italic; font-weight: 500; }
+
+/* moving background behind the slides */
+.bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: linear-gradient(160deg, #0B3D2E, #072A20 60%, #04180F); }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
+.b1 { width: 55vmax; height: 55vmax; left: -15vmax; top: -15vmax; background: radial-gradient(circle, rgba(31,138,100,.75), transparent 66%); animation: ba 38s ease-in-out infinite alternate; }
+.b2 { width: 48vmax; height: 48vmax; right: -14vmax; top: 20vh; background: radial-gradient(circle, rgba(200,162,93,.55), transparent 66%); animation: bb 46s ease-in-out infinite alternate; }
+.b3 { width: 44vmax; height: 44vmax; left: 25vw; bottom: -20vmax; background: radial-gradient(circle, rgba(88,176,148,.5), transparent 66%); animation: ba 54s ease-in-out infinite alternate-reverse; }
+@keyframes ba { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(14vw, 18vh, 0) scale(1.15); } }
+@keyframes bb { from { transform: translate3d(0,0,0) scale(1.1); } to { transform: translate3d(-16vw, -16vh, 0) scale(.9); } }
+.dust { position: absolute; bottom: -20px; width: var(--s); height: var(--s); border-radius: 50%; background: radial-gradient(circle, #fff 0%, var(--gold-hi) 45%, transparent 72%); opacity: 0; animation: dust var(--d) linear infinite; animation-delay: var(--dl); }
+@keyframes dust { 0% { transform: translate3d(0,0,0); opacity: 0; } 15% { opacity: .9; } 100% { transform: translate3d(var(--x), -112vh, 0); opacity: 0; } }
+
+/* deck chrome */
+.progress { position: fixed; z-index: 60; top: 0; left: 0; height: 4px; width: 0; background: linear-gradient(90deg, var(--gold), var(--gold-hi)); box-shadow: 0 0 14px var(--gold); }
+.top { position: fixed; z-index: 50; top: 14px; left: 0; right: 0; pointer-events: none; padding-inline: max(14px, env(safe-area-inset-left, 0px)); }
+.bar { pointer-events: auto; max-width: 1240px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 10px 8px 24px; border-radius: 999px; background: rgba(7,42,32,.62); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid rgba(232,203,140,.35); color: var(--ivory); box-shadow: 0 20px 40px -22px rgba(0,0,0,.8); }
+.brand { font-family: var(--f-display); font-weight: 800; font-size: 1.25rem; text-decoration: none; letter-spacing: .01em; }
+.brand span { color: var(--gold-hi); font-style: italic; font-weight: 500; }
+.bar a.cta { text-decoration: none; padding: 11px 22px; border-radius: 999px; background: linear-gradient(135deg, var(--gold-hi), var(--gold)); color: var(--charcoal); font-weight: 700; font-size: .92rem; letter-spacing: .04em; min-height: 44px; display: inline-flex; align-items: center; }
+.counter { position: fixed; z-index: 50; left: max(16px, env(safe-area-inset-left, 0px)); bottom: 18px; display: flex; align-items: baseline; gap: 10px; padding: 9px 18px; border-radius: 999px; background: rgba(7,42,32,.72); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border: 1px solid rgba(232,203,140,.35); color: var(--ivory); font-size: .88rem; }
+.counter b { font-family: var(--f-display); font-size: 1.3rem; color: var(--gold-hi); }
+.dots { position: fixed; z-index: 50; right: max(14px, env(safe-area-inset-right, 0px)); top: 50%; translate: 0 -50%; display: grid; gap: 0; padding: 6px 4px; border-radius: 999px; background: rgba(7,42,32,.55); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(232,203,140,.3); }
+.dots button { position: relative; width: 44px; height: 38px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.dots button::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: rgba(250,246,238,.45); transition: transform .3s, background .3s; }
+.dots button[aria-current="true"]::before { background: var(--gold-hi); transform: scale(1.7); box-shadow: 0 0 12px var(--gold); }
+.dots button span { position: absolute; right: 48px; padding: 4px 12px; border-radius: 999px; background: var(--forest); color: var(--ivory); font-size: .8rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.dots button:hover span, .dots button:focus-visible span { opacity: 1; }
+.step { position: fixed; z-index: 50; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 18px; display: flex; gap: 8px; }
+.round { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(232,203,140,.45); background: rgba(7,42,32,.72); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--ivory); font-size: 1.2rem; cursor: pointer; display: grid; place-items: center; transition: transform .2s, background .2s; }
+.round:hover { background: var(--emerald-2); transform: scale(1.08); }
+a.wa { position: fixed; z-index: 50; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 78px; display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 18px 0 14px; border-radius: 999px; background: #1FA855; color: #fff; text-decoration: none; font-weight: 700; font-size: .92rem; box-shadow: 0 14px 30px -12px rgba(0,0,0,.7); transition: transform .2s; }
+a.wa:hover { transform: translateY(-3px); }
+a.wa svg { width: 22px; height: 22px; fill: currentColor; }
+@media (max-width: 760px) { .dots { display: none; } .counter span { display: none; } }
+
+/* slides */
+.slide { position: relative; min-height: 100svh; display: grid; align-items: center; scroll-snap-align: start; overflow: hidden; padding: 110px 0 90px; }
+.slide.light { color: var(--charcoal); background: rgba(250,246,238,.93); --mut: #4A5A52; --acc: var(--gold-ink); --panel: #fff; --line: rgba(11,61,46,.16); }
+.slide.sage { color: var(--charcoal); background: rgba(227,235,226,.94); --mut: #3E5247; --acc: var(--gold-ink); --panel: #fff; --line: rgba(11,61,46,.16); }
+.slide.dark { color: var(--ivory); background: rgba(7,42,32,.84); --mut: #B9D0C4; --acc: var(--gold-hi); --panel: rgba(255,255,255,.08); --line: rgba(232,203,140,.3); }
+.wrap { position: relative; z-index: 2; width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: max(20px, env(safe-area-inset-left, 0px)); }
+.eyebrow { font-size: .8rem; letter-spacing: .3em; text-transform: uppercase; color: var(--acc); font-weight: 700; display: flex; align-items: center; gap: 14px; }
+.eyebrow::before { content: ""; width: 42px; height: 2px; background: currentColor; }
+.head { display: grid; gap: 14px; max-width: 760px; margin-bottom: 40px; }
+.head h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); }
+.head h2 em { color: var(--acc); }
+.head p { margin: 0; color: var(--mut); font-size: 1.08rem; }
+.ph { position: relative; overflow: hidden; background: linear-gradient(140deg, #14684F, #0B3D2E 70%); }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 32px; border-radius: 999px; font: 700 .98rem var(--f-body); letter-spacing: .05em; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
+.btn.gold { background: linear-gradient(135deg, var(--gold-hi), var(--gold)); color: var(--charcoal); box-shadow: 0 18px 32px -14px rgba(200,162,93,.9), inset 0 1px 0 rgba(255,255,255,.6); }
+.btn.green { background: linear-gradient(135deg, var(--emerald-2), var(--emerald)); color: var(--ivory); box-shadow: 0 18px 32px -14px rgba(11,61,46,.9); }
+.btn.line { background: rgba(255,255,255,.1); color: var(--ivory); border-color: rgba(250,246,238,.6); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.btn:hover { transform: translateY(-3px); }
+
+/* slide wipe curtain + staged effects (only when JS runs) */
+.js .slide::before { content: ""; position: absolute; inset: 0; z-index: 8; pointer-events: none; background: linear-gradient(100deg, var(--gold), var(--gold-hi) 45%, var(--emerald-2)); transform: scaleX(1); transform-origin: right; }
+.js .slide.active::before { transform: scaleX(0); transition: transform 1.05s cubic-bezier(.75,0,.2,1) .02s; }
+.js .fx { opacity: 0; transition: opacity .9s ease, transform 1s cubic-bezier(.2,.8,.2,1), clip-path 1.1s cubic-bezier(.7,0,.2,1); transition-delay: calc(var(--d, 0) * 1ms + 450ms); }
+.js .fx[data-fx="up"] { transform: translateY(70px); }
+.js .fx[data-fx="left"] { transform: translateX(-110px); }
+.js .fx[data-fx="right"] { transform: translateX(110px); }
+.js .fx[data-fx="zoom"] { transform: scale(.82); }
+.js .fx[data-fx="flip"] { transform: perspective(900px) rotateX(-80deg); transform-origin: 50% 0; }
+.js .fx[data-fx="wipe"] { opacity: 1; clip-path: inset(0 100% 0 0); }
+.js .slide.active .fx { opacity: 1; transform: none; clip-path: inset(0 0 0 0); }
+
+/* 1 title */
+.title { padding: 0; }
+.title video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.title::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(4,24,15,.65), rgba(4,24,15,.2) 40%, rgba(4,24,15,.85)), linear-gradient(90deg, rgba(4,24,15,.7), transparent 75%); }
+.title .wrap { padding-block: 120px 130px; }
+.title h1 { font-size: clamp(3.2rem, 8vw, 7rem); max-width: 12ch; padding-bottom: .14em; text-shadow: 0 10px 50px rgba(0,0,0,.5); }
+.title h1 em { color: var(--gold-hi); }
+.title .eyebrow { color: var(--gold-hi); }
+.title .lead { font-size: clamp(1.08rem, 2vw, 1.3rem); max-width: 44ch; color: #EEF3EC; margin: 26px 0 34px; text-shadow: 0 2px 20px rgba(0,0,0,.6); }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.sub { position: absolute; z-index: 2; left: 50%; bottom: 20px; translate: -50% 0; font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: #EEF3EC; display: grid; justify-items: center; gap: 8px; }
+.sub i { width: 2px; height: 34px; background: linear-gradient(var(--ivory), transparent); animation: drip 2s ease-in-out infinite; transform-origin: top; }
+@keyframes drip { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* 2 at a glance */
+.glance { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 22px; }
+.stat { padding: 30px 26px; border-radius: 26px; background: var(--panel); border: 1px solid var(--line); box-shadow: 0 34px 50px -30px rgba(11,61,46,.55); position: relative; overflow: hidden; }
+.stat::after { content: ""; position: absolute; right: -40px; top: -40px; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(200,162,93,.35), transparent 70%); }
+.stat b { display: block; font-family: var(--f-display); font-size: clamp(2.8rem, 5vw, 4rem); line-height: 1; color: var(--emerald); }
+.stat span { color: var(--mut); }
+.intro { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px 60px; align-items: center; }
+.intro p { color: var(--mut); font-size: 1.12rem; }
+.pillars { display: grid; gap: 14px; margin-top: 22px; }
+.pillars div { padding: 16px 20px; border-left: 3px solid var(--gold); background: rgba(255,255,255,.7); border-radius: 0 16px 16px 0; font-weight: 500; }
+
+/* 3 rooms 3D carousel */
+.stage { perspective: 1500px; padding-block: 10px; }
+.ring { --w: 300px; --h: 400px; --r: 340px; position: relative; width: var(--w); height: var(--h); margin-inline: auto; transform-style: preserve-3d; transform: translateZ(calc(var(--r) * -1)); list-style: none; padding: 0; }
+.room { position: absolute; inset: 0; border-radius: 999px 999px 26px 26px; overflow: hidden; transform: rotateY(calc(var(--o, 0) * 50deg)) translateZ(var(--r)); backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid rgba(232,203,140,.5); box-shadow: 0 40px 60px -30px rgba(0,0,0,.9); transition: transform .9s cubic-bezier(.3,.8,.25,1), filter .6s, opacity .6s; }
+.room.far { opacity: 0; pointer-events: none; }
+.room:not(.on) { filter: brightness(.55) saturate(.8); }
+.room .ph { position: absolute; inset: 0; }
+.room::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(4,24,15,.94)); }
+.room .cap { position: absolute; z-index: 2; left: 20px; right: 20px; bottom: 18px; color: var(--ivory); text-align: center; }
+.room h3 { font-size: 1.6rem; }
+.room .pr { color: var(--gold-hi); font-weight: 500; }
+.ctrl { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 6px; }
+.pager { display: flex; gap: 2px; }
+.pager button { min-width: 44px; min-height: 44px; padding: 0; border: 0; background: none; cursor: pointer; display: grid; place-items: center; }
+.pager button::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: rgba(250,246,238,.35); transition: width .3s, background .3s; }
+.pager button[aria-selected="true"]::before { width: 30px; border-radius: 6px; background: var(--gold-hi); }
+.room-info { margin: 22px auto 0; max-width: 720px; text-align: center; }
+.room-info h3 { font-size: 2rem; }
+.room-info p { color: var(--mut); margin: 8px 0 14px; }
+.tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 18px; }
+.tags span { padding: 5px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); font-size: .88rem; }
+
+/* 4 experiences */
+[data-tilt] { --rx: 0deg; --ry: 0deg; transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .25s ease-out; }
+.exp { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 22px; }
+.xc { position: relative; aspect-ratio: 3 / 4; border-radius: 999px 999px 28px 28px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 60px -32px rgba(11,61,46,.7); color: var(--ivory); }
+.xc::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 38%, rgba(4,24,15,.94)); }
+.xc .ph img { transition: transform .8s ease; }
+.xc:hover .ph img { transform: scale(1.1); }
+.xc .cap { position: absolute; z-index: 2; left: 22px; right: 22px; bottom: 22px; }
+.exp > div:nth-child(even) .xc { border-radius: 110px 10px 110px 10px; }
+.exp > div:nth-child(even) { margin-top: 44px; }
+@media (max-width: 700px) { .exp > div:nth-child(even) { margin-top: 0; } }
+.xc h3 { font-size: 1.55rem; margin-bottom: 6px; }
+.xc p { margin: 0; color: #E6EFE8; font-size: .95rem; }
+.xc .t { display: inline-block; margin-bottom: 8px; font-size: .75rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-hi); font-weight: 700; }
+
+/* 5 golden hour */
+.golden { text-align: center; }
+.golden video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.golden::after { content: ""; position: absolute; inset: 0; z-index: 1; background: rgba(4,24,15,.55); }
+.golden { background: linear-gradient(160deg, #C8A25D, #7A3E2A 55%, #072A20); }
+.golden .wrap { max-width: 860px; }
+.golden .eyebrow { justify-content: center; color: var(--gold-hi); }
+.golden h2 { font-size: clamp(2.6rem, 7.5vw, 5.4rem); text-shadow: 0 8px 40px rgba(0,0,0,.55); color: var(--ivory); }
+.golden h2 em { color: var(--gold-hi); }
+.golden p { color: #F4ECDD; font-size: 1.15rem; margin: 18px auto 0; max-width: 46ch; }
+.counters { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 48px; margin-top: 34px; color: var(--ivory); }
+.counters b { display: block; font-family: var(--f-display); font-size: 3.2rem; line-height: 1; color: var(--gold-hi); }
+.counters span { font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; }
+
+/* 6 gallery */
+.wall { perspective: 1600px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 20px; }
+.tile { position: relative; aspect-ratio: 4 / 5; border-radius: 22px; overflow: hidden; padding: 0; border: 1px solid var(--line); cursor: pointer; background: none; box-shadow: 0 34px 50px -28px rgba(11,61,46,.7); transform: rotateY(var(--ty, 0deg)); transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s; }
+.tile:nth-child(4n+1) { border-radius: 999px 999px 22px 22px; } .tile:nth-child(4n+2) { border-radius: 90px 8px 90px 8px; } .tile:nth-child(4n+3) { border-radius: 8px 90px 8px 90px; } .tile:nth-child(4n) { border-radius: 999px 999px 22px 22px; }
+.tile:nth-child(4n+1) { --ty: 10deg; } .tile:nth-child(4n+2) { --ty: 4deg; } .tile:nth-child(4n+3) { --ty: -4deg; } .tile:nth-child(4n) { --ty: -10deg; }
+.tile:hover { transform: rotateY(0) translateZ(40px) scale(1.04); box-shadow: 0 50px 70px -30px rgba(11,61,46,.9), 0 0 50px -20px var(--gold); }
+.tile .lbl { position: absolute; z-index: 2; left: 50%; translate: -50% 0; bottom: 14px; white-space: nowrap; max-width: 88%; overflow: hidden; text-overflow: ellipsis; padding: 4px 12px; border-radius: 999px; background: rgba(4,24,15,.75); font-size: .8rem; color: var(--ivory); }
+dialog { border: 0; padding: 0; background: transparent; color: var(--ivory); max-width: min(94vw, 1100px); width: 100%; }
+dialog::backdrop { background: rgba(2,12,8,.9); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.lb { position: relative; border-radius: 22px; overflow: hidden; background: var(--forest); border: 1px solid rgba(232,203,140,.4); }
+.lb img { display: block; width: 100%; max-height: 76vh; object-fit: contain; background: #021008; }
+.lb .meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 14px 18px; }
+.lb small { color: #B9D0C4; }
+.lb .x { position: absolute; top: 12px; right: 12px; }
+.lb .nav { display: flex; gap: 8px; }
+
+/* 7 plan */
+.plan { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 36px; align-items: start; }
+.plan h2 { font-size: clamp(2.4rem, 5.6vw, 4rem); margin: 12px 0 14px; }
+.plan h2 em { color: var(--acc); }
+.plan .copy > p { color: var(--mut); margin: 0 0 14px; }
+.quote { margin-top: 20px; padding: 22px; border-radius: 24px; background: rgba(4,24,15,.45); border: 1px dashed var(--gold-hi); }
+.quote .tot { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.2rem); color: var(--gold-hi); line-height: 1; }
+.quote small { display: block; color: var(--mut); margin-top: 6px; }
+address { font-style: normal; margin-top: 18px; line-height: 1.8; color: var(--mut); }
+form { display: grid; gap: 14px; min-width: 0; padding: clamp(20px, 4vw, 34px); border-radius: 28px; background: var(--panel); border: 1px solid var(--line); box-shadow: 0 40px 60px -36px #000; }
+label { display: grid; gap: 6px; font-weight: 700; font-size: .82rem; letter-spacing: .1em; text-transform: uppercase; }
+input, select { font: 400 1rem var(--f-body); letter-spacing: 0; text-transform: none; color: var(--ivory); background: rgba(4,24,15,.55); border: 1.5px solid rgba(232,203,140,.4); border-radius: 14px; padding: 12px 16px; width: 100%; min-width: 0; min-height: 50px; color-scheme: dark; }
+select option { background: #0B3D2E; color: var(--ivory); }
+input:focus-visible, select:focus-visible { border-color: var(--gold-hi); outline-offset: 1px; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 14px; align-items: start; }
+.field-error { color: #FFC9B0; font-size: .86rem; letter-spacing: 0; text-transform: none; min-height: 1.2em; font-weight: 400; }
+input[aria-invalid="true"] { border-color: #FF9E7D; }
+.status { padding: 14px 18px; border-radius: 14px; background: rgba(88,176,148,.2); border: 1.5px solid #58B094; }
+.credits { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); font-size: .86rem; color: var(--mut); }
+.credits summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--ivory); }
+.credits ul { margin: 6px 0 0; padding-left: 18px; }
+
+.js .no-fx-fallback { }
+@media (max-width: 560px) { .ring { --w: 240px; --h: 340px; } .slide { padding-block: 100px 90px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; scroll-snap-type: none; }
+  .blob, .dust, .sub i { animation: none !important; }
+  .js .slide::before { display: none; }
+  .js .fx { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
+  .room, [data-tilt], .tile, .btn, .xc .ph img { transition: none; }
+  .tile { transform: none; }
+}
+</style>
+</head>
+<body>
+<div class="bg" id="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="bar">
+    <a class="brand" href="#top">Salt<span>wind</span></a>
+    <a class="cta" href="#plan">Plan a stay</a>
+  </div>
+</header>
+<nav class="dots" id="dots" aria-label="Slides"></nav>
+<div class="counter" aria-hidden="true"><b id="c-n">01</b><span id="c-t">Welcome</span><small>/ 07</small></div>
+<div class="step"><button class="round" id="s-prev" type="button" aria-label="Previous slide">&uarr;</button><button class="round" id="s-next" type="button" aria-label="Next slide">&darr;</button></div>
+
+<a class="wa" id="wa-float" href="https://wa.me/" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.4 8.6 3.4 15.5c0 2.3.6 4.4 1.7 6.3L3 29l7.4-2c1.8 1 3.800 1.500 5.600 1.500 7 0 12.600-5.600 12.600-12.500S23 3 16 3zm0 22.800c-1.800 0-3.500-.5-5-1.400l-.4-.2-4.400 1.200 1.200-4.300-.3-.4a10.200 10.200 0 0 1-1.600-5.500C5.500 9.900 10.200 5.300 16 5.300s10.500 4.600 10.500 10.300S21.800 25.800 16 25.800zm5.800-7.600c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.6c.1-.2.200-.3.300-.5.100-.2 0-.4 0-.6l-1-2.300c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.100-.9.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.300 4.700 3.100 1.300 3.100.9 3.600.8.600-.1 1.900-.8 2.100-1.500.3-.7.3-1.400.2-1.500-.1-.1-.3-.2-.6-.4z"/></svg>WhatsApp</a>
+
+<main>
+  <!-- 1 -->
+  <section class="slide dark title" id="top" data-label="Welcome" aria-label="Welcome">
+    <video autoplay muted loop playsinline preload="auto" poster="https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" aria-hidden="true">
+      <source src="https://assets.mixkit.co/videos/2894/2894-720.mp4" type="video/mp4">
+      <source src="https://assets.mixkit.co/videos/2894/2894-360.mp4" type="video/mp4">
+    </video>
+    <div class="wrap">
+      <p class="eyebrow fx" data-fx="left" style="--d:0">Beach resort and spa &middot; East Coast Road</p>
+      <h1 class="fx" data-fx="wipe" style="--d:150">Where the <em>sea</em> sets the pace.</h1>
+      <p class="lead fx" data-fx="up" style="--d:450">Forty villas between a private beach and a coconut grove. Slow mornings, long swims and dinners on the sand.</p>
+      <div class="actions fx" data-fx="up" style="--d:600">
+        <a class="btn gold" href="#plan">Plan your stay</a>
+        <a class="btn line" href="#rooms">Explore the rooms</a>
+      </div>
+    </div>
+    <div class="sub" aria-hidden="true"><span>Scroll</span><i></i></div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide light" id="glance" data-label="At a glance" aria-label="At a glance">
+    <div class="wrap">
+      <div class="intro">
+        <div>
+          <p class="eyebrow fx" data-fx="left">At a glance</p>
+          <h2 class="fx" data-fx="wipe" style="--d:100;font-size:clamp(2.4rem,6vw,4.6rem);margin-top:14px">A resort that <em style="color:var(--acc)">keeps it simple</em></h2>
+          <p class="fx" data-fx="up" style="--d:300;margin-top:18px">Saltwind is small on purpose. Forty villas, one beach and a team that knows your name by the second morning.</p>
+          <div class="pillars">
+            <div class="fx" data-fx="left" style="--d:450">Private beach, never more than 120 guests at a time</div>
+            <div class="fx" data-fx="left" style="--d:560">Breakfast, a beach team and room service included</div>
+            <div class="fx" data-fx="left" style="--d:670">A spa, a doctor on call and airport pickup on request</div>
+          </div>
+        </div>
+        <div class="glance">
+          <div class="stat fx" data-fx="flip" style="--d:300"><b>40</b><span>villas and suites</span></div>
+          <div class="stat fx" data-fx="flip" style="--d:420"><b>300 m</b><span>of private beach</span></div>
+          <div class="stat fx" data-fx="flip" style="--d:540"><b>3</b><span>pools, one at the water's edge</span></div>
+          <div class="stat fx" data-fx="flip" style="--d:660"><b>24 h</b><span>room service and a doctor on call</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide dark" id="rooms" data-label="Rooms" aria-label="Rooms and villas">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow fx" data-fx="left">Rooms and villas</p>
+        <h2 class="fx" data-fx="wipe" style="--d:100">Four ways to <em>stay</em></h2>
+        <p class="fx" data-fx="up" style="--d:300">Turn the carousel to browse. Every room has a balcony or deck, air conditioning and breakfast for two.</p>
+      </div>
+      <div class="fx" data-fx="zoom" style="--d:450">
+        <div class="stage" id="stage">
+          <ul class="ring" id="ring" aria-label="Rooms carousel">
+            <li class="room on"><div class="ph"><img src="https://images.unsplash.com/photo-1686471158569-96636b9fea17?auto=format&amp;fit=crop&amp;w=900&amp;q=75" alt="A garden villa pool surrounded by palm trees" loading="lazy" decoding="async"></div><div class="cap"><h3>Garden Villa</h3><span class="pr">From &#8377;6,500 a night</span></div></li>
+            <li class="room"><div class="ph"><img src="https://images.unsplash.com/photo-1617859047452-8510bcf207fd?auto=format&amp;fit=crop&amp;w=900&amp;q=75" alt="Wooden loungers beside a private pool" loading="lazy" decoding="async"></div><div class="cap"><h3>Pool Suite</h3><span class="pr">From &#8377;9,800 a night</span></div></li>
+            <li class="room"><div class="ph"><img src="https://images.unsplash.com/photo-1729606188713-814d1b7bf893?auto=format&amp;fit=crop&amp;w=900&amp;q=75" alt="A bedroom with a balcony overlooking the water" loading="lazy" decoding="async"></div><div class="cap"><h3>Ocean Deck Room</h3><span class="pr">From &#8377;8,200 a night</span></div></li>
+            <li class="room"><div class="ph"><img src="https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt="A boardwalk leading to overwater cabanas" loading="lazy" decoding="async"></div><div class="cap"><h3>Overwater Cabana</h3><span class="pr">From &#8377;14,500 a night</span></div></li>
+          </ul>
+        </div>
+        <div class="ctrl">
+          <button class="round" id="prev" type="button" aria-label="Previous room">&larr;</button>
+          <div class="pager" role="tablist" aria-label="Choose a room" id="pager">
+            <button type="button" role="tab" aria-selected="true" aria-label="Garden Villa"></button>
+            <button type="button" role="tab" aria-selected="false" aria-label="Pool Suite"></button>
+            <button type="button" role="tab" aria-selected="false" aria-label="Ocean Deck Room"></button>
+            <button type="button" role="tab" aria-selected="false" aria-label="Overwater Cabana"></button>
+          </div>
+          <button class="round" id="next" type="button" aria-label="Next room">&rarr;</button>
+        </div>
+        <div class="room-info" aria-live="polite">
+          <h3 id="ri-name"></h3>
+          <p id="ri-desc"></p>
+          <div class="tags" id="ri-tags"></div>
+          <a class="btn gold" id="ri-book" href="#plan">Book this room</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide sage" id="experiences" data-label="Experiences" aria-label="Experiences">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow fx" data-fx="left">Experiences</p>
+        <h2 class="fx" data-fx="wipe" style="--d:100">Days that <em>drift</em></h2>
+        <p class="fx" data-fx="up" style="--d:300">Nothing here is scheduled for you. Pick what you like, skip what you don't.</p>
+      </div>
+      <div class="exp">
+        <div class="fx" data-fx="right" style="--d:350"><article class="xc" data-tilt><div class="ph"><img src="https://images.unsplash.com/photo-1558117338-7ef3d637ce2f?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="A sandy beach with palm trees and lounge chairs" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Beach</span><h3>Private shore</h3><p>Loungers, shade and a beach team that brings the cold coconuts.</p></div></article></div>
+        <div class="fx" data-fx="right" style="--d:500"><article class="xc" data-tilt><div class="ph"><img src="https://images.unsplash.com/photo-1724258207520-7870359e112a?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="A wooden dock extending over the water toward a resort" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Evening</span><h3>Sunset dock</h3><p>Dinner at the end of the pier, with the tables set at 5:30 pm.</p></div></article></div>
+        <div class="fx" data-fx="right" style="--d:650"><article class="xc" data-tilt><div class="ph"><img src="https://images.pexels.com/photos/1488267/pexels-photo-1488267.png?auto=compress&amp;cs=tinysrgb&amp;w=800" alt="An aerial view of a villa with a modern swimming pool" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Stay</span><h3>Garden villas</h3><p>Private pools tucked into the coconut grove, a short walk from the sea.</p></div></article></div>
+        <div class="fx" data-fx="right" style="--d:800"><article class="xc" data-tilt><div class="ph"><img src="https://images.unsplash.com/photo-1706561611610-2ebe309993f2?auto=format&amp;fit=crop&amp;w=800&amp;q=75" alt="An overhead view of a resort swimming pool and beach" loading="lazy" decoding="async"></div><div class="cap"><span class="t">Pool</span><h3>Edge pool</h3><p>Swim laps at dawn or float until the lanterns come on.</p></div></article></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide dark golden" id="golden" data-label="Golden hour" aria-label="Golden hour">
+    <video autoplay muted loop playsinline preload="metadata" poster="https://images.unsplash.com/photo-1724258207520-7870359e112a?auto=format&amp;fit=crop&amp;w=1400&amp;q=70" aria-hidden="true">
+      <source src="https://assets.mixkit.co/videos/34008/34008-720.mp4" type="video/mp4">
+      <source src="https://assets.mixkit.co/videos/34008/34008-360.mp4" type="video/mp4">
+    </video>
+    <div class="wrap">
+      <p class="eyebrow fx" data-fx="up">Golden hour</p>
+      <h2 class="fx" data-fx="zoom" style="--d:150;margin-top:14px">The best seat faces <em>west.</em></h2>
+      <p class="fx" data-fx="up" style="--d:400">Every evening the whole beach turns the colour of the sky. We just put out the chairs.</p>
+      <div class="counters fx" data-fx="up" style="--d:600">
+        <div><b data-count="18">0</b><span>years of the same sunsets</span></div>
+        <div><b data-count="40">0</b><span>villas</span></div>
+        <div><b data-count="96">0</b><span>% guests who return</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide light" id="gallery" data-label="Gallery" aria-label="Gallery">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow fx" data-fx="left">Gallery</p>
+        <h2 class="fx" data-fx="wipe" style="--d:100">Look <em>around</em></h2>
+        <p class="fx" data-fx="up" style="--d:300">Tap any photo to see it larger. These are free stock photos standing in for the resort.</p>
+      </div>
+      <div class="fx" data-fx="zoom" style="--d:450"><div class="wall" id="wall"></div></div>
+      <dialog id="lb" aria-label="Photo viewer">
+        <div class="lb">
+          <img id="lb-img" alt="">
+          <button class="round x" type="button" id="lb-x" aria-label="Close photo">&times;</button>
+          <div class="meta"><div><strong id="lb-t"></strong><br><small id="lb-c"></small></div><div class="nav"><button class="round" id="lb-p" type="button" aria-label="Previous photo">&larr;</button><button class="round" id="lb-n" type="button" aria-label="Next photo">&rarr;</button></div></div>
+        </div>
+      </dialog>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide dark" id="plan" data-label="Plan a stay" aria-label="Plan a stay">
+    <div class="wrap">
+      <div class="plan">
+        <div class="copy">
+          <p class="eyebrow fx" data-fx="left">Plan a stay</p>
+          <h2 class="fx" data-fx="wipe" style="--d:100">Check your <em>dates</em></h2>
+          <p class="fx" data-fx="up" style="--d:300">Choose a room and your dates to see an estimate. The reservations team confirms by phone within the hour.</p>
+          <div class="quote fx" data-fx="zoom" style="--d:450" aria-live="polite">
+            <div class="tot" id="q-total">&#8377;0</div>
+            <small id="q-line">Pick your dates to see the estimate.</small>
+          </div>
+          <address class="fx" data-fx="up" style="--d:600">
+            Saltwind Resort &amp; Spa, East Coast Road<br>
+            +91 00000 00000 &middot; stay@saltwind.example<br>
+            Check-in 2:00 pm &middot; Check-out 11:00 am
+          </address>
+        </div>
+        <form id="stay-form" class="fx" data-fx="right" style="--d:350" novalidate>
+          <label for="room">Room
+            <select id="room" name="room">
+              <option value="Garden Villa|6500">Garden Villa, &#8377;6,500</option>
+              <option value="Pool Suite|9800">Pool Suite, &#8377;9,800</option>
+              <option value="Ocean Deck Room|8200">Ocean Deck Room, &#8377;8,200</option>
+              <option value="Overwater Cabana|14500">Overwater Cabana, &#8377;14,500</option>
+            </select>
+          </label>
+          <div class="row">
+            <label for="cin">Check-in
+              <input id="cin" name="cin" type="date" required>
+              <span class="field-error" id="cin-error"></span>
+            </label>
+            <label for="cout">Check-out
+              <input id="cout" name="cout" type="date" required>
+              <span class="field-error" id="cout-error"></span>
+            </label>
+          </div>
+          <label for="guests">Guests
+            <select id="guests" name="guests">
+              <option>1 guest</option><option selected>2 guests</option><option>3 guests</option><option>4 guests</option>
+            </select>
+          </label>
+          <div class="row">
+            <label for="name">Name
+              <input id="name" name="name" type="text" autocomplete="name" required>
+              <span class="field-error" id="name-error"></span>
+            </label>
+            <label for="phone">Phone
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+              <span class="field-error" id="phone-error"></span>
+            </label>
+          </div>
+          <button class="btn gold" type="submit">Send request on WhatsApp</button>
+          <div class="status" id="form-status" role="status" hidden></div>
+        </form>
+      </div>
+      <div class="credits">
+        <p>Saltwind Resort &amp; Spa is an imaginary resort. This is a sample website, and the rooms and prices are made up. The booking form opens WhatsApp with your details filled in.</p>
+        <details>
+          <summary>Photo and video credits</summary>
+          <ul>
+            <li>Photos by Yulia Z, Paulo Evangelista, Tim Mossholder, Antonio Araujo, SnapSaga and Gerardo MR on <a href="https://unsplash.com">Unsplash</a>.</li>
+            <li>Photos by thanhhoa tran and Pixabay on <a href="https://www.pexels.com">Pexels</a>.</li>
+            <li>Videos from <a href="https://mixkit.co">Mixkit</a> (free stock video).</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+
+  /* media safety */
+  document.querySelectorAll('video').forEach(function (v) {
+    if (calm) { v.removeAttribute('autoplay'); v.pause(); }
+    var srcs = v.querySelectorAll('source'), last = srcs[srcs.length - 1];
+    if (last) last.addEventListener('error', function () { v.style.display = 'none'; });
+  });
+  document.querySelectorAll('.ph img').forEach(function (im) { im.addEventListener('error', function () { im.style.display = 'none'; }); });
+
+  /* gold dust in the moving background */
+  if (!calm) {
+    var bg = document.getElementById('bg');
+    for (var i = 0; i < 24; i++) {
+      var d = document.createElement('span'); d.className = 'dust';
+      d.style.left = (Math.random() * 100).toFixed(1) + '%';
+      d.style.setProperty('--s', (4 + Math.random() * 9).toFixed(1) + 'px');
+      d.style.setProperty('--d', (16 + Math.random() * 20).toFixed(1) + 's');
+      d.style.setProperty('--dl', (-Math.random() * 34).toFixed(1) + 's');
+      d.style.setProperty('--x', ((Math.random() - 0.5) * 180).toFixed(0) + 'px');
+      bg.appendChild(d);
+    }
+  }
+
+  /* deck: dots, counter, progress, active slide effects */
+  var dotsEl = document.getElementById('dots'), cN = document.getElementById('c-n'), cT = document.getElementById('c-t');
+  var cur = 0;
+  slides.forEach(function (s, k) {
+    var b = document.createElement('button'); b.type = 'button';
+    b.setAttribute('aria-label', 'Go to slide ' + (k + 1) + ': ' + s.getAttribute('data-label'));
+    b.innerHTML = '<span>' + s.getAttribute('data-label') + '</span>';
+    b.addEventListener('click', function () { go(k); });
+    dotsEl.appendChild(b);
+  });
+  var dotBtns = dotsEl.querySelectorAll('button');
+  function go(k) { k = Math.max(0, Math.min(slides.length - 1, k)); slides[k].scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' }); }
+  function setCur(k) {
+    cur = k;
+    cN.textContent = ('0' + (k + 1)).slice(-2);
+    cT.textContent = slides[k].getAttribute('data-label');
+    dotBtns.forEach(function (b, j) { if (j === k) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current'); });
+  }
+  function count(el) {
+    var to = parseInt(el.getAttribute('data-count'), 10), t0 = null;
+    if (calm) { el.textContent = to; return; }
+    function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / 1400, 1); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window && !calm) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var k = slides.indexOf(e.target);
+        if (e.isIntersecting) {
+          e.target.classList.add('active'); setCur(k);
+          e.target.querySelectorAll('[data-count]').forEach(count);
+        } else { e.target.classList.remove('active'); }
+      });
+    }, { rootMargin: '-48% 0px -48% 0px', threshold: 0 });
+    slides.forEach(function (s) { io.observe(s); });
+  } else {
+    slides.forEach(function (s) { s.classList.add('active'); s.querySelectorAll('[data-count]').forEach(count); });
+    setCur(0);
+  }
+  var prog = document.getElementById('progress');
+  function onScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  document.getElementById('s-prev').addEventListener('click', function () { go(cur - 1); });
+  document.getElementById('s-next').addEventListener('click', function () { go(cur + 1); });
+  document.addEventListener('keydown', function (e) {
+    var t = e.target; if (t && /INPUT|SELECT|TEXTAREA|BUTTON|SUMMARY|A/.test(t.tagName)) return;
+    if (document.getElementById('lb').open) return;
+    if (e.key === 'PageDown') { e.preventDefault(); go(cur + 1); }
+    if (e.key === 'PageUp') { e.preventDefault(); go(cur - 1); }
+  });
+
+  /* tilt */
+  if (fine && !calm) {
+    document.querySelectorAll('[data-tilt]').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * 14).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - 0.5) * 14).toFixed(2) + 'deg');
+      });
+      c.addEventListener('pointerleave', function () { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  /* 3D rooms carousel (fanned arc) */
+  var ROOMS = [
+    { name: "Garden Villa", desc: "A private plunge pool inside the coconut grove, with an outdoor shower and a short walk to the beach.", tags: ["Plunge pool", "Garden view", "Breakfast for two", "Sleeps 3"] },
+    { name: "Pool Suite", desc: "A suite that opens straight onto its own pool, with wooden loungers and a shaded daybed.", tags: ["Private pool", "Daybed", "Breakfast for two", "Sleeps 4"] },
+    { name: "Ocean Deck Room", desc: "A calm room with a wide deck facing the water, built for long mornings with coffee and the sound of waves.", tags: ["Sea-facing deck", "King bed", "Breakfast for two", "Sleeps 2"] },
+    { name: "Overwater Cabana", desc: "Reached by a wooden boardwalk, with a glass floor panel and steps that go straight into the lagoon.", tags: ["Over the water", "Glass floor", "Breakfast for two", "Sleeps 2"] }
+  ];
+  var ring = document.getElementById('ring'), rooms = ring.querySelectorAll('.room'), pagers = document.querySelectorAll('#pager button');
+  var idx = 0, n = rooms.length;
+  function size() {
+    var w = parseFloat(getComputedStyle(ring).getPropertyValue('--w')) || 300;
+    ring.style.setProperty('--r', ((w * 1.1 / 2) / Math.tan(25 * Math.PI / 180)) + 'px');
+  }
+  function show(i) {
+    idx = ((i % n) + n) % n;
+    rooms.forEach(function (r, k) {
+      var off = ((k - idx) % n + n) % n; if (off > n / 2) off -= n;
+      r.style.setProperty('--o', off);
+      r.classList.toggle('far', Math.abs(off) > 1);
+      r.classList.toggle('on', k === idx);
+    });
+    pagers.forEach(function (d, k) { d.setAttribute('aria-selected', k === idx ? 'true' : 'false'); });
+    var d = ROOMS[idx];
+    document.getElementById('ri-name').textContent = d.name;
+    document.getElementById('ri-desc').textContent = d.desc;
+    var tg = document.getElementById('ri-tags'); tg.textContent = '';
+    d.tags.forEach(function (t) { var s = document.createElement('span'); s.textContent = t; tg.appendChild(s); });
+  }
+  size(); show(0);
+  window.addEventListener('resize', size);
+  document.getElementById('prev').addEventListener('click', function () { show(idx - 1); });
+  document.getElementById('next').addEventListener('click', function () { show(idx + 1); });
+  pagers.forEach(function (d, k) { d.addEventListener('click', function () { show(k); }); });
+  var sx = null, stage = document.getElementById('stage');
+  stage.addEventListener('pointerdown', function (e) { sx = e.clientX; });
+  stage.addEventListener('pointerup', function (e) { if (sx === null) return; var dx = e.clientX - sx; if (Math.abs(dx) > 40) show(idx + (dx < 0 ? 1 : -1)); sx = null; });
+  stage.addEventListener('pointercancel', function () { sx = null; });
+  document.getElementById('ri-book').addEventListener('click', function () {
+    var sel = document.getElementById('room');
+    for (var i = 0; i < sel.options.length; i++) if (sel.options[i].value.indexOf(ROOMS[idx].name) === 0) sel.selectedIndex = i;
+    estimate();
+  });
+
+  /* gallery wall + viewer */
+  var PHOTOS = [
+    { t: "Edge pool from above", c: "Yulia Z, Unsplash", s: "https://images.unsplash.com/photo-1706561611610-2ebe309993f2?auto=format&fit=crop&w=", a: "An overhead view of a resort swimming pool and beach" },
+    { t: "Beach and loungers", c: "Paulo Evangelista, Unsplash", s: "https://images.unsplash.com/photo-1558117338-7ef3d637ce2f?auto=format&fit=crop&w=", a: "A sandy beach with palm trees and lounge chairs" },
+    { t: "Palm-lined pool", c: "Tim Mossholder, Unsplash", s: "https://images.unsplash.com/photo-1686471158569-96636b9fea17?auto=format&fit=crop&w=", a: "A swimming pool surrounded by palm trees" },
+    { t: "Room with a view", c: "Antonio Araujo, Unsplash", s: "https://images.unsplash.com/photo-1729606188713-814d1b7bf893?auto=format&fit=crop&w=", a: "A bedroom with a balcony overlooking the water" },
+    { t: "Sunset dock", c: "SnapSaga, Unsplash", s: "https://images.unsplash.com/photo-1724258207520-7870359e112a?auto=format&fit=crop&w=", a: "A wooden dock leading to a resort on a tropical island" },
+    { t: "Poolside loungers", c: "Gerardo MR, Unsplash", s: "https://images.unsplash.com/photo-1617859047452-8510bcf207fd?auto=format&fit=crop&w=", a: "Wooden lounge chairs beside a pool" },
+    { t: "Villa from the air", c: "thanhhoa tran, Pexels", p: "https://images.pexels.com/photos/1488267/pexels-photo-1488267.png?auto=compress&cs=tinysrgb&w=", a: "An aerial view of a villa with a swimming pool" },
+    { t: "Boardwalk to the cabanas", c: "Pixabay, Pexels", p: "https://images.pexels.com/photos/38238/maldives-ile-beach-sun-38238.jpeg?auto=compress&cs=tinysrgb&w=", a: "A wooden boardwalk leading to overwater bungalows" }
+  ];
+  function url(p, w) { return p.s ? p.s + w + "&q=75" : p.p + w; }
+  var wall = document.getElementById('wall'), lb = document.getElementById('lb'), cp = 0;
+  PHOTOS.forEach(function (p, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tile'; b.setAttribute('aria-label', 'Open photo: ' + p.t);
+    b.innerHTML = '<span class="ph" style="position:absolute;inset:0"><img loading="lazy" decoding="async" alt="" src="' + url(p, 600) + '"></span><span class="lbl"></span>';
+    b.querySelector('.lbl').textContent = p.t;
+    b.querySelector('img').addEventListener('error', function () { this.style.display = 'none'; });
+    b.addEventListener('click', function () { openPhoto(i); });
+    wall.appendChild(b);
+  });
+  function openPhoto(i) {
+    cp = (i + PHOTOS.length) % PHOTOS.length;
+    var p = PHOTOS[cp], im = document.getElementById('lb-img');
+    im.src = url(p, 1600); im.alt = p.a;
+    document.getElementById('lb-t').textContent = p.t;
+    document.getElementById('lb-c').textContent = 'Photo: ' + p.c;
+    if (!lb.open) lb.showModal();
+  }
+  document.getElementById('lb-x').addEventListener('click', function () { lb.close(); });
+  document.getElementById('lb-p').addEventListener('click', function () { openPhoto(cp - 1); });
+  document.getElementById('lb-n').addEventListener('click', function () { openPhoto(cp + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+  lb.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') openPhoto(cp + 1); if (e.key === 'ArrowLeft') openPhoto(cp - 1); });
+
+  /* stay estimator + WhatsApp booking.
+     Put the resort's number here with country code and no plus or spaces, e.g. '919876543210'.
+     While it is empty, WhatsApp opens its chat picker, so nothing goes to a stranger. */
+  var WHATSAPP_NUMBER = '';
+  document.getElementById('wa-float').href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Hello Saltwind, I have a question about a stay.');
+  /* stay estimator + form */
+  var cin = document.getElementById('cin'), cout = document.getElementById('cout'), roomSel = document.getElementById('room');
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  cin.min = iso(today); cout.min = iso(today);
+  function money(v) { return '₹' + Math.round(v).toLocaleString('en-IN'); }
+  function nights() { if (!cin.value || !cout.value) return 0; return Math.round((new Date(cout.value) - new Date(cin.value)) / 86400000); }
+  function estimate() {
+    var parts = roomSel.value.split('|'), rate = parseFloat(parts[1]), nn = nights();
+    var tot = document.getElementById('q-total'), line = document.getElementById('q-line');
+    if (nn > 0) {
+      var base = rate * nn, tax = base * 0.12;
+      tot.textContent = money(base + tax);
+      line.textContent = parts[0] + ': ' + nn + (nn === 1 ? ' night' : ' nights') + ' at ' + money(rate) + ' = ' + money(base) + ', plus 12% tax of ' + money(tax) + '. Sample numbers only.';
+    } else { tot.textContent = '₹0'; line.textContent = 'Pick your dates to see the estimate.'; }
+  }
+  [cin, cout, roomSel].forEach(function (el) { el.addEventListener('change', estimate); el.addEventListener('input', estimate); });
+  cin.addEventListener('change', function () { if (cin.value) { var d = new Date(cin.value); d.setDate(d.getDate() + 1); cout.min = iso(d); } });
+  var form = document.getElementById('stay-form'), status = document.getElementById('form-status');
+  var rules = [
+    { id: 'cin', ok: function () { return cin.value !== ''; }, msg: 'Choose a check-in date.' },
+    { id: 'cout', ok: function () { return cout.value !== '' && nights() > 0; }, msg: 'Choose a check-out date after check-in.' },
+    { id: 'name', ok: function () { return document.getElementById('name').value.trim() !== ''; }, msg: 'Enter your name.' },
+    { id: 'phone', ok: function () { return document.getElementById('phone').value.trim() !== ''; }, msg: 'Enter a phone number so we can call you.' }
+  ];
+  function check(r) {
+    var good = r.ok(), el = document.getElementById(r.id);
+    el.setAttribute('aria-invalid', good ? 'false' : 'true');
+    document.getElementById(r.id + '-error').textContent = good ? '' : r.msg;
+    return good;
+  }
+  rules.forEach(function (r) {
+    ['input', 'change'].forEach(function (ev) {
+      document.getElementById(r.id).addEventListener(ev, function () { check(r); if (r.id === 'cin') check(rules[1]); });
+    });
+  });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    rules.forEach(function (r) { if (!check(r)) ok = false; });
+    if (!ok) { status.hidden = true; return; }
+    var rp = roomSel.value.split('|'), nn = nights();
+    var msg = 'Hello Saltwind, I would like to book the ' + rp[0] + ' from ' + cin.value + ' to ' + cout.value + ' (' + nn + (nn === 1 ? ' night' : ' nights') + '), ' + document.getElementById('guests').value + '. Name: ' + document.getElementById('name').value.trim() + ', phone: ' + document.getElementById('phone').value.trim() + '.';
+    var link = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    status.textContent = 'Opening WhatsApp with your request. ';
+    var a = document.createElement('a'); a.href = link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'If it did not open, tap here.'; a.style.color = 'inherit'; a.style.textDecoration = 'underline';
+    status.appendChild(a);
+    window.open(link, '_blank', 'noopener');
+    status.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

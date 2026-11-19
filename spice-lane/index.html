@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Spice Lane Food Court · Order from 12 kitchens</title>
+<meta name="description" content="Order from 12 kitchens in one cart. Pay once, collect at each counter.">
+<meta name="theme-color" content="#0c0516">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div style="background:#12303a;color:#d9f6ff;font:600 13px/1.4 system-ui,sans-serif;padding:8px 12px;text-align:center">Demo mode: orders are saved in your browser only. Try the <a style="color:#ffd166" href="shop.html">shop kitchen screen</a> and the <a style="color:#ffd166" href="owner.html">owner desk</a> in other tabs. <a style="color:#ffd166" href="../index.html">Back to portfolio</a></div>
+<div class="bg" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div id="emo"></div></div>
+<header class="top">
+  <a class="logo" href="#/"><i>🍜</i><span><b>SPICE LANE</b><small>Food Court</small></span></a>
+  <nav class="topnav" aria-label="Main"><a href="#/" data-nav="home">Shops</a><a href="#/offers" data-nav="offers">Offers</a><a href="#/orders" data-nav="orders">My orders</a></nav>
+  <div style="display:flex;gap:8px;align-items:center"><button class="btn ghost install" id="inst" type="button">Install app</button><button class="cartbtn" id="cartbtn" type="button" aria-label="Open cart">🛒 <span id="ctot">₹0</span> <span class="n" id="cn">0</span></button></div>
+</header>
+<main id="view" class="wrap" tabindex="-1"></main>
+<nav class="bot" aria-label="Main">
+  <a href="#/" data-nav="home"><i>🍽️</i>Shops</a><a href="#/offers" data-nav="offers"><i>🏷️</i>Offers</a><a href="#/orders" data-nav="orders"><i>🧾</i>Orders</a><button id="cartbtn2" type="button"><i>🛒</i>Cart<span class="n" id="cn2">0</span></button>
+</nav>
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-label="Your cart" aria-hidden="true"></aside>
+<div class="toast" id="toast" role="status"></div>
+<script src="js/seed.js"></script>
+<script src="js/core.js"></script>
+<script src="js/demo-api.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

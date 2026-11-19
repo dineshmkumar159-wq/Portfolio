@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rootline Dental | Family dental clinic</title>
+<meta name="description" content="Rootline Dental is a sample family dental clinic website: next openings, an interactive tooth chart, fees, doctors, a first-visit guide and an appointment form.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&amp;family=Manrope:wght@400;500;700&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #E4F6F0;
+  --bg2: #CFEFE7;
+  --ink: #0B3A35;
+  --muted: #3C625C;
+  --teal: #0E7A6B;
+  --teal-hi: #20A692;
+  --teal-ink: #FFFFFF;
+  --aqua: #BDEEE4;
+  --frost: rgba(255,255,255,0.62);
+  --frost-line: rgba(255,255,255,0.9);
+  --line: #B5DCD3;
+  --warm-bg: #FDEBDD;
+  --warm-fg: #6B3A06;
+  --f-display: "Plus Jakarta Sans", "Trebuchet MS", system-ui, sans-serif;
+  --f-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Red Hat Mono", ui-monospace, Menlo, monospace;
+  --clay: 0 2px 0 rgba(255,255,255,.95) inset, 0 -6px 12px rgba(14,122,107,.10) inset, 0 22px 34px -16px rgba(14,90,80,.35), 0 4px 8px rgba(14,90,80,.10);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.65; overflow-x: hidden;
+  background: radial-gradient(80% 50% at 90% 0%, #F4FFFB, transparent 60%), radial-gradient(70% 50% at 0% 35%, #D7F6EC, transparent 60%), var(--bg);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; border-radius: 10px; }
+.wrap { max-width: 1100px; margin-inline: auto; overflow-x: clip; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 800; margin: 0; line-height: 1.05; letter-spacing: -0.025em; text-wrap: balance; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); font-weight: 500; }
+
+/* ambient: blobs, bubbles */
+.ambient { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.blob { position: absolute; border-radius: 50%; filter: blur(60px); will-change: transform; }
+.b1 { width: 46vmax; height: 46vmax; left: -14vmax; top: -10vmax; background: radial-gradient(circle, rgba(32,166,146,.30), transparent 68%); animation: bl1 36s ease-in-out infinite alternate; }
+.b2 { width: 40vmax; height: 40vmax; right: -12vmax; top: 30vh; background: radial-gradient(circle, rgba(120,214,230,.38), transparent 68%); animation: bl2 44s ease-in-out infinite alternate; }
+.b3 { width: 34vmax; height: 34vmax; left: 20vw; bottom: -16vmax; background: radial-gradient(circle, rgba(255,255,255,.9), transparent 68%); animation: bl1 50s ease-in-out infinite alternate-reverse; }
+@keyframes bl1 { from { transform: translate3d(0,0,0); } to { transform: translate3d(10vw, 12vh, 0); } }
+@keyframes bl2 { from { transform: translate3d(0,0,0); } to { transform: translate3d(-10vw, -14vh, 0); } }
+.bubble { position: absolute; bottom: -120px; width: var(--s); height: var(--s); border-radius: 50%; background: radial-gradient(circle at 30% 28%, rgba(255,255,255,.95), rgba(255,255,255,.35) 30%, rgba(141,225,208,.18) 60%, rgba(255,255,255,.45) 100%); box-shadow: 0 0 0 1.5px rgba(255,255,255,.8) inset, 0 8px 14px -6px rgba(14,122,107,.25); animation: rise var(--d) linear infinite; animation-delay: var(--dl); will-change: transform; }
+@keyframes rise { 0% { transform: translate3d(0,0,0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate3d(var(--x), -125vh, 0); opacity: .9; } }
+
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 18px; }
+.brand { font-family: var(--f-display); font-weight: 800; font-size: 1.5rem; text-decoration: none; letter-spacing: -0.02em; }
+.brand span { color: var(--teal); }
+nav { display: flex; flex-wrap: wrap; gap: 0 6px; font-weight: 700; font-size: 0.93rem; }
+nav a { text-decoration: none; padding: 11px 14px; border-radius: 999px; color: var(--muted); transition: background .2s, color .2s; }
+nav a:hover { background: var(--frost); color: var(--ink); box-shadow: 0 2px 0 rgba(255,255,255,.9) inset, 0 8px 14px -8px rgba(14,90,80,.35); }
+
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 28px 48px; align-items: center; padding-top: clamp(20px, 5vw, 56px); }
+.hero > div { min-width: 0; }
+.hero h1 { font-size: clamp(2.8rem, 7.5vw, 5rem); }
+.hero h1 em { font-style: normal; background: linear-gradient(120deg, var(--teal), var(--teal-hi) 70%, #5CC9D8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--teal); }
+.lead { font-size: 1.15rem; max-width: 42ch; color: var(--muted); margin: 20px 0 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 30px; border-radius: 999px; font: 800 1rem var(--f-body); text-decoration: none; border: 0; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+.btn.primary { color: var(--teal-ink); background: linear-gradient(180deg, #27B5A0, var(--teal) 70%); box-shadow: 0 2px 0 rgba(255,255,255,.45) inset, 0 -4px 8px rgba(0,0,0,.14) inset, 0 16px 26px -10px rgba(14,122,107,.75); }
+.btn.ghost { color: var(--ink); background: var(--frost); box-shadow: var(--clay); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.btn:hover { transform: translateY(-3px); }
+.btn:active { transform: translateY(1px); }
+
+.scene { perspective: 1000px; display: grid; place-items: center; min-height: 400px; position: relative; }
+.rig { --mx: 0; --my: 0; width: min(76vw, 320px); transform-style: preserve-3d; transform: rotateY(calc(var(--mx) * 26deg)) rotateX(calc(var(--my) * -16deg)); transition: transform .2s ease-out; animation: bob 6s ease-in-out infinite; }
+@keyframes bob { 0%,100% { translate: 0 0; } 50% { translate: 0 -14px; } }
+.rig svg { display: block; width: 100%; height: auto; overflow: visible; }
+.spark { transform-box: fill-box; transform-origin: center; animation: tw 3.2s ease-in-out infinite; }
+.spark.s2 { animation-delay: -1s; } .spark.s3 { animation-delay: -2s; }
+@keyframes tw { 0%,100% { transform: scale(.2) rotate(0); opacity: 0; } 50% { transform: scale(1) rotate(45deg); opacity: 1; } }
+
+.openings { position: relative; margin-top: 0; }
+.glass { background: var(--frost); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border: 1px solid var(--frost-line); box-shadow: var(--clay); }
+.openings { padding: clamp(20px, 4vw, 30px); border-radius: 28px; }
+.hero-card { position: absolute; right: 0; bottom: 0; width: min(100%, 290px); transform: translateZ(0); }
+.openings h2 { font-size: 1.3rem; margin: 6px 0 12px; }
+.openings ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.openings li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.75); box-shadow: 0 2px 0 #fff inset, 0 8px 12px -8px rgba(14,90,80,.35); font-weight: 700; font-size: .95rem; }
+.openings li span:last-child { font-family: var(--f-mono); font-size: .88rem; color: var(--teal); }
+.openings p { margin: 12px 0 0; font-size: .82rem; color: var(--muted); }
+
+section { padding-block: clamp(56px, 9vw, 104px) 0; scroll-margin-top: 8px; }
+.section-head { display: grid; gap: 10px; margin-bottom: 34px; max-width: 700px; }
+.section-head h2 { font-size: clamp(2.2rem, 5.2vw, 3.6rem); }
+.section-head p { margin: 0; color: var(--muted); }
+[data-tilt] { --rx: 0deg; --ry: 0deg; transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .25s ease-out; }
+
+/* interactive 3D clay tooth chart */
+.chart-box { border-radius: 34px; padding: clamp(16px, 3vw, 34px); display: grid; gap: 22px; }
+.chart-scroll { overflow-x: auto; padding-top: 14px; }
+.chart { display: block; width: 100%; min-width: 540px; height: auto; overflow: visible; }
+.tooth { cursor: pointer; }
+.tooth .body { fill: url(#clay); stroke: #A9D3C8; stroke-width: 1.5; filter: drop-shadow(0 5px 3px rgba(14,90,80,.25)); transition: transform .22s cubic-bezier(.2,1.4,.4,1), filter .22s; transform-box: fill-box; transform-origin: center bottom; }
+.tooth:hover .body { fill: url(#clayHover); transform: translateY(-5px); filter: drop-shadow(0 10px 5px rgba(14,90,80,.3)); }
+.tooth.on .body { fill: url(#clayOn); stroke: #0A5E52; transform: translateY(-9px) scale(1.06); filter: drop-shadow(0 14px 7px rgba(10,94,82,.45)); }
+.tooth:focus-visible { outline: none; }
+.tooth:focus-visible .body { stroke: var(--ink); stroke-width: 3.5; }
+.tooth text { font: 500 12px var(--f-mono); fill: var(--muted); text-anchor: middle; pointer-events: none; }
+.tooth.on text { fill: var(--ink); font-weight: 700; }
+.midline { stroke: #9CCFC3; stroke-width: 2; stroke-dasharray: 5 7; }
+.tooth-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 12px 28px; padding: 20px 22px; border-radius: 22px; background: rgba(255,255,255,.7); box-shadow: 0 2px 0 #fff inset, 0 14px 22px -16px rgba(14,90,80,.4); }
+.tooth-info h3 { font-size: 2.4rem; color: var(--teal); }
+.tooth-info .k { display: block; font-family: var(--f-mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.tooth-info .v { font-weight: 800; font-size: 1.05rem; }
+.chart-help { margin: 0; font-size: .92rem; color: var(--muted); }
+
+/* fee table */
+.fees { border-radius: 30px; padding: clamp(8px, 2vw, 18px) clamp(16px, 3vw, 30px); }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: separate; border-spacing: 0 8px; width: 100%; min-width: 540px; }
+thead th { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 500; text-align: left; padding: 10px 16px; }
+thead th:last-child { text-align: right; }
+tbody tr { transition: transform .2s; }
+tbody tr:hover { transform: translateY(-3px) scale(1.01); }
+tbody th, tbody td { text-align: left; padding: 14px 16px; background: rgba(255,255,255,.78); vertical-align: middle; }
+tbody th { font-weight: 800; border-radius: 18px 0 0 18px; }
+tbody td:last-child { border-radius: 0 18px 18px 0; text-align: right; }
+tbody tr { filter: drop-shadow(0 8px 8px rgba(14,90,80,.12)); }
+td.fee span { display: inline-block; font-family: var(--f-display); font-weight: 800; font-size: 1.15rem; color: var(--teal-ink); background: linear-gradient(180deg, #27B5A0, var(--teal)); padding: 4px 16px; border-radius: 999px; font-variant-numeric: tabular-nums; box-shadow: 0 2px 0 rgba(255,255,255,.4) inset; }
+.fine { margin-top: 14px; font-size: .9rem; color: var(--muted); }
+
+.team { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 26px; }
+.doc { display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; padding: 26px; border-radius: 30px; min-width: 0; }
+.avatar { width: 92px; height: 92px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 1.9rem; color: var(--teal-ink); background: radial-gradient(circle at 32% 26%, #6FE0CD, var(--teal) 70%); box-shadow: 0 3px 0 rgba(255,255,255,.5) inset, 0 -8px 14px rgba(0,0,0,.15) inset, 0 20px 24px -12px rgba(14,122,107,.7); }
+.doc h3 { font-size: 1.4rem; }
+.role { font-family: var(--f-mono); font-size: .8rem; color: var(--teal); display: block; margin: 4px 0 8px; }
+.doc p { margin: 0; color: var(--muted); font-size: .97rem; }
+
+.visit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px 56px; align-items: start; }
+.visit h2 { font-size: clamp(2rem, 4.4vw, 2.9rem); margin: 8px 0 20px; }
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: s; display: grid; gap: 14px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 52px 1fr; gap: 2px 16px; align-items: center; padding: 16px 18px; border-radius: 24px; }
+.steps li::before { content: counter(s); grid-row: span 2; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 32% 26%, #6FE0CD, var(--teal) 70%); color: #fff; display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 1.2rem; box-shadow: 0 2px 0 rgba(255,255,255,.5) inset, 0 12px 16px -8px rgba(14,122,107,.7); }
+.steps h3 { font-size: 1.2rem; align-self: end; }
+.steps p { margin: 0; color: var(--muted); font-size: .96rem; }
+details { margin-bottom: 12px; border-radius: 22px; padding: 0 22px; background: rgba(255,255,255,.72); box-shadow: 0 2px 0 #fff inset, 0 12px 18px -12px rgba(14,90,80,.35); }
+summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 16px; font-weight: 800; min-height: 52px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; flex: none; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--aqua); color: var(--teal); font-family: var(--f-mono); font-size: 1.2rem; transition: transform .25s; }
+details[open] summary::after { content: "\2212"; transform: rotate(180deg); }
+details p { margin: 0 0 16px; color: var(--muted); max-width: 56ch; }
+
+.book { border-radius: 38px; padding: clamp(22px, 5vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px 56px; box-shadow: var(--clay), 0 0 0 10px rgba(255,255,255,.4); }
+.book h2 { font-size: clamp(2.2rem, 5vw, 3.4rem); margin: 8px 0 16px; }
+.book p { margin: 0 0 12px; color: var(--muted); }
+.hours { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 8px; }
+.hours li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,.75); box-shadow: 0 2px 0 #fff inset; font-size: .97rem; }
+address { font-style: normal; margin-top: 18px; line-height: 1.8; font-family: var(--f-mono); font-size: .9rem; }
+.alert { margin-top: 22px; padding: 16px 18px; border-radius: 20px; background: var(--warm-bg); color: var(--warm-fg); font-size: .93rem; box-shadow: 0 2px 0 rgba(255,255,255,.8) inset; }
+.alert b { display: block; }
+form { display: grid; gap: 16px; min-width: 0; }
+label { display: grid; gap: 6px; font-weight: 700; font-size: .95rem; }
+input, select, textarea { font: 500 1rem var(--f-body); color: var(--ink); background: rgba(255,255,255,.9); border: 2px solid #A9D3C8; border-radius: 18px; padding: 12px 16px; width: 100%; min-width: 0; min-height: 50px; box-shadow: 0 3px 6px rgba(14,90,80,.12) inset; }
+textarea { min-height: 96px; resize: vertical; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { border-color: var(--teal); outline-offset: 1px; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 16px; align-items: start; }
+.field-error { color: var(--warm-fg); background: var(--warm-bg); font-size: .85rem; padding: 3px 12px; border-radius: 999px; display: none; font-weight: 500; }
+.field-error.show { display: block; }
+input[aria-invalid="true"] { border-color: #B4691E; }
+.status { padding: 14px 18px; border-radius: 18px; background: var(--aqua); font-size: .97rem; font-weight: 500; box-shadow: 0 2px 0 rgba(255,255,255,.8) inset; }
+
+footer { margin-top: clamp(64px, 10vw, 120px); padding-block: 28px 44px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font-size: .9rem; color: var(--muted); }
+
+.js .reveal { opacity: 0; translate: 0 30px; transition: opacity .8s ease, translate .8s ease; }
+.js .reveal.in { opacity: 1; translate: 0 0; }
+@media (max-width: 640px) { .hero-card { position: static; width: 100%; margin-top: 8px; } .scene { min-height: 0; padding-bottom: 8px; } .doc { grid-template-columns: 1fr; text-align: left; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .blob, .bubble, .rig, .spark { animation: none !important; }
+  .bubble { display: none; }
+  .spark { opacity: 1; transform: scale(.7); }
+  .js .reveal { opacity: 1; translate: 0 0; transition: none; }
+  .rig, [data-tilt], .btn, .tooth .body, tbody tr, summary::after { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true" id="amb">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="#top">Root<span>line</span> Dental</a>
+    <nav aria-label="Main">
+      <a href="#teeth">Tooth chart</a>
+      <a href="#treatments">Treatments</a>
+      <a href="#doctors">Doctors</a>
+      <a href="#first-visit">First visit</a>
+      <a href="#book">Book</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Family dental clinic</p>
+        <h1>Dentistry that explains <em>before</em> it drills.</h1>
+        <p class="lead">Check-ups, fillings, root canals and braces under one roof. You get a written plan and the cost before any treatment starts.</p>
+        <div class="actions">
+          <a class="btn primary" href="#book">Book an appointment</a>
+          <a class="btn ghost" href="#teeth">Explore the tooth chart</a>
+        </div>
+      </div>
+      <div>
+        <div class="scene">
+          <div class="rig" id="rig">
+            <svg viewBox="0 0 300 340" role="img" aria-label="A glossy three-dimensional tooth with sparkles">
+              <defs>
+                <linearGradient id="tb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".55" stop-color="#EAFBF6"/><stop offset="1" stop-color="#9FDACD"/></linearGradient>
+                <radialGradient id="tg" cx=".3" cy=".22" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+                <filter id="tsoft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+              </defs>
+              <ellipse cx="150" cy="326" rx="92" ry="12" fill="#0E5A50" opacity=".28" filter="url(#tsoft)"/>
+              <path d="M150 44 C122 22 72 30 62 80 C54 120 72 150 78 190 C84 240 82 296 106 306 C130 314 136 252 150 242 C164 252 170 314 194 306 C218 296 216 240 222 190 C228 150 246 120 238 80 C228 30 178 22 150 44 Z" fill="url(#tb)" stroke="#8CCFC0" stroke-width="3"/>
+              <path d="M150 44 C122 22 72 30 62 80 C54 120 72 150 78 190 C84 240 82 296 106 306 C130 314 136 252 150 242 C164 252 170 314 194 306 C218 296 216 240 222 190 C228 150 246 120 238 80 C228 30 178 22 150 44 Z" fill="url(#tg)"/>
+              <path d="M88 70 C92 48 112 38 128 44" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" opacity=".9"/>
+              <path d="M82 118 C80 132 84 144 88 154" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+              <path d="M214 120 C218 150 206 200 204 230" fill="none" stroke="#7BC5B5" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+              <g fill="#fff" stroke="#27B5A0" stroke-width="1.5">
+                <path class="spark s1" d="M262 70 l5 14 l14 5 l-14 5 l-5 14 l-5 -14 l-14 -5 l14 -5z"/>
+                <path class="spark s2" d="M36 150 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4z"/>
+                <path class="spark s3" d="M246 214 l3 8 l8 3 l-8 3 l-3 8 l-3 -8 l-8 -3 l8 -3z"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="openings glass reveal">
+          <p class="eyebrow">Next openings</p>
+          <h2>Same-day slots for toothache</h2>
+          <ul>
+            <li><span>Today</span><span>4:30 pm</span></li>
+            <li><span>Tomorrow</span><span>10:00 am</span></li>
+            <li><span>Tomorrow</span><span>12:30 pm</span></li>
+            <li><span>Saturday</span><span>9:30 am</span></li>
+          </ul>
+          <p>Example slots for this sample site.</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="teeth">
+      <div class="section-head reveal">
+        <p class="eyebrow">Know your teeth</p>
+        <h2>Tap a tooth to see what it is</h2>
+        <p>Dentists number adult teeth with a two-digit code. The first digit is the quadrant of the mouth. The second counts from the middle: 1 is the front tooth, 8 is the wisdom tooth.</p>
+      </div>
+      <div class="chart-box glass reveal">
+        <div class="chart-scroll">
+          <svg class="chart" id="chart" viewBox="0 38 640 212" role="group" aria-label="Adult tooth chart, upper and lower arch">
+            <defs>
+              <linearGradient id="clay" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#EEFBF7"/><stop offset="1" stop-color="#BFE5DB"/></linearGradient>
+              <linearGradient id="clayHover" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".6" stop-color="#D5F5EC"/><stop offset="1" stop-color="#8FD6C6"/></linearGradient>
+              <linearGradient id="clayOn" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4CC9B4"/><stop offset=".6" stop-color="#0E8E7C"/><stop offset="1" stop-color="#0A6A5C"/></linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="tooth-info" aria-live="polite">
+          <div><span class="k">Tooth</span><h3 id="i-num">36</h3></div>
+          <div><span class="k">Name</span><span class="v" id="i-name"></span></div>
+          <div><span class="k">Location</span><span class="v" id="i-where"></span></div>
+          <div><span class="k">Typical roots</span><span class="v" id="i-roots"></span></div>
+        </div>
+        <p class="chart-help">The chart is drawn as your dentist sees you, so your right side is on the left of the picture.</p>
+      </div>
+    </section>
+
+    <section id="treatments">
+      <div class="section-head reveal">
+        <p class="eyebrow">Treatments and fees</p>
+        <h2>What it usually costs</h2>
+        <p>Fees start from these amounts. The exact figure depends on the tooth and the materials, and you will see it in writing first.</p>
+      </div>
+      <div class="fees glass reveal">
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th scope="col">Treatment</th><th scope="col">Typical visit</th><th scope="col">From</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Check-up and cleaning</th><td>45 min</td><td class="fee"><span>₹800</span></td></tr>
+              <tr><th scope="row">Tooth-coloured filling</th><td>30 to 45 min</td><td class="fee"><span>₹1,200</span></td></tr>
+              <tr><th scope="row">Simple extraction</th><td>20 min</td><td class="fee"><span>₹1,000</span></td></tr>
+              <tr><th scope="row">Root canal treatment</th><td>60 to 90 min, 1 or 2 visits</td><td class="fee"><span>₹5,500</span></td></tr>
+              <tr><th scope="row">Zirconia crown</th><td>2 visits, about a week apart</td><td class="fee"><span>₹9,000</span></td></tr>
+              <tr><th scope="row">Teeth whitening</th><td>60 min</td><td class="fee"><span>₹6,500</span></td></tr>
+              <tr><th scope="row">Braces consultation</th><td>30 min</td><td class="fee"><span>₹500</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="fine">Sample fees for a demonstration site.</p>
+    </section>
+
+    <section id="doctors">
+      <div class="section-head reveal">
+        <p class="eyebrow">Doctors</p>
+        <h2>Two dentists, one waiting room</h2>
+      </div>
+      <div class="team">
+        <div class="doc glass reveal" data-tilt>
+          <div class="avatar" aria-hidden="true">MI</div>
+          <div>
+            <h3>Dr. Meenal Iyer</h3>
+            <span class="role">BDS, general and cosmetic dentistry</span>
+            <p>Fillings, cleaning, whitening and children's dentistry. Sees patients from age 3.</p>
+          </div>
+        </div>
+        <div class="doc glass reveal" data-tilt>
+          <div class="avatar" aria-hidden="true">FQ</div>
+          <div>
+            <h3>Dr. Farhan Qureshi</h3>
+            <span class="role">MDS, endodontics</span>
+            <p>Root canals, crowns and tooth pain that has not had a clear cause yet.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="first-visit">
+      <div class="visit">
+        <div class="reveal">
+          <p class="eyebrow">Your first visit</p>
+          <h2>What happens in the chair</h2>
+          <ol class="steps">
+            <li class="glass"><h3>We talk first</h3><p>About 10 minutes on your history, what worries you, and any past treatment.</p></li>
+            <li class="glass"><h3>We examine</h3><p>A full check of teeth and gums, with an X-ray only if it will change the plan.</p></li>
+            <li class="glass"><h3>You get a plan</h3><p>A written plan with each step and its cost. Nothing starts until you say yes.</p></li>
+          </ol>
+        </div>
+        <div class="reveal">
+          <p class="eyebrow">Questions</p>
+          <h2>Before you come in</h2>
+          <details>
+            <summary>Does a root canal hurt?</summary>
+            <p>The tooth is numbed first, so most people feel pressure and not pain. A day or two of soreness afterwards is common. Tell us straight away if anything feels sharp during treatment.</p>
+          </details>
+          <details>
+            <summary>How often should I have a check-up?</summary>
+            <p>Every six months suits most adults. If you have gum disease or a lot of fillings, your dentist may ask to see you more often.</p>
+          </details>
+          <details>
+            <summary>Can I bring my child?</summary>
+            <p>Yes. Dr. Iyer sees children from age 3, and a first visit can be as simple as sitting in the chair and counting teeth.</p>
+          </details>
+          <details>
+            <summary>Do you take insurance?</summary>
+            <p>Ask when you book. We can give you an itemised bill to submit to your insurer.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="book">
+      <div class="book glass reveal">
+        <div>
+          <p class="eyebrow">Book</p>
+          <h2>Request an appointment</h2>
+          <p>Tell us what is bothering you and when suits you. The front desk calls to confirm.</p>
+          <ul class="hours" aria-label="Opening hours">
+            <li><span>Monday to Saturday</span><span>9:00 am to 7:00 pm</span></li>
+            <li><span>Sunday</span><span>Closed</span></li>
+          </ul>
+          <address>
+            5 Garden Road, Clinic Row<br>
+            +91 00000 00000<br>
+            care@rootline.example
+          </address>
+          <div class="alert"><b>Urgent symptoms</b>Swelling that is spreading, trouble swallowing or breathing, or bleeding that will not stop after 15 minutes of firm pressure needs a hospital emergency department, not a booking form.</div>
+        </div>
+        <form id="appt-form" novalidate>
+          <div class="row">
+            <label for="name">Name
+              <input id="name" name="name" type="text" autocomplete="name" required>
+              <span class="field-error" id="name-error">Enter your name.</span>
+            </label>
+            <label for="phone">Phone
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required>
+              <span class="field-error" id="phone-error">Enter a phone number so the front desk can call you.</span>
+            </label>
+          </div>
+          <label for="reason">Reason for visit
+            <select id="reason" name="reason">
+              <option>Check-up and cleaning</option>
+              <option>Toothache</option>
+              <option>Filling or crown</option>
+              <option>Whitening</option>
+              <option>Braces consultation</option>
+              <option>Child's first visit</option>
+            </select>
+          </label>
+          <div class="row">
+            <label for="day">Preferred day
+              <select id="day" name="day">
+                <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+                <option>Thursday</option><option>Friday</option><option>Saturday</option>
+              </select>
+            </label>
+            <label for="part">Time of day
+              <select id="part" name="part">
+                <option>Morning</option><option>Afternoon</option><option>Evening</option>
+              </select>
+            </label>
+          </div>
+          <label for="notes">Anything we should know? (optional)
+            <textarea id="notes" name="notes"></textarea>
+          </label>
+          <button class="btn primary" type="submit">Request appointment</button>
+          <div class="status" id="form-status" role="status" hidden></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Rootline Dental is an imaginary clinic. This is a sample website, and the fees and doctors are made up.</span>
+    <span>Monday to Saturday, 9:00 am to 7:00 pm</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* bubbles */
+  if (!calm) {
+    var amb = document.getElementById('amb');
+    for (var i = 0; i < 18; i++) {
+      var b = document.createElement('span');
+      b.className = 'bubble';
+      b.style.left = (Math.random() * 100).toFixed(1) + '%';
+      b.style.setProperty('--s', (14 + Math.random() * 46).toFixed(0) + 'px');
+      b.style.setProperty('--d', (18 + Math.random() * 22).toFixed(1) + 's');
+      b.style.setProperty('--dl', (-Math.random() * 36).toFixed(1) + 's');
+      b.style.setProperty('--x', ((Math.random() - 0.5) * 140).toFixed(0) + 'px');
+      amb.appendChild(b);
+    }
+  }
+
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !calm) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    items.forEach(function (el, i) { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+  } else { items.forEach(function (el) { el.classList.add('in'); }); }
+
+  if (fine && !calm) {
+    var rig = document.getElementById('rig');
+    window.addEventListener('pointermove', function (e) {
+      rig.style.setProperty('--mx', ((e.clientX / window.innerWidth) - 0.5).toFixed(3));
+      rig.style.setProperty('--my', ((e.clientY / window.innerHeight) - 0.5).toFixed(3));
+    });
+    document.querySelectorAll('[data-tilt]').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * 8).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - 0.5) * 8).toFixed(2) + 'deg');
+      });
+      c.addEventListener('pointerleave', function () { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  /* tooth chart */
+  var NS = "http://www.w3.org/2000/svg";
+  var NAMES = { 1: "Central incisor", 2: "Lateral incisor", 3: "Canine", 4: "First premolar", 5: "Second premolar", 6: "First molar", 7: "Second molar", 8: "Third molar (wisdom tooth)" };
+  var QUAD = { 1: "Upper right", 2: "Upper left", 3: "Lower left", 4: "Lower right" };
+  var WIDTH = [0, 26, 24, 27, 28, 28, 36, 36, 34];
+  var HEIGHT = [0, 54, 50, 60, 48, 46, 44, 42, 40];
+  function roots(q, p) {
+    var upper = (q === 1 || q === 2);
+    if (p <= 3) return "1";
+    if (p === 4) return upper ? "Usually 2" : "1";
+    if (p === 5) return "1";
+    if (p === 8) return "Varies";
+    return upper ? "3" : "2";
+  }
+  var chart = document.getElementById("chart");
+  var order = [
+    [1, [8, 7, 6, 5, 4, 3, 2, 1]], [2, [1, 2, 3, 4, 5, 6, 7, 8]],
+    [4, [8, 7, 6, 5, 4, 3, 2, 1]], [3, [1, 2, 3, 4, 5, 6, 7, 8]]
+  ];
+  var els = {};
+  function el(name, attrs) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  chart.appendChild(el("line", { x1: 320, y1: 56, x2: 320, y2: 222, "class": "midline" }));
+  function select(code) {
+    Object.keys(els).forEach(function (k) { els[k].classList.toggle("on", k === code); els[k].setAttribute("aria-pressed", k === code ? "true" : "false"); });
+    var q = parseInt(code.charAt(0), 10), p = parseInt(code.charAt(1), 10);
+    document.getElementById("i-num").textContent = code;
+    document.getElementById("i-name").textContent = NAMES[p];
+    document.getElementById("i-where").textContent = QUAD[q];
+    document.getElementById("i-roots").textContent = roots(q, p);
+  }
+  order.forEach(function (grp) {
+    var q = grp[0];
+    grp[1].forEach(function (p) {
+      var idx = (q === 1 || q === 4) ? (grp[1].indexOf(p)) : (8 + grp[1].indexOf(p));
+      var cx = idx * 40 + 20;
+      var upper = (q === 1 || q === 2);
+      var w = WIDTH[p], h = HEIGHT[p];
+      var y = upper ? 134 - h : 146;
+      var code = "" + q + p;
+      var g = el("g", { "class": "tooth", tabindex: "0", role: "button", "aria-pressed": "false", "aria-label": "Tooth " + code + ", " + QUAD[q].toLowerCase() + " " + NAMES[p].toLowerCase() });
+      g.appendChild(el("rect", { "class": "body", x: cx - w / 2, y: y, width: w, height: h, rx: 12 }));
+      var t = el("text", { x: cx, y: upper ? 60 : 238 });
+      t.textContent = code;
+      g.appendChild(t);
+      g.addEventListener("click", function () { select(code); });
+      g.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(code); }
+      });
+      chart.appendChild(g);
+      els[code] = g;
+    });
+  });
+  select("36");
+
+  /* Appointment form: validates and shows a message. Nothing is sent. */
+  var form = document.getElementById("appt-form");
+  var status = document.getElementById("form-status");
+  var ids = ["name", "phone"];
+  function check(id) {
+    var inp = document.getElementById(id);
+    var good = inp.value.trim() !== "";
+    inp.setAttribute("aria-invalid", good ? "false" : "true");
+    document.getElementById(id + "-error").classList.toggle("show", !good);
+    return good;
+  }
+  ids.forEach(function (id) { document.getElementById(id).addEventListener("input", function () { check(id); }); });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var ok = true;
+    ids.forEach(function (id) { if (!check(id)) ok = false; });
+    if (!ok) { status.hidden = true; return; }
+    var who = document.getElementById("name").value.trim();
+    status.textContent = "Thank you, " + who + ". This is a sample site, so your request was not sent anywhere.";
+    status.hidden = false;
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Kitchen · Spice Lane Food Court</title>
+<meta name="theme-color" content="#0c0516">
+<link rel="manifest" href="shop.webmanifest">
+<link rel="icon" href="icons/shop-192.png"><link rel="apple-touch-icon" href="icons/shop-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div id="login" class="wrap" hidden>
+  <div class="card login">
+    <h1>KITCHEN LOGIN</h1><p style="color:var(--mut);margin:4px 0 0">Spice Lane Food Court · shop staff</p>
+    <form id="lf" novalidate>
+      <label for="shopsel">Your shop</label><select id="shopsel"></select>
+      <label for="pin">4-digit PIN</label><input id="pin" class="pin" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••">
+      <div class="msg" id="lm" role="alert"></div>
+      <button class="btn" type="submit" style="width:100%">Open my kitchen</button>
+    </form>
+    <div class="hint" id="demohint" hidden></div>
+    <p style="font-size:.85rem;margin:14px 0 0"><a href="./">← Customer site</a> · <a href="owner.html">Owner</a></p>
+  </div>
+</div>
+<div id="app" hidden>
+<header class="top"><div class="in">
+  <div class="brand"><i id="semo">🍽️</i><div><b id="snm">Shop</b><small>Kitchen screen</small></div></div>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <label style="display:flex;align-items:center;gap:8px;margin:0;color:var(--ink);font-weight:700"><span id="openlbl">Open</span><span class="sw"><input type="checkbox" id="openchk" aria-label="Shop is open"><span></span></span></label>
+    <button class="btn ghost sm" id="snd" type="button" aria-pressed="false">🔔 Sound off</button>
+    <button class="btn ghost install sm" id="inst" type="button">Install</button>
+    <button class="btn ghost sm" id="out" type="button">Log out</button>
+  </div></div></header>
+<main class="wrap">
+  <div class="tabs desk" role="tablist" aria-label="Sections"><button class="tab" role="tab" data-tab="orders" aria-selected="true">Orders <span class="n" id="onew" hidden>0</span></button><button class="tab" role="tab" data-tab="menu" aria-selected="false">Menu and stock</button><button class="tab" role="tab" data-tab="today" aria-selected="false">Today</button></div>
+  <section id="tab-orders"></section>
+  <section id="tab-menu" hidden></section>
+  <section id="tab-today" hidden></section>
+</main>
+<nav class="bot" aria-label="Sections"><button data-tab="orders" aria-selected="true"><i>🧾</i>Orders</button><button data-tab="menu" aria-selected="false"><i>📦</i>Menu and stock</button><button data-tab="today" aria-selected="false"><i>💰</i>Today</button></nav>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="js/seed.js"></script>
+<script src="js/core.js"></script>
+<script src="js/demo-api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/shop.js"></script>
+</body>
+</html>

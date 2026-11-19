@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>M Dinesh Kumar | Website and app developer in Chennai</title>
+<meta name="description" content="Portfolio of M Dinesh Kumar, Chennai: business websites, booking and ordering systems with admin panels, and installable phone apps. Try the live demos.">
+<meta name="theme-color" content="#07060a">
+<script>try{var __t=localStorage.getItem("pf_theme");if(__t)document.documentElement.setAttribute("data-theme",__t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Unbounded:wght@500;700;900&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070913;--bgrgb:7,9,19;--ink:#f3f5ff;--ink2:#d6dbf7;--mut:#9aa3c7;--c1:124,92,255;--c2:34,211,238;--c3:244,114,182;--c1d:40,20,110;--red:#8b6cff;--red2:#22d3ee;--btn1:#7c3aed;--btn2:#3b5bf0;--fx2:#22d3ee;--fx3:#a7f3d0;--o1:#3b2bb5;--o2:#0e7490;--o3:#a21caf;--kt:#cfc6ff;--surf1:#10122a;--surf2:#090a18;--surf3:#0e1024;--focus:#c4b5fd;--bg2:#0b0e1f;--glass:rgba(255,255,255,.05);--line:rgba(255,255,255,.11);--r:22px;
+--disp:'Unbounded','Arial Black',system-ui,sans-serif;--body:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif}
+html[data-theme=emerald]{--bg2:#08170f;--bg:#050f0c;--bgrgb:5,15,12;--ink:#f1fff9;--ink2:#d4efe5;--mut:#94b5a9;--c1:16,185,129;--c2:245,184,66;--c3:45,212,191;--c1d:4,70,50;--red:#10b981;--red2:#f5b842;--btn1:#059669;--btn2:#0f766e;--fx2:#f5b842;--fx3:#fde68a;--o1:#065f46;--o2:#0f766e;--o3:#a16207;--kt:#a7f3d0;--surf1:#0c1f1a;--surf2:#07130f;--surf3:#0a1a15;--focus:#6ee7b7}
+html[data-theme=rose]{--bg2:#0d0a12;--bg:#07060a;--bgrgb:7,6,10;--ink:#fff1ea;--ink2:#e2d6d2;--mut:#a99aa6;--c1:255,45,74;--c2:255,106,61;--c3:210,80,255;--c1d:91,13,32;--red:#ff2d4a;--red2:#ff6a3d;--btn1:#ff2d4a;--btn2:#ff6a3d;--fx2:#ff8a4d;--fx3:#ffd0a6;--o1:#9b0f2b;--o2:#6a1b8a;--o3:#c2410c;--kt:#ffb4a8;--surf1:#1b1020;--surf2:#0d0912;--surf3:#140d18;--focus:#ffd2c4}
+*{box-sizing:border-box;margin:0}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{background:var(--bg);transition:background .5s;color:var(--ink);font:400 1.02rem/1.65 var(--body);overflow-x:hidden;min-height:100vh}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- background layers ---------- */
+#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.orbs{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.orbs i{position:absolute;border-radius:50%;opacity:.5;will-change:transform}
+.orbs i:nth-child(1){width:46vmax;height:46vmax;left:-14vmax;top:-10vmax;background:radial-gradient(circle,var(--o1),transparent 65%);animation:o1 24s ease-in-out infinite alternate}
+.orbs i:nth-child(2){width:40vmax;height:40vmax;right:-12vmax;top:30vh;background:radial-gradient(circle,var(--o2),transparent 65%);opacity:.32;animation:o2 30s ease-in-out infinite alternate}
+.orbs i:nth-child(3){width:36vmax;height:36vmax;left:20vw;bottom:-18vmax;background:radial-gradient(circle,var(--o3),transparent 65%);opacity:.32;animation:o3 27s ease-in-out infinite alternate}
+@keyframes o1{to{transform:translate(18vw,14vh) scale(1.15)}}
+@keyframes o2{to{transform:translate(-16vw,-12vh) scale(.9)}}
+@keyframes o3{to{transform:translate(14vw,-10vh) scale(1.2)}}
+.vig{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 40%,transparent 40%,rgba(var(--bgrgb),.7) 100%)}
+.spot{position:fixed;left:0;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;z-index:1;pointer-events:none;background:radial-gradient(circle,rgba(var(--c1),.13),transparent 62%);opacity:0;transition:opacity .4s;will-change:transform}
+.prog{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--red),var(--red2))}
+main,header.top,footer{position:relative;z-index:2}
+
+/* ---------- header and dock ---------- */
+header.top{position:fixed;left:0;right:0;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px max(18px,calc((100vw - 1180px)/2));background:linear-gradient(rgba(var(--bgrgb),.95),rgba(var(--bgrgb),.62))}
+.logo{font:800 .95rem var(--disp);text-decoration:none;letter-spacing:.02em}
+.logo b{color:var(--red)}
+header nav{display:flex;gap:6px}
+header nav a{text-decoration:none;padding:8px 13px;border-radius:99px;font-weight:600;font-size:.9rem;color:var(--mut);transition:.2s}
+header nav a:hover{color:var(--ink);background:var(--glass)}
+.dock{display:none}
+.themes{display:flex;gap:7px;align-items:center}.themes button{width:24px;height:24px;border-radius:50%;border:2px solid rgba(255,255,255,.3);padding:0;transition:transform .2s}.themes button:hover{transform:scale(1.15)}.themes button[aria-pressed=true]{outline:2px solid #fff;outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:11px 22px;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-weight:700;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;backdrop-filter:blur(6px)}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.1)}
+.btn.hot{background:linear-gradient(135deg,var(--btn1),var(--btn2));border-color:transparent;color:#fff;box-shadow:0 10px 30px -8px rgba(var(--c1),.7)}
+.btn.hot:hover{box-shadow:0 16px 40px -8px rgba(var(--c1),.9);filter:brightness(1.12)}
+.btn.sm{min-height:38px;padding:7px 16px;font-size:.88rem}
+
+/* ---------- layout ---------- */
+section,.hero{position:relative;padding:clamp(70px,10vw,130px) max(18px,calc((100vw - 1180px)/2))}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:700 .74rem var(--disp);letter-spacing:.16em;text-transform:uppercase;color:var(--red2)}
+.eyebrow::before{content:"";width:34px;height:2px;background:linear-gradient(90deg,var(--red),transparent)}
+h2.big{font:900 clamp(1.9rem,5.2vw,3.5rem)/1.08 var(--disp);letter-spacing:-.02em;margin:14px 0 14px}
+h2.big em{font-style:normal;background:linear-gradient(100deg,var(--red),var(--red2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mut);max-width:60ch;font-size:1.08rem}
+.head{margin-bottom:clamp(32px,5vw,56px)}
+.rv{opacity:0;transform:translateY(34px) rotateX(8deg);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in,.nojs .rv{opacity:1;transform:none}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:20px;padding-top:120px}
+.hero .copy{perspective:1000px}
+.tilt3d{transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform}
+h1{font:900 clamp(1.9rem,4.9vw,3.7rem)/1.08 var(--disp);letter-spacing:-.03em;margin:18px 0 22px;transform-style:preserve-3d}
+h1 span{display:inline-block;transform:translateZ(calc(var(--z,0px) * .5))}
+@media (hover:none){h1 span{transform:none}}
+h1 .fx{background:linear-gradient(100deg,var(--red),var(--fx2) 60%,var(--fx3));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 8px 24px rgba(var(--c1),.45))}
+.hero p.lead{margin-bottom:30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:30px;color:var(--mut);font-size:.9rem;font-weight:600}
+.meta span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:9px;box-shadow:0 0 12px var(--red)}
+#heroObj{position:relative;height:min(62vh,520px);min-height:340px}
+.chip3{position:absolute;padding:9px 16px;border-radius:99px;background:rgba(var(--bgrgb),.7);border:1px solid rgba(var(--c1),.45);font:700 .78rem var(--disp);letter-spacing:.06em;box-shadow:0 12px 30px -10px rgba(var(--c1),.6);backdrop-filter:blur(6px);animation:bob 6s ease-in-out infinite}
+.chip3:nth-child(1){left:2%;top:12%}.chip3:nth-child(2){right:0;top:28%;animation-delay:-1.5s}.chip3:nth-child(3){left:8%;bottom:14%;animation-delay:-3s}.chip3:nth-child(4){right:6%;bottom:6%;animation-delay:-4.5s}
+@keyframes bob{50%{transform:translateY(-16px) rotate(1.5deg)}}
+.scrollcue{position:absolute;left:50%;bottom:26px;translate:-50% 0;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--mut);font:700 .68rem var(--disp);letter-spacing:.2em;text-decoration:none}
+.scrollcue i{width:22px;height:36px;border:2px solid var(--mut);border-radius:14px;position:relative}
+.scrollcue i::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:7px;margin-left:-2px;border-radius:4px;background:var(--red);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(14px)}}
+
+/* ---------- marquee + stats ---------- */
+.marq{position:relative;z-index:2;overflow:hidden;border-block:1px solid var(--line);background:rgba(var(--c1),.07);transform:skewY(-1.6deg);margin:10px 0 0;padding:15px 0}
+.marq div{display:flex;width:max-content;animation:mq 38s linear infinite}
+.marq span{font:800 clamp(1rem,2.4vw,1.5rem) var(--disp);letter-spacing:.06em;padding-right:34px;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,241,234,.7)}
+.marq span:nth-child(3n){color:var(--red);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-block:clamp(50px,7vw,90px) 0}
+.stat{text-align:center;padding:26px 12px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line)}
+.stat b{display:block;font:900 clamp(2rem,5vw,3.2rem)/1 var(--disp);background:linear-gradient(120deg,var(--red),var(--red2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{color:var(--mut);font-weight:600;font-size:.92rem}
+
+/* ---------- featured coverflow ---------- */
+.flow{position:relative;height:clamp(470px,62vw,560px);perspective:1500px;margin-top:10px;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.flow .stage{position:absolute;inset:0;transform-style:preserve-3d}
+.slide{position:absolute;left:50%;top:6px;width:min(80vw,440px);margin-left:calc(min(80vw,440px) / -2);border-radius:26px;background:linear-gradient(160deg,rgba(255,255,255,.10),rgba(255,255,255,.03));border:1px solid var(--line);overflow:hidden;cursor:pointer;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s,filter .7s;box-shadow:0 40px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.03)}
+.slide.cur{border-color:rgba(var(--c1),.6);box-shadow:0 50px 100px -30px rgba(var(--c1),.45),0 0 60px -10px rgba(var(--c1),.4)}
+.slide .pic{aspect-ratio:760/368;background:var(--surf3);position:relative;overflow:hidden}
+.slide .pic img{width:100%;height:100%;object-fit:cover}
+.slide .body{padding:20px 22px 24px}
+.slide h3{font:800 1.3rem/1.2 var(--disp);margin:8px 0 8px}
+.slide p{color:var(--mut);font-size:.95rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.k{display:inline-block;padding:5px 12px;border-radius:99px;background:rgba(var(--c1),.16);border:1px solid rgba(var(--c1),.4);font:700 .68rem var(--disp);letter-spacing:.08em;text-transform:uppercase;color:var(--kt)}
+.k.live{background:rgba(52,211,153,.14);border-color:rgba(52,211,153,.45);color:#8ff0c8}
+.slide .open{margin-top:14px;font-weight:800;color:var(--red2);display:inline-flex;gap:8px}
+.mock{position:absolute;inset:0;display:flex;flex-direction:column;background:linear-gradient(160deg,var(--surf1),var(--surf2))}
+.mock .bar{display:flex;gap:6px;padding:10px 12px;align-items:center;background:rgba(255,255,255,.05)}
+.mock .bar i{width:9px;height:9px;border-radius:50%;background:#ff5f57}.mock .bar i:nth-child(2){background:#febc2e}.mock .bar i:nth-child(3){background:#28c840}
+.mock .url{margin-left:10px;font:600 .72rem var(--body);color:var(--mut);background:rgba(255,255,255,.07);padding:3px 12px;border-radius:99px}
+.mock .mid{flex:1;display:grid;place-items:center;text-align:center;padding:8px}
+.mock .mid b{font:900 clamp(1.1rem,3.4vw,1.5rem) var(--disp);display:block}
+.mock .mid span{color:#8ff0c8;font:700 .72rem var(--disp);letter-spacing:.14em}
+.flowctl{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:22px}
+.circ{width:50px;height:50px;border-radius:50%;border:1px solid var(--line);background:var(--glass);font-size:1.25rem;display:grid;place-items:center;transition:.2s}
+.circ:hover{background:var(--red);border-color:var(--red);transform:scale(1.08)}
+.dots{display:flex;gap:9px}
+.dots button{width:10px;height:10px;border-radius:99px;border:0;background:rgba(255,255,255,.25);padding:0;transition:.3s}
+.dots button[aria-current=true]{width:30px;background:var(--red)}
+
+/* ---------- project grid ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.fb{padding:10px 20px;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-weight:700;font-size:.92rem;transition:.2s}
+.fb:hover{background:rgba(255,255,255,.1)}
+.fb[aria-pressed=true]{background:linear-gradient(135deg,var(--btn1),var(--btn2));border-color:transparent;color:#fff}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px;perspective:1200px}
+.pc{position:relative;border-radius:22px;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.025));border:1px solid var(--line);text-align:left;padding:0;overflow:hidden;display:flex;flex-direction:column;transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,box-shadow .3s,border-color .3s;will-change:transform;box-shadow:0 30px 50px -30px rgba(0,0,0,.9)}
+.pc:hover{border-color:rgba(var(--c1),.55);box-shadow:0 36px 70px -26px rgba(var(--c1),.5)}
+.pc::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(260px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.16),transparent 60%);opacity:0;transition:opacity .3s}
+.pc:hover::after{opacity:1}
+.pc .pic{aspect-ratio:760/368;position:relative;overflow:hidden;background:var(--surf3)}
+.pc .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.pc:hover .pic img{transform:scale(1.07)}
+.pc .num{position:absolute;right:12px;top:8px;font:900 2.2rem var(--disp);color:rgba(255,255,255,.18);-webkit-text-stroke:1px rgba(255,255,255,.45);color:transparent;z-index:2}
+.pc .body{padding:16px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.pc h3{font:800 1.08rem/1.25 var(--disp)}
+.pc p{color:var(--mut);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pc .go{margin-top:auto;font-weight:800;color:var(--red2);font-size:.9rem}
+.hide{display:none!important}
+
+/* ---------- modal ---------- */
+dialog{border:0;padding:0;background:transparent;color:var(--ink);max-width:min(880px,94vw);width:100%;max-height:92vh;margin:auto;overflow:visible}
+dialog::backdrop{background:rgba(4,2,8,.9)}
+dialog[open]{animation:pop .45s cubic-bezier(.2,.9,.25,1.1)}
+@keyframes pop{from{opacity:0;transform:perspective(1200px) rotateX(18deg) translateY(40px) scale(.94)}}
+.mbox{border-radius:28px;background:linear-gradient(165deg,var(--surf1),var(--surf2));border:1px solid rgba(var(--c1),.4);box-shadow:0 60px 120px -30px rgba(var(--c1),.4);overflow:hidden;max-height:92vh;overflow-y:auto;position:relative}
+.mbox .pic{aspect-ratio:760/368;position:relative;background:var(--surf3);overflow:hidden}
+.mbox .pic img{width:100%;height:100%;object-fit:cover}
+.mbody{padding:26px clamp(20px,4vw,40px) 34px}
+.mbody h3{font:900 clamp(1.5rem,4vw,2.2rem)/1.15 var(--disp);margin:12px 0 10px}
+.goal{color:var(--ink2);font-weight:600;margin-bottom:18px}
+.feat{list-style:none;padding:0;display:grid;gap:10px;margin-bottom:26px}
+.feat li{position:relative;padding-left:30px;color:var(--ink2)}
+.feat li::before{content:"";position:absolute;left:4px;top:.55em;width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--red),var(--red2));rotate:45deg}
+.xbtn{position:absolute;right:14px;top:14px;z-index:5;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(var(--bgrgb),.88);font-size:1.3rem}
+.xbtn:hover{background:var(--red)}
+.demo{display:inline-block;margin-top:4px;padding:10px 14px;border-radius:12px;background:rgba(52,211,153,.1);border:1px dashed rgba(52,211,153,.4);color:#b9f5dc;font-size:.88rem;margin-bottom:20px}
+
+/* ---------- orbit skills ---------- */
+.orbitwrap{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+#orbit{position:relative;height:clamp(330px,46vw,470px);cursor:grab;touch-action:pan-y}
+#orbit:active{cursor:grabbing}
+#orbit .core{position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--red2),var(--red) 45%,rgb(var(--c1d)));box-shadow:0 0 90px 10px rgba(var(--c1),.55);display:grid;place-items:center;font:900 1.3rem var(--disp);color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.4)}
+#orbit .w{position:absolute;left:50%;top:50%;white-space:nowrap;font:700 .95rem var(--body);padding:7px 15px;border-radius:99px;background:rgba(var(--bgrgb),.78);border:1px solid rgba(255,255,255,.18);will-change:transform,opacity;transform-origin:center}
+.cap{display:grid;gap:14px}
+.cap div{padding:18px 20px;border-radius:18px;background:var(--glass);border:1px solid var(--line)}
+.cap b{font:800 .95rem var(--disp);display:block;margin-bottom:4px}
+.cap span{color:var(--mut);font-size:.93rem}
+
+/* ---------- cases ---------- */
+.cases{display:grid;grid-template-columns:1fr 1fr;gap:24px;perspective:1200px}
+.case{padding:30px;border-radius:26px;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid var(--line);transition:transform .3s ease-out}
+.case h3{font:800 1.4rem var(--disp);margin:14px 0 18px}
+.case dl{display:grid;gap:14px}
+.case dt{font:800 .72rem var(--disp);letter-spacing:.14em;color:var(--red2);text-transform:uppercase}
+.case dd{margin:3px 0 0;color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:5px 12px;border-radius:99px;border:1px solid var(--line);font-size:.82rem;font-weight:600}
+.case .btn{margin-top:22px}
+
+/* ---------- services / process / packages ---------- */
+.svcs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;perspective:1200px}
+.svc,.pack{position:relative;padding:30px 26px;border-radius:24px;background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.025));border:1px solid var(--line);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out,border-color .3s}
+.svc:hover,.pack:hover{border-color:rgba(var(--c1),.5)}
+.ico{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:1.7rem;background:linear-gradient(135deg,rgba(var(--c1),.3),rgba(var(--c2),.15));border:1px solid rgba(var(--c1),.4);margin-bottom:18px;transform:translateZ(30px)}
+.svc h3{font:800 1.12rem/1.25 var(--disp);margin-bottom:10px}
+.svc p{color:var(--mut)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;position:relative;perspective:1200px}
+.steps::before{content:"";position:absolute;left:6%;right:6%;top:44px;height:2px;background:linear-gradient(90deg,transparent,var(--red),var(--red2),transparent);opacity:.5}
+.step{position:relative;padding:26px 20px;border-radius:22px;background:rgba(var(--bgrgb),.8);border:1px solid var(--line);text-align:center}
+.step .n{width:62px;height:62px;margin:-58px auto 14px;border-radius:50%;display:grid;place-items:center;font:900 1.5rem var(--disp);background:linear-gradient(135deg,var(--btn1),var(--btn2));box-shadow:0 12px 30px -6px rgba(var(--c1),.7),inset 0 -6px 12px rgba(0,0,0,.3);transform:translateZ(30px)}
+.step h3{font:800 1rem var(--disp);margin-bottom:8px}
+.step p{color:var(--mut);font-size:.93rem}
+.packs{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;perspective:1200px}
+.pack{display:flex;flex-direction:column;gap:14px}
+.pack.best{border-color:rgba(var(--c1),.7);background:linear-gradient(165deg,rgba(var(--c1),.2),rgba(255,255,255,.03));box-shadow:0 40px 80px -30px rgba(var(--c1),.55)}
+.pack .tag{position:absolute;right:16px;top:-13px;padding:5px 14px;border-radius:99px;background:linear-gradient(135deg,var(--btn1),var(--btn2));font:800 .66rem var(--disp);letter-spacing:.1em}
+.pack h3{font:800 1.2rem var(--disp)}
+.pack .from{display:block;color:var(--mut);font-size:.82rem;font-weight:600}
+.pack .price{font:900 2rem/1.1 var(--disp)}
+.pack .price small{font:600 .9rem var(--body);color:var(--mut)}
+.pack ul{list-style:none;padding:0;display:grid;gap:9px;flex:1;color:var(--ink2);font-size:.94rem}
+.pack li{padding-left:24px;position:relative}
+.pack li::before{content:"✓";position:absolute;left:0;color:var(--red2);font-weight:900}
+.note{margin-top:22px;color:var(--mut);font-size:.92rem}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,6vw,80px);align-items:center}
+.frame{position:relative;max-width:420px;margin-inline:auto;perspective:900px}
+.frame .ph{position:relative;border-radius:30px;overflow:hidden;border:1px solid rgba(var(--c1),.5);box-shadow:0 50px 90px -30px rgba(var(--c1),.55);transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;aspect-ratio:1;background:var(--surf1)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.frame::before,.frame::after{content:"";position:absolute;border:2px solid rgba(var(--c1),.45);border-radius:50%;inset:-26px;animation:spin 18s linear infinite;border-top-color:transparent;border-bottom-color:transparent}
+.frame::after{inset:-46px;animation-duration:28s;animation-direction:reverse;border-color:rgba(var(--c2),.3);border-left-color:transparent;border-right-color:transparent}
+@keyframes spin{to{transform:rotate(360deg)}}
+.about p{color:var(--ink2);margin-bottom:14px}
+.langs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.langs span{padding:6px 16px;border-radius:99px;border:1px solid var(--line);background:var(--glass);font-weight:700;font-size:.88rem}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.facts div{padding:16px;border-radius:18px;background:var(--glass);border:1px solid var(--line);text-align:center}
+.facts b{display:block;font:900 1.4rem var(--disp);color:var(--red2)}
+.facts span{color:var(--mut);font-size:.84rem}
+
+/* ---------- faq + contact ---------- */
+.faq{display:grid;gap:12px;max-width:820px}
+details{border-radius:18px;background:var(--glass);border:1px solid var(--line);transition:border-color .3s}
+details[open]{border-color:rgba(var(--c1),.5);background:rgba(var(--c1),.06)}
+summary{list-style:none;cursor:pointer;padding:18px 54px 18px 22px;font-weight:700;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:20px;top:50%;translate:0 -50%;font:700 1.6rem var(--body);color:var(--red2);transition:.3s}
+details[open] summary::after{rotate:45deg}
+details p{padding:0 22px 20px;color:var(--mut)}
+.cta{text-align:center;padding:clamp(36px,6vw,80px) clamp(20px,5vw,60px);border-radius:34px;background:linear-gradient(150deg,rgba(var(--c1),.22),rgba(var(--c3),.14) 60%,rgba(255,255,255,.03));border:1px solid rgba(var(--c1),.5);box-shadow:0 60px 120px -40px rgba(var(--c1),.5);position:relative;overflow:hidden}
+.cta h2{font:900 clamp(1.8rem,5vw,3.4rem)/1.1 var(--disp);letter-spacing:-.02em;margin-bottom:16px}
+.cta .lead{margin:0 auto 22px}
+.audit{max-width:560px;margin:0 auto 28px;padding:16px 20px;border-radius:18px;background:rgba(var(--bgrgb),.55);border:1px dashed rgba(255,255,255,.25);text-align:left}
+.audit b{color:var(--red2)}
+.cta .ctas{justify-content:center}
+footer{padding:36px 18px 120px;text-align:center;color:var(--mut);font-size:.9rem}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .packs{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr);row-gap:60px}.steps::before{display:none}
+  .step{margin-top:20px}
+  .svcs,.cases,.orbitwrap,.about{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  header nav{display:none}
+  .hero{grid-template-columns:1fr;padding-top:100px;min-height:auto;padding-bottom:60px}
+  #heroObj{height:300px;min-height:0;order:-1;margin-top:-6px}
+  .chip3{font-size:.66rem;padding:7px 12px}
+  .scrollcue{display:none}
+  .dock{display:flex;position:fixed;z-index:55;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));translate:-50% 0;gap:4px;padding:7px;border-radius:99px;background:rgba(var(--bgrgb),.88);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 20px 50px -10px #000}
+  .dock a{text-decoration:none;font-weight:700;font-size:.86rem;padding:10px 15px;border-radius:99px;color:var(--mut)}
+  .dock a.hot{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff}
+  .packs{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr 1fr}
+  .flow{height:480px}
+  .pgrid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+}
+section.off *,section.off *::before,section.off *::after,.hero.off *,.hero.off *::before,.hero.off *::after{animation-play-state:paused!important}
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="orbs" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="vig" aria-hidden="true"></div>
+<div class="spot" id="spot" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="logo" href="#top" aria-label="M Dinesh Kumar, back to top">M DINESH <b>KUMAR</b></a>
+  <nav aria-label="Main">
+    <a href="#work">Work</a><a href="#stack">Skills</a><a href="#services">Services</a><a href="#about">About</a>
+  </nav>
+  <div class="themes" role="group" aria-label="Colour theme"><button type="button" data-t="aurora" title="Aurora: violet and cyan" aria-label="Aurora theme: violet and cyan" style="background:linear-gradient(135deg,#7c5cff,#22d3ee)"></button><button type="button" data-t="emerald" title="Emerald and gold" aria-label="Emerald and gold theme" style="background:linear-gradient(135deg,#10b981,#f5b842)"></button><button type="button" data-t="rose" title="Rose and ink" aria-label="Rose and ink theme" style="background:linear-gradient(135deg,#ff2d4a,#ff6a3d)"></button></div>
+  <a class="btn hot sm" href="#contact">Hire me</a>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="copy">
+      <span class="eyebrow">Web designer &amp; developer · Chennai</span>
+      <h1 class="tilt3d" id="h1">
+        <span style="--z:20px">Websites</span> <span style="--z:10px">&amp;</span> <span class="fx" style="--z:60px">phone&nbsp;apps</span> <span style="--z:30px">that</span> <span style="--z:50px">work</span> <span style="--z:20px">for</span> <span class="fx" style="--z:70px">your</span> <span class="fx" style="--z:70px">business.</span>
+      </h1>
+      <p class="lead">From a simple one-page site to a full ordering or booking system with its own admin panel. Built mobile-first, and you can try every demo below yourself.</p>
+      <div class="ctas">
+        <a class="btn hot" href="#work">See my work</a>
+        <a class="btn" href="https://wa.me/917200116285?text=Hi%2C%20I%27d%20like%20a%20website%20for%20my%20business." target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+      <div class="meta"><span>Reply the same day</span><span>Tamil · English · Hindi</span></div>
+    </div>
+    <div id="heroObj" aria-hidden="true"><div class="chip3">NODE.JS</div><div class="chip3">PWA</div><div class="chip3">SQLITE</div><div class="chip3">3D UI</div></div>
+    <a class="scrollcue" href="#work" aria-label="Scroll to my work"><i></i>SCROLL</a>
+  </div>
+
+  <div class="marq" aria-hidden="true"><div id="mq"></div></div>
+
+  <div class="stats" id="stats">
+    <div class="stat rv"><b data-n="4">0</b><span>Full-stack systems</span></div>
+    <div class="stat rv" style="--d:.08s"><b data-n="2">0</b><span>Live websites</span></div>
+    <div class="stat rv" style="--d:.16s"><b data-n="11">0</b><span>Concept sites</span></div>
+    <div class="stat rv" style="--d:.24s"><b data-n="12">0</b><span>Shops in one food-court app</span></div>
+  </div>
+
+  <section id="work">
+    <div class="head rv"><span class="eyebrow">Featured work</span>
+      <h2 class="big">Things I've <em>built</em> and you can try</h2>
+      <p class="lead">Drag, swipe or use the arrows. Tap the centre card for details and the live demo. The full-stack demos have working admin screens.</p></div>
+    <div class="flow rv" id="flow" role="region" aria-roledescription="carousel" aria-label="Featured projects"><div class="stage" id="stage"></div></div>
+    <div class="flowctl"><button class="circ" id="prev" aria-label="Previous project">←</button><div class="dots" id="dots"></div><button class="circ" id="next" aria-label="Next project">→</button></div>
+
+    <div class="head rv" style="margin-top:clamp(70px,9vw,120px)"><span class="eyebrow">All projects</span>
+      <h2 class="big">Every site, <em>one place</em></h2></div>
+    <div class="filters rv" id="filters" role="group" aria-label="Filter projects"></div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <section id="stack">
+    <div class="orbitwrap">
+      <div class="rv"><span class="eyebrow">Skills</span>
+        <h2 class="big">What's <em>inside</em> every build</h2>
+        <p class="lead" style="margin-bottom:24px">Drag the sphere to spin it. Every word here is something I've used in the projects above.</p>
+        <div class="cap">
+          <div><b>Front end</b><span>Responsive layouts, 3D CSS, canvas animation, forms with validation.</span></div>
+          <div><b>Back end</b><span>Node.js server, SQLite database, login, rate limiting, CSV export.</span></div>
+          <div><b>Phone apps</b><span>Installable PWAs: add to home screen, fast, works like an app.</span></div>
+        </div>
+      </div>
+      <div id="orbit" aria-label="Floating skills sphere"><div class="core">DK</div></div>
+    </div>
+  </section>
+
+  <section id="cases">
+    <div class="head rv"><span class="eyebrow">Case studies</span>
+      <h2 class="big">Two <em>live</em> projects</h2>
+      <p class="lead">What each one was for, and how I built it.</p></div>
+    <div class="cases">
+      <article class="case rv"><span class="k live">Hospitality · Live site</span><h3>Kumar Hospitality guest house</h3>
+        <dl>
+          <div><dt>The need</dt><dd>A serviced guest house in Chennai needed one place to show its rooms, rates and photos, so guests could decide and enquire without phoning first.</dd></div>
+          <div><dt>What I built</dt><dd>A website with room listings, a photo gallery, a rates section, guest reviews and a booking form, laid out to read well on a phone.</dd></div>
+          <div><dt>Built with</dt><dd><span class="chips"><span>Lovable</span><span>Responsive layout</span><span>Booking form</span></span></dd></div>
+        </dl>
+        <a class="btn hot" href="https://kumar-hospitality.lovable.app" target="_blank" rel="noopener">Open live site →</a></article>
+      <article class="case rv" style="--d:.1s"><span class="k live">Web app · Live site</span><h3>AnimeVerse</h3>
+        <dl>
+          <div><dt>The need</dt><dd>Anime fans want to see what is airing and what is coming, without searching across many sites.</dd></div>
+          <div><dt>What I built</dt><dd>A discovery app using AniList data with browse, seasonal and schedule views, upcoming releases, genre pages, trailers and recommendations, plus a light and dark theme.</dd></div>
+          <div><dt>Built with</dt><dd><span class="chips"><span>Lovable</span><span>AniList data</span><span>Light and dark theme</span></span></dd></div>
+        </dl>
+        <a class="btn hot" href="https://anime-airing-atlas.lovable.app" target="_blank" rel="noopener">Open live site →</a></article>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="head rv"><span class="eyebrow">Services</span>
+      <h2 class="big">What I can <em>build</em> for you</h2></div>
+    <div class="svcs">
+      <div class="svc rv"><div class="ico" aria-hidden="true">🌐</div><h3>Business websites</h3><p>Clean multi-section sites that explain what you do, show your work and make it easy to get in touch. Phone-friendly from the first line.</p></div>
+      <div class="svc rv" style="--d:.1s"><div class="ico" aria-hidden="true">🗓️</div><h3>Booking, orders and admin panels</h3><p>Customers book or order online. You log in to see everything, change prices and stock, and download reports. Like the hospital, school and food court demos.</p></div>
+      <div class="svc rv" style="--d:.2s"><div class="ico" aria-hidden="true">📱</div><h3>Installable phone apps</h3><p>Your site can install on a phone like an app, with its own icon, for customers and for your staff.</p></div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="head rv"><span class="eyebrow">Process</span>
+      <h2 class="big">How it <em>works</em></h2>
+      <p class="lead">Four simple steps, and you see a plan before I build anything.</p></div>
+    <div class="steps">
+      <div class="step rv"><div class="n" aria-hidden="true">1</div><h3>You message me</h3><p>Tell me about your business on WhatsApp or email.</p></div>
+      <div class="step rv" style="--d:.1s"><div class="n" aria-hidden="true">2</div><h3>I send a plan</h3><p>The pages and the look, so you can say yes before I start.</p></div>
+      <div class="step rv" style="--d:.2s"><div class="n" aria-hidden="true">3</div><h3>I build it</h3><p>You review it on your phone and ask for changes.</p></div>
+      <div class="step rv" style="--d:.3s"><div class="n" aria-hidden="true">4</div><h3>Launch</h3><p>I put it online and hand everything over to you.</p></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <div class="frame rv" id="frame"><div class="ph"><img src="me.jpg" alt="Portrait of M Dinesh Kumar" width="560" height="560" onerror="this.parentNode.parentNode.style.display='none'"></div></div>
+      <div class="rv" style="--d:.1s">
+        <span class="eyebrow">About me</span>
+        <h2 class="big">Hi, I'm <em>Dinesh</em></h2>
+        <p>I'm an Electronics and Communication Engineering graduate from <strong>Chennai</strong>. I build websites for small businesses, and I like sites that are simple, quick to load and easy for customers to use.</p>
+        <p>My engineering degree taught me to break a problem into small parts and check each one. I bring the same habit to websites: a clear plan first, then a build you can review on your phone.</p>
+        <p>You can talk to me in Tamil, English or Hindi, and I'll reply the same day when I can.</p>
+        <div class="langs"><span>Tamil</span><span>English</span><span>Hindi</span></div>
+        <div class="facts"><div><b>2</b><span>live projects</span></div><div><b>12</b><span>concept sites</span></div><div><b>Chennai</b><span>working online</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="head rv"><span class="eyebrow">FAQ</span><h2 class="big">Questions clients <em>ask</em></h2></div>
+    <div class="faq rv">
+      <details><summary>How long does a website take?</summary><p>A one-page site usually takes about a week. Larger sites take two to three weeks, depending on how quickly I get your content and photos.</p></details>
+      <details><summary>What do I need to give you?</summary><p>Your business name, contact details, a few photos and a list of what you offer. If you don't have the text ready, I can help you write it.</p></details>
+      <details><summary>Will it work on phones?</summary><p>Yes. I design for phones first, because many of your customers will open the site there.</p></details>
+      <details><summary>Who owns the website?</summary><p>You do. When the project is finished, I hand over the files and help you put them online.</p></details>
+      <details><summary>Can you help with a domain and hosting?</summary><p>Yes. I can help you choose a domain name and put the site online on free hosting.</p></details>
+      <details><summary>Do the apps take real payments?</summary><p>The demo apps use test payments only. For a real business I connect a payment service such as Razorpay, and orders are confirmed only after the payment is verified.</p></details>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="cta rv">
+      <h2>Need a website for your <span style="background:linear-gradient(100deg,var(--red),var(--red2));-webkit-background-clip:text;background-clip:text;color:transparent">business?</span></h2>
+      <p class="lead">Send me a message with a few details about your business and I'll reply with ideas and a simple quote.</p>
+      <div class="audit"><b>Free mini-audit.</b> Send me your business's website or Instagram page and I'll reply with three improvements. No cost and no obligation.</div>
+      <div class="ctas">
+        <a class="btn hot" href="https://wa.me/917200116285?text=Hi%2C%20I%27d%20like%20a%20website%20for%20my%20business." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn" href="mailto:dineshmkumar159@gmail.com">Email me</a>
+        <a class="btn" href="tel:+917200116285">Call 7200116285</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© 2026 M Dinesh Kumar · Chennai. Projects labelled concept are for imaginary businesses.</footer>
+
+<nav class="dock" aria-label="Quick links"><a href="#work">Work</a><a href="#about">About</a><a class="hot" href="#contact">Contact</a></nav>
+
+<dialog id="dlg" aria-labelledby="dtitle"><div class="mbox" id="mbox"></div></dialog>
+
+<noscript><style>.rv{opacity:1!important;transform:none!important}section.off *,section.off *::before,section.off *::after,.hero.off *,.hero.off *::before,.hero.off *::after{animation-play-state:paused!important}
+</style></noscript>
+
+<script>
+(function(){
+'use strict';
+document.documentElement.classList.remove('nojs');
+var P=[{"n": 1, "cat": "live", "kind": "Hospitality · Live site", "title": "Guest house website", "img": "", "desc": "A website for a serviced guest house in Chennai, with room listings, a gallery, rates, guest reviews and a booking form.", "goal": "help guests see the rooms and rates and reserve directly.", "lis": ["Room listings: Deluxe Double, Deluxe Twin and Family Room", "Photo gallery grouped into rooms, bathrooms and exterior", "Live rates and verified guest reviews", "Find-us section with address and map", "Reservation form plus WhatsApp, phone and email, and an FAQ"], "btns": [["https://kumar-hospitality.lovable.app", "Open live site"]], "host": "kumar-hospitality.lovable.app"}, {"n": 2, "cat": "live", "kind": "Web app · Live site", "title": "AnimeVerse", "img": "", "desc": "An anime discovery site using AniList data, with browse, seasonal, schedule, upcoming and genre pages, trailers and recommendations.", "goal": "make it easy to find what is airing now and what to watch next.", "lis": ["Pulls anime data from the AniList service", "Browse, Seasonal, Schedule and Upcoming pages", "Genres and a \"Find My Next\" recommendations page", "Details with trailers, characters and recommendations", "Light and dark theme toggle"], "btns": [["https://anime-airing-atlas.lovable.app", "Open live site"]], "host": "anime-airing-atlas.lovable.app"}, {"n": 3, "cat": "concept", "kind": "Café · Concept", "title": "Dabara Kaapi", "img": "img/dabara-kaapi.jpg", "desc": "A filter coffee house site with a brewing process, a full menu, opening hours and a contact form.", "goal": "show how the coffee is made and make the menu easy to browse.", "lis": ["Dark roast theme with a 3D steel tumbler, steam and drifting coffee beans", "Three-step brewing process section", "Menu in three columns: Kaapi, Tiffin and Sweets", "Opening hours table and visit details", "Contact form with field checks and a friendly response"], "btns": [["dabara-kaapi/", "Open site"]], "host": ""}, {"n": 4, "cat": "concept", "kind": "Fitness · Concept", "title": "Chalk Room", "img": "img/chalk-room.jpg", "desc": "A strength gym site with a weekly timetable, a plate calculator and a trial request form.", "goal": "turn visitors into trial sessions with a clear timetable and plans.", "lis": ["Coached sessions and open floor overview", "Industrial yellow-and-black style with a spinning 3D plate stack", "Weekly timetable that flips in like a departure board", "Plate calculator that draws the loaded bar in 3D", "Membership plans with add-ons", "\"Try one session first\" request form"], "btns": [["chalk-room/", "Open site"]], "host": ""}, {"n": 5, "cat": "concept", "kind": "Beauty · Concept", "title": "Mirror Hour", "img": "img/mirror-hour.jpg", "desc": "A hair salon site with services and prices, stylist profiles and a slot request form, in its own rose-gold style.", "goal": "let clients see prices and stylists, then request a slot without calling.", "lis": ["Services and prices", "Stylist profiles for three chairs", "Slot picker and request form", "Light blush and rose-gold style with 3D arched mirrors"], "btns": [["mirror-hour/", "Open site"]], "host": ""}, {"n": 6, "cat": "concept", "kind": "Creative · Concept", "title": "Studio Halide", "img": "img/studio-halide.jpg", "desc": "A photographer's site with a gallery, packages, a date check and an enquiry form.", "goal": "show the work first and make it simple to enquire about a date.", "lis": ["Blueprint-blue style with a 3D camera aperture and film strip", "Cyanotype contact-sheet gallery with category filters", "Portraits, weddings and quiet places", "Packages and what a booking includes", "Date availability check", "Enquiry form"], "btns": [["studio-halide/", "Open site"]], "host": ""}, {"n": 7, "cat": "concept", "kind": "Healthcare · Concept", "title": "Rootline Dental", "img": "img/rootline-dental.jpg", "desc": "A family dental clinic site with a tap-a-tooth guide, typical fees, next openings and an appointment request form.", "goal": "explain treatments and costs clearly so patients feel comfortable booking.", "lis": ["Same-day slots for toothache and next openings", "Mint and soft-clay style with a glossy 3D tooth", "Tap a tooth to see what it is", "What treatment usually costs", "Two dentists and what happens in the chair", "Appointment request form"], "btns": [["rootline-dental/", "Open site"]], "host": ""}, {"n": 8, "cat": "concept", "kind": "Hospitality · Concept", "title": "Saltwind Resort & Spa", "img": "img/saltwind-resort.jpg", "desc": "A beach resort site built like a slide deck, with video, a 3D room carousel, a photo wall and a WhatsApp booking form.", "goal": "help guests pick a room and send a booking request in a minute.", "lis": ["Slide-style page with wipe transitions and a moving background", "3D room carousel with prices", "Photo wall with a full-size viewer", "Stay cost estimate with tax", "Booking form that opens WhatsApp with the details filled in"], "btns": [["saltwind-resort/", "Open site"]], "host": ""}, {"n": 9, "cat": "concept", "kind": "Retail · Concept", "title": "Zari Lane", "img": "img/zari-lane.jpg", "desc": "An online saree shop with filters, a spinning 3D fabric cube, a bag with a free-shipping bar and WhatsApp checkout.", "goal": "Online store for a small saree seller, with a cart that ends in a WhatsApp order.", "lis": ["Product filters and price sorting", "Bag with quantity buttons and shipping bar", "3D fabric cube and floating words", "Product pictures drawn in code", "Checkout that opens WhatsApp with the bag"], "btns": [["zari-lane/", "Open site"]], "host": ""}, {"n": 10, "cat": "concept", "kind": "Real estate · Concept", "title": "Plinth Homes", "img": "img/plinth-homes.jpg", "desc": "A property listings site with a 3D skyline, filters by area, type and budget, an EMI calculator and site-visit booking.", "goal": "Help buyers find a home, work out the monthly cost and book a visit.", "lis": ["Search and filters for area, type, bedrooms and budget", "Detail view with price per sq ft", "EMI calculator with a donut chart", "Site-visit form that opens WhatsApp", "3D skyline and a changing dusk sky"], "btns": [["plinth-homes/", "Open site"]], "host": ""}, {"n": 11, "cat": "concept", "kind": "Education · Concept", "title": "Inkwell Academy", "img": "img/inkwell-academy.jpg", "desc": "A coaching centre site that looks like a notebook, with programs, a fee planner, timetable and free demo booking.", "goal": "Help parents compare programs, see the fee and book a free demo class.", "lis": ["Program cards with seats left", "Fee planner with multi-subject discount", "Weekly timetable for each program", "Report-card flip cards and a 3D subject cube", "Free demo booking that opens WhatsApp"], "btns": [["inkwell-academy/", "Open site"]], "host": ""}, {"n": 12, "cat": "full", "kind": "Healthcare · 8 pages · Full-stack", "title": "Aurelia Care Hospital", "img": "img/aurelia-care.jpg", "desc": "A multi-page hospital website with a 3D DNA helix, doctor search and 4-step booking that really reserves time slots, plus a staff panel to manage appointments, doctors and prices.", "goal": "help patients find a doctor, compare check-ups and book a visit without calling.", "lis": ["8 pages: home, about, departments, doctors, packages, patients, appointment, contact", "Booking saves to a database and blocks double-booked time slots", "Staff panel: confirm or cancel appointments, read messages, CSV export", "Edit doctor days and package prices; the website updates instantly", "Doctor search, package compare table and bill estimator", "Demo password for the staff panel: demo"], "btns": [["aurelia-care/", "Open site"], ["aurelia-care/admin.html", "Try staff panel"]], "host": ""}, {"n": 13, "cat": "full", "kind": "Education · 12 pages · Full-stack", "title": "Meridian Public School", "img": "img/meridian-school.jpg", "desc": "A five-campus school website with a 3D map, campus comparison and fee calculator, plus a working admin panel where the school edits fees and events and reads saved enquiries.", "goal": "help parents pick one of five campuses, and let the school office run it without a developer.", "lis": ["12 pages: main site plus one page for each campus", "3D map, compare table and nearest-campus finder", "Fee calculator driven by editable data", "Enquiries saved to a database, with status tracking and CSV export", "Admin panel: edit fees, events and campus contacts (demo password: demo)", "Real version runs on Node and SQLite"], "btns": [["meridian-school/", "Open site"], ["meridian-school/admin.html", "Try admin panel"]], "host": ""}, {"n": 14, "cat": "full", "kind": "Food court · 3 apps · Full-stack", "title": "Spice Lane Food Court", "img": "img/spice-lane.jpg", "desc": "An installable phone app for a 12-shop food court: customers order from any shop and pay, kitchen staff update stock live, and the owner sees sales, stock and offers.", "goal": "one cart across 12 kitchens, with live stock so nobody orders what is sold out.", "lis": ["Customer app: all menus, offers, coupons, cart, test payment, live order tracking", "Kitchen screen: new orders with a beep, sold-out toggle, stock and price edits", "Owner desk: sales by day, week, month and year, per shop and per dish", "Stock list across all shops, create offers, add shops, CSV export", "Installs on a phone like an app. Payments are test mode", "Demo: owner password is owner123; shop PINs are shown on the login"], "btns": [["spice-lane/", "Open app"], ["spice-lane/shop.html", "Kitchen"], ["spice-lane/owner.html", "Owner"]], "host": "", "demo": "Demo logins: owner password owner123. Kitchen PINs are shown on its login screen. Data you enter is saved in your browser only."}, {"n": 15, "cat": "full", "kind": "Salon · Booking · Full-stack", "title": "Mirror Hour Salon & Studio", "img": "img/mirror-hour.jpg", "desc": "An installable booking app for a salon: customers pick services, a stylist and a time, stylists run their day, and the owner sees sales, offers and customers.", "goal": "fill every chair without phone calls, and never double-book a stylist.", "lis": ["Customer app: services, stylists, offers, free-time finder and a deposit to hold the slot", "Two people can never get the same stylist at the same time", "Stylist desk: today’s clients, arrived and done buttons, walk-ins and time off", "Owner desk: sales by day, week, month and year, per stylist and per service", "Edit services and prices, add stylists, create coupons, WhatsApp reminders, CSV export", "Installs on a phone like an app. Payments are test mode"], "btns": [["mirror-hour/", "Open app"], ["mirror-hour/stylist.html", "Stylist desk"], ["mirror-hour/owner.html", "Owner desk"]], "host": "", "demo": "Demo logins: owner password mirror123. Stylist PINs are shown on the stylist login (Ananya 2101). Data you enter is saved in your browser only."}, {"n": 16, "cat": "concept", "kind": "Fragrance · Motion · Concept", "title": "Halo & Hush Fragrance Atelier", "img": "img/halo-hush.jpg", "desc": "A concept website for a small fragrance brand, built to show smooth animation: a staggered headline, scroll parallax, a mood-based scent finder and a working shopping bag.", "goal": "make browsing perfumes feel calm and premium, and help a visitor choose a scent by mood.", "lis": ["Animated with Motion, the Framer Motion engine", "Scent finder that matches a mood to a bottle", "Product cards, add to bag, bag total and demo checkout", "Notes pyramid, ritual steps and a sign-up form with validation", "Light and dark themes, and a calm-motion option"], "btns": [["halo-hush/", "Open site"]], "host": ""}, {"n": 17, "cat": "concept", "kind": "Coffee roastery · 1 page · Concept", "title": "Brewline Coffee Roasters", "img": "img/brewline.jpg", "desc": "A subscription landing page for a Chennai coffee roastery. It has a pinned four-step roast story and a live box builder that updates the price and the next roast date.", "goal": "let customers build a coffee subscription and see the price straight away", "lis": ["Box builder with origin, bag size, grind and delivery rhythm", "Price, saving and delivery fee update as you choose", "Next roast date worked out from today", "Origin cards with body, acidity and sweetness meters", "Animated FAQ and an email sign-up form"], "btns": [["brewline/", "Open site"]], "host": ""}];
+var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+/* ---------- colour themes ---------- */
+var PC={c1:'124,92,255',c2:'34,211,238',c3:'244,114,182'};
+function readPal(){var s=getComputedStyle(document.documentElement);['c1','c2','c3'].forEach(function(k){var v=s.getPropertyValue('--'+k).trim();if(v)PC[k]=v});var m=document.querySelector('meta[name=theme-color]');if(m)m.content=s.getPropertyValue('--bg').trim()}
+function setTheme(t,save){document.documentElement.setAttribute('data-theme',t);readPal();$$('.themes button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.t===t)});if(save){try{localStorage.setItem('pf_theme',t)}catch(e){}}}
+$$('.themes button').forEach(function(b){b.addEventListener('click',function(){setTheme(b.dataset.t,true)})});
+setTheme(document.documentElement.getAttribute('data-theme')||'aurora',false);
+/* ---------- picture or browser mock for live sites ---------- */
+function pic(p){
+  if(p.img) return '<img src="'+esc(p.img)+'" alt="Preview of '+esc(p.title)+'" width="760" height="368" loading="lazy">';
+  return '<div class="mock" aria-hidden="true"><div class="bar"><i></i><i></i><i></i><span class="url">'+esc(p.host)+'</span></div><div class="mid"><div><b>'+esc(p.title)+'</b><span>● LIVE ON THE INTERNET</span></div></div></div>';
+}
+function kind(p){return '<span class="k'+(p.cat==='live'?' live':'')+'">'+esc(p.kind)+'</span>'}
+
+/* ---------- marquee ---------- */
+(function(){var w=['FULL-STACK','PHONE APPS','NODE.JS','SQLITE','3D DESIGN','ADMIN PANELS','ONLINE ORDERING','BOOKING SYSTEMS','RESPONSIVE','FAST PAGES'],h='';for(var r=0;r<2;r++)w.forEach(function(x){h+='<span>'+x+'</span><span>✦</span>'});$('#mq').innerHTML=h+h})();
+
+/* ---------- counters ---------- */
+var counted=false;
+function count(){if(counted)return;counted=true;$$('[data-n]').forEach(function(e){var n=+e.dataset.n,t0=performance.now();if(calm){e.textContent=n;return}(function f(t){var k=Math.min(1,(t-t0)/1200);e.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f)})(t0)})}
+
+/* ---------- reveal on scroll ---------- */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.closest('#stats'))count()}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+if('IntersectionObserver' in window){var po=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('off',!e.isIntersecting)})},{rootMargin:'100px'});$$('main section,.hero').forEach(function(s){po.observe(s)})}
+$$('.rv').forEach(function(e){io.observe(e)});
+setTimeout(function(){$$('.rv').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight)e.classList.add('in')});if($('#stats .rv.in'))count()},400);
+
+/* ---------- 3D tilt (mouse) ---------- */
+function tilt(e,max,glare){
+  if(!fine||calm)return;
+  e.addEventListener('pointermove',function(ev){var r=e.getBoundingClientRect(),x=(ev.clientX-r.left)/r.width,y=(ev.clientY-r.top)/r.height;
+    e.style.setProperty('--ry',((x-.5)*max).toFixed(2)+'deg');e.style.setProperty('--rx',((.5-y)*max).toFixed(2)+'deg');
+    if(glare){e.style.setProperty('--gx',(x*100)+'%');e.style.setProperty('--gy',(y*100)+'%')}});
+  e.addEventListener('pointerleave',function(){e.style.setProperty('--rx','0deg');e.style.setProperty('--ry','0deg')});
+}
+$$('.svc,.pack,#frame .ph').forEach(function(e){tilt(e,10)});
+$$('.case').forEach(function(e){if(fine&&!calm){e.addEventListener('pointermove',function(ev){var r=e.getBoundingClientRect();e.style.transform='perspective(1000px) rotateY('+(((ev.clientX-r.left)/r.width-.5)*6).toFixed(2)+'deg) rotateX('+((.5-(ev.clientY-r.top)/r.height)*6).toFixed(2)+'deg)'});e.addEventListener('pointerleave',function(){e.style.transform=''})}});
+
+/* hero title follows the mouse */
+(function(){var h=$('#h1');if(!fine||calm)return;var box=$('.hero');box.addEventListener('pointermove',function(e){var r=box.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;h.style.transform='rotateY('+(x*14)+'deg) rotateX('+(-y*10)+'deg)'});box.addEventListener('pointerleave',function(){h.style.transform=''})})();
+
+/* spotlight + progress */
+var spot=$('#spot'),prog=$('#prog');
+if(fine&&!calm){addEventListener('pointermove',function(e){spot.style.opacity=1;spot.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)'},{passive:true})}
+function onScroll(){var m=document.documentElement.scrollHeight-innerHeight;prog.style.transform='scaleX('+(m>0?scrollY/m:0)+')'}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* ---------- featured coverflow ---------- */
+var FEAT=[15,14,12,13,1,2].map(function(n){return P.filter(function(p){return p.n===n})[0]}).filter(Boolean);
+var cur=0,stage=$('#stage'),dots=$('#dots');
+FEAT.forEach(function(p,i){
+  var s=el('article','slide','<div class="pic">'+pic(p)+'</div><div class="body">'+kind(p)+'<h3>'+esc(p.title)+'</h3><p>'+esc(p.desc)+'</p><span class="open">View details <span aria-hidden="true">→</span></span></div>');
+  s.setAttribute('role','group');s.setAttribute('aria-roledescription','slide');s.setAttribute('aria-label',(i+1)+' of '+FEAT.length+': '+p.title);
+  s.tabIndex=0;
+  s.addEventListener('click',function(){if(moved)return;if(i===cur)openP(p,s);else go(i)});
+  s.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();if(i===cur)openP(p,s);else go(i)}});
+  stage.appendChild(s);
+  var d=el('button');d.setAttribute('aria-label','Show '+p.title);d.addEventListener('click',function(){go(i)});dots.appendChild(d);
+});
+function layout(){
+  var slides=$$('.slide',stage),narrow=innerWidth<760;
+  slides.forEach(function(s,i){var o=i-cur,a=Math.abs(o),sign=o<0?-1:1;
+    var x=o*(narrow?58:64),rot=-sign*Math.min(a,3)*(narrow?30:40),z=-a*(narrow?160:230),sc=a===0?1:.92;
+    s.style.transform='translateX('+x+'%) translateZ('+z+'px) rotateY('+(a===0?0:rot)+'deg) scale('+sc+')';
+    s.style.opacity=a>2?0:(a===0?1:Math.max(.25,.7-a*.2));
+    s.style.zIndex=10-a;s.style.filter=a===0?'none':'brightness(.55) saturate(.8)';
+    s.style.pointerEvents=a>2?'none':'auto';
+    s.classList.toggle('cur',a===0);s.setAttribute('aria-hidden',a>2?'true':'false');
+    $$('a,button',s).forEach(function(b){b.tabIndex=a===0?0:-1});s.tabIndex=a>2?-1:0;
+  });
+  $$('button',dots).forEach(function(b,i){b.setAttribute('aria-current',i===cur)});
+}
+function go(i){cur=(i+FEAT.length)%FEAT.length;layout()}
+$('#prev').addEventListener('click',function(){go(cur-1)});$('#next').addEventListener('click',function(){go(cur+1)});
+var moved=false;
+(function(){var f=$('#flow'),x0=null,dx=0;
+  f.addEventListener('pointerdown',function(e){x0=e.clientX;dx=0;moved=false});
+  f.addEventListener('pointermove',function(e){if(x0==null)return;dx=e.clientX-x0;if(Math.abs(dx)>10)moved=true});
+  function end(){if(x0==null)return;if(Math.abs(dx)>45)go(cur+(dx<0?1:-1));x0=null;setTimeout(function(){moved=false},60)}
+  f.addEventListener('pointerup',end);f.addEventListener('pointercancel',end);f.addEventListener('pointerleave',function(){if(x0!=null)end()});
+  f.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+})();
+addEventListener('resize',layout);layout();
+
+/* ---------- grid + filters ---------- */
+var FIL=[['all','All'],['full','Full-stack apps'],['live','Live sites'],['concept','Concept sites']],fil='all',pg=$('#pgrid'),fb=$('#filters');
+P.slice().sort(function(a,b){var o={full:0,live:1,concept:2};return o[a.cat]-o[b.cat]||b.n-a.n}).forEach(function(p){
+  var c=el('button','pc','<div class="pic">'+pic(p)+'<span class="num" aria-hidden="true">'+String(p.n).padStart(2,'0')+'</span></div><div class="body">'+kind(p)+'<h3>'+esc(p.title)+'</h3><p>'+esc(p.desc)+'</p><span class="go">View details →</span></div>');
+  c.type='button';c.dataset.cat=p.cat;c.setAttribute('aria-label','Details: '+p.title);
+  c.addEventListener('click',function(){openP(p,c)});tilt(c,9,true);pg.appendChild(c)});
+FIL.forEach(function(f){var b=el('button','fb',f[1]);b.type='button';b.setAttribute('aria-pressed',f[0]==='all');b.addEventListener('click',function(){fil=f[0];$$('.fb',fb).forEach(function(x){x.setAttribute('aria-pressed',x===b)});$$('.pc',pg).forEach(function(c){c.classList.toggle('hide',fil!=='all'&&c.dataset.cat!==fil)})});fb.appendChild(b)});
+
+/* ---------- details dialog ---------- */
+var dlg=$('#dlg'),mbox=$('#mbox'),opener=null;
+function openP(p,from){
+  opener=from;
+  var btns=p.btns.map(function(b,i){var ext=/^https?:/.test(b[0]);return '<a class="btn'+(i===0?' hot':'')+'" href="'+esc(b[0])+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+esc(b[1])+' →</a>'}).join(' ');
+  var demo=p.demo?'<div class="demo">'+esc(p.demo)+'</div>':(p.cat==='full'?'<div class="demo">Demo logins: owner or admin password <b>demo</b>. Data you enter is saved in your browser only.</div>':'');
+  mbox.innerHTML='<button class="xbtn" aria-label="Close details" id="xb">✕</button><div class="pic">'+pic(p)+'</div><div class="mbody">'+kind(p)+'<h3 id="dtitle">'+esc(p.title)+'</h3><p class="goal"><b>Goal:</b> '+esc(p.goal)+'</p><ul class="feat">'+p.lis.filter(function(l){return !/^Demo password/.test(l)}).map(function(l){return '<li>'+esc(l)+'</li>'}).join('')+'</ul>'+demo+'<div class="ctas">'+btns+'</div></div>';
+  $('#xb').addEventListener('click',function(){dlg.close()});
+  if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
+  mbox.scrollTop=0;
+}
+dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close()});
+dlg.addEventListener('close',function(){if(opener&&opener.focus)opener.focus()});
+
+/* ---------- skills sphere ---------- */
+(function(){
+  var words=['HTML5','CSS3','JavaScript','Node.js','SQLite','REST APIs','PWA','Responsive','3D CSS','Canvas','Admin panels','Forms','Login & sessions','Rate limiting','CSV export','Testing','Netlify','Lovable','AI-assisted','WhatsApp links','Accessibility','SEO basics'];
+  var box=$('#orbit'),N=words.length,pts=[],nodes=[];
+  words.forEach(function(w,i){var y=1-(i/(N-1))*2,r=Math.sqrt(1-y*y),t=i*2.399963;pts.push([Math.cos(t)*r,y,Math.sin(t)*r]);var n=el('span','w');n.textContent=w;box.appendChild(n);nodes.push(n)});
+  var ax=.25,ay=0,vx=0,vy=.004,drag=false,lx=0,ly=0,vis=true;
+  new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(box);
+  box.addEventListener('pointerdown',function(e){drag=true;lx=e.clientX;ly=e.clientY;box.setPointerCapture(e.pointerId)});
+  box.addEventListener('pointermove',function(e){if(!drag)return;vy=(e.clientX-lx)*.0009;vx=(e.clientY-ly)*.0009;ay+=(e.clientX-lx)*.006;ax+=(e.clientY-ly)*.006;lx=e.clientX;ly=e.clientY});
+  box.addEventListener('pointerup',function(){drag=false});box.addEventListener('pointercancel',function(){drag=false});
+  function draw(){
+    var R=Math.min(box.clientWidth,box.clientHeight*1.05)*.42,cx=Math.cos(ax),sx=Math.sin(ax),cy=Math.cos(ay),sy=Math.sin(ay);
+    for(var i=0;i<N;i++){var p=pts[i],x=p[0]*cy+p[2]*sy,z=-p[0]*sy+p[2]*cy,y=p[1]*cx-z*sx,z2=p[1]*sx+z*cx,k=(z2+1.6)/2.6;
+      nodes[i].style.transform='translate(-50%,-50%) translate3d('+(x*R*1.25).toFixed(1)+'px,'+(y*R).toFixed(1)+'px,0) scale('+(.55+k*.6).toFixed(3)+')';
+      nodes[i].style.opacity=(.18+k*.82).toFixed(2);nodes[i].style.zIndex=Math.round(k*100);
+      nodes[i].style.borderColor=k>.8?'rgba('+PC.c1+',.8)':'rgba(255,255,255,.18)'}
+  }
+  function tick(){if(vis&&!document.hidden){if(!drag&&!calm){ay+=vy;ax+=vx;vx*=.96;vy+=(.004-vy)*.02}draw()}requestAnimationFrame(tick)}
+  draw();if(!calm)tick();
+})();
+
+/* ---------- background: own tiny 3D engine on a canvas ---------- */
+(function(){
+  var cv=$('#bg'),g=cv.getContext('2d'),W=0,H=0,dpr=1,mx=.5,my=.5,tmx=.5,tmy=.5,ho=$('#heroObj');
+  function size(){dpr=Math.min(devicePixelRatio||1,1.25);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;g.setTransform(dpr,0,0,dpr,0,0)}
+  size();addEventListener('resize',size);
+  addEventListener('pointermove',function(e){tmx=e.clientX/W;tmy=e.clientY/H},{passive:true});
+  function edgesOf(V){var m=1e9,i,j,d;for(i=0;i<V.length;i++)for(j=i+1;j<V.length;j++){d=dist(V[i],V[j]);if(d<m)m=d}var E=[];for(i=0;i<V.length;i++)for(j=i+1;j<V.length;j++)if(Math.abs(dist(V[i],V[j])-m)<.01*m)E.push([i,j]);return E}
+  function dist(a,b){return Math.hypot(a[0]-b[0],a[1]-b[1],a[2]-b[2])}
+  var f=(1+Math.sqrt(5))/2,ico=[],s;[[0,1,f],[0,1,-f],[0,-1,f],[0,-1,-f]].forEach(function(v){ico.push(v,[v[1],v[2],v[0]],[v[2],v[0],v[1]])});
+  var oct=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]];
+  var cube=[];for(var a=-1;a<=1;a+=2)for(var b=-1;b<=1;b+=2)for(var c=-1;c<=1;c+=2)cube.push([a,b,c]);
+  var tet=[[1,1,1],[1,-1,-1],[-1,1,-1],[-1,-1,1]];
+  var tor=[],torE=[],U=14,Vn=7;for(var u=0;u<U;u++)for(var v=0;v<Vn;v++){var th=u/U*6.2832,ph=v/Vn*6.2832;tor.push([(1+.42*Math.cos(ph))*Math.cos(th),(1+.42*Math.cos(ph))*Math.sin(th),.42*Math.sin(ph)]);torE.push([u*Vn+v,u*Vn+(v+1)%Vn],[u*Vn+v,((u+1)%U)*Vn+v])}
+  var SH={ico:{v:ico,e:edgesOf(ico)},oct:{v:oct,e:edgesOf(oct)},cube:{v:cube,e:edgesOf(cube)},tet:{v:tet,e:edgesOf(tet)},tor:{v:tor,e:torE}};
+  var names=['ico','oct','cube','tet','tor'],items=[],seed=7;function rnd(){seed=(seed*16807)%2147483647;return seed/2147483647}
+  var nItems=innerWidth<760?6:11;
+  for(var i=0;i<nItems;i++){var nm=names[i%names.length];items.push({s:SH[nm],x:rnd(),y:rnd(),p:.12+rnd()*.55,sz:34+rnd()*70,rx:rnd()*6,ry:rnd()*6,rz:rnd()*6,sx:(rnd()-.5)*.012,sy:(rnd()-.5)*.012,sz2:(rnd()-.5)*.008,hue:rnd()})}
+  var dots=[];for(i=0;i<60;i++)dots.push({x:rnd(),y:rnd(),z:.1+rnd()*.7,r:.6+rnd()*1.5,t:rnd()*6});
+  function rot(v,rx,ry,rz){var x=v[0],y=v[1],z=v[2],t;t=y*Math.cos(rx)-z*Math.sin(rx);z=y*Math.sin(rx)+z*Math.cos(rx);y=t;t=x*Math.cos(ry)+z*Math.sin(ry);z=-x*Math.sin(ry)+z*Math.cos(ry);x=t;t=x*Math.cos(rz)-y*Math.sin(rz);y=x*Math.sin(rz)+y*Math.cos(rz);x=t;return[x,y,z]}
+  function wire(sh,cx,cy,size,rx,ry,rz,col,alpha,lw){
+    var pr=[],V=sh.v,E=sh.e,i,q,fl=4;
+    for(i=0;i<V.length;i++){q=rot(V[i],rx,ry,rz);var k=fl/(fl+q[2]);pr.push([cx+q[0]*size*k,cy+q[1]*size*k,q[2]])}
+    g.lineWidth=lw;g.strokeStyle='rgba('+col+','+(alpha*.6).toFixed(3)+')';g.beginPath();
+    for(i=0;i<E.length;i++){var A=pr[E[i][0]],B=pr[E[i][1]];g.moveTo(A[0],A[1]);g.lineTo(B[0],B[1])}
+    g.stroke();
+    if(lw>1){g.fillStyle='rgba(235,240,255,'+(alpha*1.4).toFixed(3)+')';g.beginPath();var rr=lw*1.1+.4;for(i=0;i<pr.length;i++){g.moveTo(pr[i][0]+rr,pr[i][1]);g.arc(pr[i][0],pr[i][1],rr,0,6.3)}g.fill()}
+  }
+  var t0=performance.now(),run=true;
+  var lastDraw=0;
+  function frame(now){
+    if(!calm)requestAnimationFrame(frame);if(document.hidden)return;if(!calm&&now-lastDraw<30)return;lastDraw=now;
+    var t=(now-t0)/1000,sy=scrollY;mx+=(tmx-mx)*.05;my+=(tmy-my)*.05;
+    g.clearRect(0,0,W,H);g.globalCompositeOperation='lighter';
+    items.forEach(function(o){
+      o.rx+=o.sx;o.ry+=o.sy;o.rz+=o.sz2;
+      var ph=Math.max(.2,o.p),span=H+300;
+      var y=((o.y*span*2-sy*ph*.55+t*(4+o.p*8))%(span*1.6)+span*1.6)%(span*1.6)-150;
+      var x=o.x*W+(mx-.5)*-90*o.p*3;
+      var col=o.hue>.7?PC.c2:o.hue>.4?PC.c1:PC.c3;
+      var al=.2+o.p*.5;
+      wire(o.s,x,y,o.sz*(.7+o.p),o.rx+(my-.5)*.8,o.ry+(mx-.5)*.8,o.rz,col,al*.55,1.6);
+      wire(o.s,x,y,o.sz*(.7+o.p),o.rx+(my-.5)*.8,o.ry+(mx-.5)*.8,o.rz,col,al,.7);
+    });
+    g.fillStyle='rgba(225,232,255,.32)';g.beginPath();dots.forEach(function(d){var y=((d.y*H-sy*d.z*.4-t*8*d.z)%H+H)%H,x=d.x*W+(mx-.5)*-30*d.z;g.moveTo(x+d.r,y);g.arc(x,y,d.r,0,6.3)});g.fill();
+    /* hero centrepiece */
+    if(ho){var r=ho.getBoundingClientRect();if(r.bottom>0&&r.top<H){var cx=r.left+r.width/2,cy=r.top+r.height/2,S=Math.min(r.width,r.height)*(W<760?.24:.28),rx=t*.35+(my-.5)*1.4,ry=t*.5+(mx-.5)*1.8;
+      var gr=g.createRadialGradient(cx,cy,0,cx,cy,S*2);gr.addColorStop(0,'rgba('+PC.c1+',.28)');gr.addColorStop(1,'rgba('+PC.c1+',0)');g.fillStyle=gr;g.fillRect(cx-S*2,cy-S*2,S*4,S*4);
+      wire(SH.ico,cx,cy,S,rx,ry,t*.2,PC.c1,.9,2.4);
+      wire(SH.ico,cx,cy,S,rx,ry,t*.2,PC.c1,.35,5);
+      wire(SH.oct,cx,cy,S*.55,-rx*1.3,-ry*1.3,0,PC.c2,.9,1.6);
+      wire(SH.tor,cx,cy,S*1.55,rx*.5+1.1,t*.25,0,PC.c3,.55,1.1);
+      for(var k=0;k<7;k++){var an=t*.7+k*.9,rr=S*(1.9+.25*Math.sin(t+k));g.fillStyle='rgba(235,240,255,.85)';g.beginPath();g.arc(cx+Math.cos(an)*rr,cy+Math.sin(an)*rr*.45,2,0,6.3);g.fill()}}}
+    g.globalCompositeOperation='source-over';
+  }
+  if(calm){frame(performance.now());document.addEventListener('scroll',function(){frame(performance.now())},{passive:true})}
+  else requestAnimationFrame(frame);
+})();
+})();
+</script>
+</body>
+</html>

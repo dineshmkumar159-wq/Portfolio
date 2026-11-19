@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin · Aurelia Care Hospital</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0B2545;--brand:#0A7E8C;--brand2:#075F6B;--mist:#EEF6F7;--coral:#D63E2F;--line:rgba(11,37,69,.16);--mut:#4B5F73}
+*{box-sizing:border-box}
+body{margin:0;background:var(--mist);color:var(--ink);font:400 16px/1.5 'Public Sans',system-ui,sans-serif}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;margin:0}
+.wrap{width:min(1180px,100% - 32px);margin:0 auto;padding:24px 0 80px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+header h1{font-size:2rem}
+.btn{font:700 .9rem 'Public Sans',sans-serif;border:2px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:9px 16px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.ghost{background:#fff;color:var(--brand2)}
+.mini{font:700 .8rem 'Public Sans',sans-serif;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.mini.del{color:var(--coral);border-color:var(--coral)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.tab{font:700 .92rem 'Public Sans',sans-serif;border:1.5px solid var(--line);background:#fff;border-radius:99px;padding:8px 18px;cursor:pointer;color:var(--ink)}
+.tab[aria-selected=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:0 6px 18px rgba(11,37,69,.06)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.tile b{display:block;font:400 1.9rem/1 'DM Serif Display',serif;color:var(--brand2)}
+.tile span{font-size:.82rem;color:var(--mut);font-weight:600}
+.bar{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:14px}
+label{display:block;font-weight:700;font-size:.85rem;margin-bottom:4px}
+input,select{font:500 .95rem 'Public Sans',sans-serif;border:1.5px solid var(--line);border-radius:8px;padding:7px 9px;background:#fff;color:var(--ink)}
+.tw{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px}
+table{border-collapse:collapse;width:100%;min-width:860px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);font-size:.9rem;vertical-align:top}
+th{background:var(--mist);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+.msg{min-height:1.4em;font-weight:700;margin:6px 0}.msg.bad{color:var(--coral)}.msg.ok{color:#0b7a54}
+.warn{background:#fff3cd;border:1px solid #e0c36a;border-radius:12px;padding:10px 14px;margin-bottom:14px;font-weight:600}
+.login{max-width:400px;margin:12vh auto}
+.login input{width:100%;margin:6px 0 10px}
+.days label{display:inline-flex;gap:4px;align-items:center;margin:0 10px 0 0;font-weight:600}
+.badge{display:inline-block;border-radius:99px;padding:1px 9px;font-weight:700;font-size:.75rem;background:var(--mist);border:1px solid var(--line)}
+.badge.pending{background:#ffe9b3}.badge.confirmed{background:#cfeeea}
+.muted{color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div id="login" class="card login" hidden>
+  <h1>Staff login</h1>
+  <p class="muted" style="margin:6px 0 6px">Aurelia Care Hospital · appointments desk</p><p style="margin:0 0 10px;font-size:.9rem"><b>Demo password: demo</b></p>
+  <form id="lf" novalidate><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password"><div class="msg bad" id="lm" role="alert"></div><button class="btn" type="submit">Log in</button></form>
+  <p style="font-size:.85rem;margin-top:14px"><a href="index.html">← Back to the hospital website</a></p>
+</div>
+
+<div id="app" hidden>
+  <header><div><h1>Appointments desk</h1><span class="muted">Aurelia Care Hospital · staff only</span></div><div style="display:flex;gap:8px"><a class="btn ghost" href="index.html" target="_blank" rel="noopener">View website</a><button class="btn" id="out" type="button">Log out</button></div></header>
+  <div class="warn" style="background:#e3f3f5;border-color:#9fd0d6">Demo mode: this is a sample of the hospital staff panel. Everything you do is saved in <b>your browser only</b>. Appointments booked on the demo website appear here.</div>
+  <div class="warn" id="dw" hidden>You are using the default password. Set the ADMIN_PASSWORD setting on your server before going live.</div>
+  <div class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" aria-selected="true" data-tab="ap">Appointments</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="ms">Messages <span id="mc"></span></button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="dr">Doctors</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="pk">Package prices</button>
+  </div>
+  <div class="msg" id="msg" aria-live="polite"></div>
+
+  <section id="tab-ap">
+    <div class="tiles" id="tiles"></div>
+    <div class="bar">
+      <div><label for="fdt">Date</label><input id="fdt" type="date"></div>
+      <div><label for="fdr">Doctor</label><select id="fdr"></select></div>
+      <div><label for="fst">Status</label><select id="fst"><option value="">All</option><option>pending</option><option>confirmed</option><option>completed</option><option>cancelled</option><option>no-show</option></select></div>
+      <button class="mini" id="fclr" type="button">Clear filters</button>
+      <a class="btn ghost" href="/api/admin/appointments.csv">Download CSV</a>
+    </div>
+    <div class="tw"><table><thead><tr><th>Ref</th><th>Date and time</th><th>Visit</th><th>Patient</th><th>Phone</th><th>Notes</th><th>Status</th><th></th></tr></thead><tbody id="ab"></tbody></table></div>
+    <p class="muted" id="anone" hidden>No appointments match. Book one on the website and it will appear here.</p>
+  </section>
+
+  <section id="tab-ms" hidden>
+    <div class="tw"><table><thead><tr><th>Received</th><th>Name</th><th>Phone</th><th>Topic</th><th>Message</th><th>Handled</th><th></th></tr></thead><tbody id="mb"></tbody></table></div>
+    <p class="muted" id="mnone" hidden>No messages yet.</p>
+  </section>
+
+  <section id="tab-dr" hidden>
+    <p class="muted" style="margin-top:0">Change which days each doctor visits, or switch a doctor off. The website’s doctor pages and booking calendar update straight away.</p>
+    <div class="tw"><table><thead><tr><th>Doctor</th><th>Active</th><th>Visiting days</th><th></th></tr></thead><tbody id="db"></tbody></table></div>
+  </section>
+
+  <section id="tab-pk" hidden>
+    <div class="tw"><table style="min-width:520px"><thead><tr><th>Package</th><th>Price (₹)</th><th></th></tr></thead><tbody id="pb"></tbody></table></div>
+  </section>
+</div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/demo-api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

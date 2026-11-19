@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dabara Kaapi | Filter coffee house</title>
+<meta name="description" content="Dabara Kaapi is a sample filter coffee house website: four-hour decoction, twice-boiled milk and a steel tumbler.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&amp;family=Hanken+Grotesk:wght@400;500;700&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0E0907;
+  --panel: #1A100C;
+  --panel-hi: #261913;
+  --line: #3B2619;
+  --cream: #F4E8D3;
+  --muted: #C6B098;
+  --copper: #E0904F;
+  --brass: #EBBC6B;
+  --ink-on-copper: #1A0F09;
+  --f-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --f-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--cream); font-family: var(--f-body); font-size: 17px; line-height: 1.6; overflow-x: hidden;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin-inline: auto; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; line-height: 1.04; text-wrap: balance; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--copper); }
+
+/* ambient background: kolam pattern, warm light, drifting shadows and beans */
+.ambient { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.kolam { position: absolute; inset: -80px; opacity: 0.09; animation: kolam 90s linear infinite;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><g fill='none' stroke='%23E0904F' stroke-width='1.2'><circle cx='40' cy='40' r='3' fill='%23E0904F'/><path d='M40 12 C54 26 54 54 40 68 C26 54 26 26 40 12Z'/><path d='M12 40 C26 26 54 26 68 40 C54 54 26 54 12 40Z'/></g></svg>");
+  -webkit-mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse at 70% 20%, #000 0%, transparent 70%); }
+@keyframes kolam { to { transform: translate(80px, 80px); } }
+.glowb { position: absolute; border-radius: 50%; filter: blur(70px); will-change: transform; }
+.glowb.a { width: 46vmax; height: 46vmax; left: -14vmax; top: -12vmax; background: radial-gradient(circle, rgba(224,144,79,0.30), transparent 68%); animation: driftA 40s ease-in-out infinite alternate; }
+.glowb.b { width: 36vmax; height: 36vmax; right: -12vmax; top: 34vh; background: radial-gradient(circle, rgba(150,60,30,0.32), transparent 68%); animation: driftB 48s ease-in-out infinite alternate; }
+.shade { position: absolute; top: -10vh; left: -40vmax; width: 32vmax; height: 62vmax; border-radius: 50%; filter: blur(70px); background: rgba(0,0,0,0.8); transform: rotate(18deg); animation: shadepass 52s linear infinite; }
+.shade.two { top: 20vh; width: 24vmax; animation-duration: 70s; animation-delay: -30s; }
+.bean { position: absolute; width: 74px; height: 104px; border-radius: 50%; background: radial-gradient(ellipse at 35% 28%, #5A3320, #2A160D 70%); box-shadow: 0 0 0 1px rgba(224,144,79,0.25) inset, 0 24px 40px rgba(0,0,0,0.7); opacity: 0.5; will-change: transform; }
+.bean::after { content: ""; position: absolute; left: 50%; top: 8%; bottom: 8%; width: 0; border-left: 3px solid rgba(8,4,2,0.9); border-radius: 50%; transform: translateX(-50%) rotate(8deg) scaleX(2.4); box-shadow: 1px 0 0 rgba(224,144,79,0.25); }
+.bean.b1 { left: 6%; top: 58%; animation: beanA 34s ease-in-out infinite alternate; }
+.bean.b2 { right: 5%; top: 10%; width: 56px; height: 80px; animation: beanB 28s ease-in-out infinite alternate; }
+.bean.b3 { left: 46%; bottom: 6%; width: 64px; height: 90px; animation: beanA 40s ease-in-out infinite alternate-reverse; }
+@keyframes driftA { from { transform: translate3d(0,0,0); } to { transform: translate3d(9vw, 12vh, 0); } }
+@keyframes driftB { from { transform: translate3d(0,0,0); } to { transform: translate3d(-10vw, -14vh, 0); } }
+@keyframes shadepass { from { transform: translate3d(0,0,0) rotate(18deg); } to { transform: translate3d(190vw,0,0) rotate(18deg); } }
+@keyframes beanA { from { transform: translate3d(0,0,0) rotate(-20deg); } to { transform: translate3d(7vw,-10vh,0) rotate(150deg); } }
+@keyframes beanB { from { transform: translate3d(0,0,0) rotate(30deg); } to { transform: translate3d(-8vw,12vh,0) rotate(-140deg); } }
+
+/* header */
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.brand { font-family: var(--f-display); font-weight: 900; font-size: 1.5rem; letter-spacing: -0.01em; text-decoration: none; }
+.brand span { color: var(--copper); }
+nav { display: flex; flex-wrap: wrap; gap: 4px 24px; font-weight: 500; font-size: 0.95rem; }
+nav a { text-decoration: none; color: var(--muted); padding: 11px 0; border-bottom: 2px solid transparent; }
+nav a:hover { color: var(--cream); border-bottom-color: var(--copper); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 32px 48px; align-items: center; padding-top: clamp(28px, 6vw, 64px); }
+.hero h1 { font-weight: 900; font-size: clamp(3rem, 10vw, 7rem); letter-spacing: -0.03em; margin: 14px 0 0; }
+.hero h1 em { font-style: italic; font-weight: 500; color: var(--copper); text-shadow: 0 0 50px rgba(224,144,79,0.4); }
+.lead { font-size: 1.15rem; max-width: 34ch; color: var(--muted); margin: 22px 0 30px; }
+.actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 26px; border-radius: 999px; font: 700 1rem var(--f-body); text-decoration: none; border: 0; cursor: pointer; transition: transform .2s, box-shadow .2s; }
+.btn.primary { background: linear-gradient(180deg, #F0A867, var(--copper)); color: var(--ink-on-copper); box-shadow: 0 14px 30px -10px rgba(224,144,79,0.7), 0 -3px 0 rgba(0,0,0,0.2) inset, 0 2px 0 rgba(255,255,255,0.35) inset; }
+.btn.primary:hover { transform: translateY(-3px); box-shadow: 0 20px 36px -10px rgba(224,144,79,0.85), 0 -3px 0 rgba(0,0,0,0.2) inset, 0 2px 0 rgba(255,255,255,0.35) inset; }
+.btn.ghost { background: var(--panel-hi); color: var(--cream); border: 1px solid #5A3A27; box-shadow: 0 12px 24px -12px rgba(0,0,0,0.9); }
+.btn.ghost:hover { transform: translateY(-3px); border-color: var(--copper); }
+.btn:active { transform: translateY(1px); }
+
+/* hero 3D tumbler and dabara */
+.stage { display: grid; place-items: center; perspective: 1000px; min-height: 360px; }
+.rig { --mx: 0; --my: 0; width: min(100%, 420px); transform-style: preserve-3d; transform: rotateY(calc(var(--mx) * 12deg)) rotateX(calc(var(--my) * -9deg)); transition: transform .2s ease-out; animation: bob 7s ease-in-out infinite; }
+.rig svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 30px 30px rgba(0,0,0,0.65)); }
+.steam { fill: none; stroke: #FFF3E0; stroke-width: 7; stroke-linecap: round; opacity: 0; animation: rise 5s ease-in-out infinite; }
+.steam.s2 { animation-delay: 1.6s; } .steam.s3 { animation-delay: 3.2s; }
+@keyframes rise { 0% { opacity: 0; transform: translateY(18px); } 30% { opacity: 0.5; } 100% { opacity: 0; transform: translateY(-34px); } }
+@keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 16px; margin-top: 56px; }
+.fact { padding: 18px 20px; border-radius: 14px; background: linear-gradient(160deg, var(--panel-hi), var(--panel)); border: 1px solid var(--line);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 22px 34px -22px rgba(0,0,0,0.95); font-family: var(--f-mono); font-size: 0.85rem; color: var(--muted); }
+.fact b { display: block; font-family: var(--f-display); font-weight: 900; font-size: 1.9rem; color: var(--brass); line-height: 1.1; }
+
+/* sections */
+section { padding-block: clamp(56px, 9vw, 104px) 0; scroll-margin-top: 12px; }
+.section-head { display: grid; gap: 10px; margin-bottom: 40px; max-width: 660px; }
+.section-head h2 { font-weight: 900; font-size: clamp(2.1rem, 5vw, 3.4rem); letter-spacing: -0.02em; }
+.section-head p { margin: 0; color: var(--muted); }
+
+/* depth cards (3D tilt via JS) */
+[data-tilt] { --rx: 0deg; --ry: 0deg; transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .25s ease-out, box-shadow .25s, border-color .25s; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); gap: 28px; list-style: none; margin: 0; padding: 0; counter-reset: step; }
+.steps li { counter-increment: step; position: relative; overflow: hidden; padding: 30px 26px 28px; border-radius: 20px; background: linear-gradient(160deg, var(--panel-hi), var(--panel) 70%); border: 1px solid var(--line);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 30px 46px -26px rgba(0,0,0,0.95); }
+.steps li::before { content: counter(step, decimal-leading-zero); position: absolute; right: 18px; top: 4px; font-family: var(--f-display); font-weight: 900; font-size: 5.6rem; line-height: 1; color: rgba(224,144,79,0.13); }
+.steps h3 { font-weight: 900; font-size: 1.7rem; margin-bottom: 10px; position: relative; }
+.steps p { margin: 0; color: var(--muted); position: relative; }
+.steps .num { font-family: var(--f-mono); color: var(--brass); font-size: 0.9rem; }
+
+.menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 32px; }
+.plate { padding: 26px 26px 14px; border-radius: 22px; border: 1px solid #5A3A27;
+  background: radial-gradient(120% 80% at 20% 0%, rgba(224,144,79,0.14), transparent 60%), linear-gradient(160deg, var(--panel-hi), var(--panel) 75%);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 -2px 0 rgba(0,0,0,0.4) inset, 0 34px 50px -26px rgba(0,0,0,0.95), 0 0 50px -30px rgba(224,144,79,0.6); }
+.plate:hover { border-color: var(--copper); }
+.plate h3 { font-weight: 900; font-size: 1.8rem; padding-bottom: 12px; border-bottom: 2px solid var(--copper); margin-bottom: 4px; }
+.plate ul { list-style: none; margin: 0; padding: 0; }
+.plate li { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding-block: 14px; border-bottom: 1px dotted #6B4B36; }
+.plate li:last-child { border-bottom: 0; }
+.name { font-weight: 700; }
+.price { font-family: var(--f-mono); font-weight: 500; color: var(--brass); text-align: right; }
+.desc { grid-column: 1 / -1; font-size: 0.9rem; color: var(--muted); }
+.menu-note { margin-top: 28px; font-family: var(--f-mono); font-size: 0.82rem; color: var(--muted); }
+
+.split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 32px; }
+.panel { min-width: 0; padding: clamp(22px, 4vw, 38px); border-radius: 22px; border: 1px solid var(--line);
+  background: linear-gradient(160deg, var(--panel-hi), var(--panel) 70%); box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 34px 50px -28px rgba(0,0,0,0.95); }
+.panel h2 { font-weight: 900; font-size: 2.1rem; letter-spacing: -0.02em; margin-bottom: 20px; }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.98rem; }
+caption { text-align: left; padding-bottom: 8px; }
+th, td { text-align: left; padding: 11px 0; border-bottom: 1px solid var(--line); }
+th { font-weight: 500; color: var(--muted); padding-right: 16px; }
+td { font-family: var(--f-mono); font-size: 0.9rem; }
+address { font-style: normal; margin-top: 22px; line-height: 1.8; }
+address .mono { font-family: var(--f-mono); font-size: 0.9rem; color: var(--muted); }
+
+form { display: grid; gap: 16px; }
+label { display: grid; gap: 6px; font-weight: 500; font-size: 0.95rem; }
+input, select, textarea { font: inherit; color: var(--cream); background: #120B08; border: 1.5px solid #5A3A27; border-radius: 10px; padding: 12px 14px; width: 100%; min-width: 0; min-height: 46px; box-shadow: 0 2px 6px rgba(0,0,0,0.6) inset; }
+select option { background: #1A100C; color: var(--cream); }
+textarea { min-height: 120px; resize: vertical; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { border-color: var(--brass); }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 16px; }
+.field-error { color: #FFB08A; font-size: 0.85rem; min-height: 1.2em; }
+input[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #FF8A5C; }
+.status { padding: 14px 16px; border-radius: 10px; background: #120B08; border: 1.5px solid var(--copper); font-size: 0.95rem; }
+
+footer { margin-top: clamp(64px, 10vw, 120px); padding-block: 28px 44px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font-size: 0.88rem; color: var(--muted); }
+
+/* gentle reveal */
+.js .reveal { opacity: 0; translate: 0 26px; transition: opacity .8s ease, translate .8s ease; }
+.js .reveal.in { opacity: 1; translate: 0 0; }
+
+@media (max-width: 640px) { .bean { opacity: 0.35; } .stage { min-height: 300px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .kolam, .glowb, .shade, .bean, .rig, .steam { animation: none !important; }
+  .shade { display: none; }
+  .steam { opacity: 0.35; }
+  .js .reveal { opacity: 1; translate: 0 0; transition: none; }
+  [data-tilt], .btn, .rig { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true">
+  <div class="kolam"></div>
+  <div class="glowb a"></div><div class="glowb b"></div>
+  <div class="bean b1"></div><div class="bean b2"></div><div class="bean b3"></div>
+  <div class="shade"></div><div class="shade two"></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="#top">Dabara <span>Kaapi</span></a>
+    <nav aria-label="Main">
+      <a href="#process">How we brew</a>
+      <a href="#menu">Menu</a>
+      <a href="#visit">Visit</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Filter coffee house, open from 6:30 am</p>
+        <h1>Kaapi, <em>pulled</em> slow.</h1>
+        <p class="lead">Four-hour decoction, twice-boiled milk, and a steel tumbler that gets poured back and forth until the froth rises.</p>
+        <div class="actions">
+          <a class="btn primary" href="#menu">See the menu</a>
+          <a class="btn ghost" href="#contact">Book a table</a>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="rig" id="rig">
+          <svg viewBox="0 0 420 400" role="img" aria-label="A steel tumbler of filter coffee resting in its dabara, with steam rising">
+            <defs>
+              <linearGradient id="steel" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#40362E"/><stop offset=".16" stop-color="#9C8D7A"/><stop offset=".36" stop-color="#F1E7D6"/>
+                <stop offset=".6" stop-color="#BBAE9B"/><stop offset=".84" stop-color="#6F6355"/><stop offset="1" stop-color="#352C25"/>
+              </linearGradient>
+              <linearGradient id="steelDark" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="#2E251F"/><stop offset=".3" stop-color="#7A6D5D"/><stop offset=".5" stop-color="#C9BBA6"/>
+                <stop offset=".75" stop-color="#6B5F51"/><stop offset="1" stop-color="#2A221C"/>
+              </linearGradient>
+              <radialGradient id="coffee" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#6B3A1F"/><stop offset="1" stop-color="#2B130A"/></radialGradient>
+              <radialGradient id="froth" cx=".4" cy=".4" r=".8"><stop offset="0" stop-color="#F2D9B0"/><stop offset="1" stop-color="#C79C66"/></radialGradient>
+              <radialGradient id="inner" cx=".5" cy=".3" r=".9"><stop offset="0" stop-color="#1B130E"/><stop offset="1" stop-color="#050302"/></radialGradient>
+              <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3.5"/></filter>
+            </defs>
+            <ellipse cx="210" cy="372" rx="170" ry="16" fill="#000" opacity=".55" filter="url(#soft)"/>
+            <ellipse cx="210" cy="270" rx="170" ry="34" fill="url(#inner)"/>
+            <!-- tumbler -->
+            <path d="M130 112 L145 292 A65 14 0 0 0 275 292 L290 112 Z" fill="url(#steel)"/>
+            <ellipse cx="210" cy="112" rx="80" ry="16" fill="url(#steelDark)"/>
+            <ellipse cx="210" cy="112" rx="71" ry="12.5" fill="url(#coffee)"/>
+            <ellipse cx="210" cy="110" rx="56" ry="8" fill="url(#froth)"/>
+            <path d="M138 118 L150 286" stroke="#fff" stroke-opacity=".28" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- dabara front -->
+            <path d="M40 270 A170 34 0 0 0 380 270 L320 350 A110 22 0 0 1 100 350 Z" fill="url(#steel)"/>
+            <path d="M40 270 A170 34 0 0 0 380 270" fill="none" stroke="#FFF4E0" stroke-opacity=".85" stroke-width="2.5"/>
+            <path d="M70 296 L112 346" stroke="#fff" stroke-opacity=".3" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <path d="M104 352 A110 22 0 0 0 316 352" fill="none" stroke="#000" stroke-opacity=".35" stroke-width="3"/>
+            <!-- steam -->
+            <g transform="translate(0,0)">
+              <path class="steam s1" d="M180 86 q-16 -22 0 -42 q16 -20 0 -40" filter="url(#soft)"/>
+              <path class="steam s2" d="M212 82 q-16 -22 0 -42 q16 -20 0 -40" filter="url(#soft)"/>
+              <path class="steam s3" d="M244 86 q-16 -22 0 -42 q16 -20 0 -40" filter="url(#soft)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="facts reveal">
+      <div class="fact"><b>90 ml</b>per tumbler</div>
+      <div class="fact"><b>1 : 3</b>coffee to water</div>
+      <div class="fact"><b>80 : 20</b>coffee and chicory</div>
+      <div class="fact"><b>4 hrs</b>drip time</div>
+    </div>
+
+    <section id="process">
+      <div class="section-head reveal">
+        <p class="eyebrow">How we brew</p>
+        <h2>Three steps, none of them rushed</h2>
+        <p>Every tumbler goes through the same order, every morning, before the doors open.</p>
+      </div>
+      <ol class="steps">
+        <li class="reveal" data-tilt>
+          <h3>Decoction</h3>
+          <p>Freshly ground peaberry beans and chicory drip through a steel filter at <span class="num">1 : 3</span>. We start at 2:30 am so the first batch is ready by opening.</p>
+        </li>
+        <li class="reveal" data-tilt>
+          <h3>Milk</h3>
+          <p>Full-cream milk is boiled twice and held hot. Sugar goes in last, a level teaspoon per tumbler unless you ask for less.</p>
+        </li>
+        <li class="reveal" data-tilt>
+          <h3>The pull</h3>
+          <p>Decoction and milk are poured between tumbler and dabara from a height until the froth rises. It cools it to drinking temperature, too.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="menu">
+      <div class="section-head reveal">
+        <p class="eyebrow">Menu</p>
+        <h2>Coffee first, then something to go with it</h2>
+      </div>
+      <div class="menu">
+        <div class="plate reveal" data-tilt>
+          <h3>Kaapi</h3>
+          <ul>
+            <li><span class="name">Filter Kaapi</span><span class="price">₹40</span><span class="desc">The house standard. 90 ml, medium sweet.</span></li>
+            <li><span class="name">Strong Kaapi</span><span class="price">₹50</span><span class="desc">Double decoction, less milk.</span></li>
+            <li><span class="name">Sukku Malli Kaapi</span><span class="price">₹45</span><span class="desc">Dry ginger and coriander seed, no chicory.</span></li>
+            <li><span class="name">Cold Decoction</span><span class="price">₹90</span><span class="desc">200 ml over ice with a splash of milk.</span></li>
+            <li><span class="name">Badam Milk</span><span class="price">₹60</span><span class="desc">For anyone who skips coffee.</span></li>
+          </ul>
+        </div>
+        <div class="plate reveal" data-tilt>
+          <h3>Tiffin</h3>
+          <ul>
+            <li><span class="name">Idli, 2 pieces</span><span class="price">₹50</span><span class="desc">With sambar and two chutneys.</span></li>
+            <li><span class="name">Medu Vada</span><span class="price">₹60</span><span class="desc">Crisp outside, soft inside, served hot.</span></li>
+            <li><span class="name">Ghee Pongal</span><span class="price">₹90</span><span class="desc">Pepper, cashew, and a spoon of ghee on top.</span></li>
+            <li><span class="name">Podi Dosa</span><span class="price">₹85</span><span class="desc">Gunpowder podi and sesame oil.</span></li>
+          </ul>
+        </div>
+        <div class="plate reveal" data-tilt>
+          <h3>Sweets</h3>
+          <ul>
+            <li><span class="name">Rava Kesari</span><span class="price">₹60</span><span class="desc">Saffron, ghee, a few raisins.</span></li>
+            <li><span class="name">Mysore Pak</span><span class="price">₹45</span><span class="desc">One piece, made fresh each morning.</span></li>
+            <li><span class="name">Adhirasam</span><span class="price">₹40</span><span class="desc">Jaggery and rice flour, fried flat.</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-note">Prices include GST. Sample menu for a demonstration site.</p>
+    </section>
+
+    <section id="visit">
+      <div class="split">
+        <div class="panel reveal">
+          <h2>Visit</h2>
+          <div class="table-scroll">
+            <table>
+              <caption class="eyebrow">Opening hours</caption>
+              <tbody>
+                <tr><th scope="row">Monday to Friday</th><td>6:30 am to 9:30 pm</td></tr>
+                <tr><th scope="row">Saturday</th><td>6:30 am to 10:00 pm</td></tr>
+                <tr><th scope="row">Sunday</th><td>7:00 am to 10:00 pm</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <address>
+            14 Tank Street, Old Market Road<br>
+            <span class="mono">+91 00000 00000</span><br>
+            <span class="mono">hello@dabarakaapi.example</span>
+          </address>
+        </div>
+
+        <div class="panel reveal" id="contact">
+          <h2>Write to us</h2>
+          <form id="contact-form" novalidate>
+            <div class="row">
+              <label for="name">Name
+                <input id="name" name="name" type="text" autocomplete="name" required>
+                <span class="field-error" id="name-error"></span>
+              </label>
+              <label for="reach">Phone or email
+                <input id="reach" name="reach" type="text" autocomplete="off" required>
+                <span class="field-error" id="reach-error"></span>
+              </label>
+            </div>
+            <label for="topic">What is it about?
+              <select id="topic" name="topic">
+                <option>Table booking</option>
+                <option>Catering for an event</option>
+                <option>Feedback</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label for="message">Message
+              <textarea id="message" name="message" required></textarea>
+              <span class="field-error" id="message-error"></span>
+            </label>
+            <button class="btn primary" type="submit">Send message</button>
+            <div class="status" id="form-status" role="status" hidden></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Dabara Kaapi is an imaginary cafe. This is a sample website.</span>
+    <span>Open daily from 6:30 am</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* scroll reveal */
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !calm) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    items.forEach(function (el, i) { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+  } else { items.forEach(function (el) { el.classList.add('in'); }); }
+
+  if (fine && !calm) {
+    /* hero rig follows the pointer */
+    var rig = document.getElementById('rig');
+    window.addEventListener('pointermove', function (e) {
+      rig.style.setProperty('--mx', ((e.clientX / window.innerWidth) - 0.5).toFixed(3));
+      rig.style.setProperty('--my', ((e.clientY / window.innerHeight) - 0.5).toFixed(3));
+    });
+    /* depth cards tilt */
+    document.querySelectorAll('[data-tilt]').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+        c.style.setProperty('--ry', (x * 9).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', (-y * 9).toFixed(2) + 'deg');
+      });
+      c.addEventListener('pointerleave', function () { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  /* contact form */
+  var form = document.getElementById('contact-form');
+  var status = document.getElementById('form-status');
+  var fields = [
+    { id: 'name', msg: 'Enter your name so we know who to reply to.' },
+    { id: 'reach', msg: 'Enter a phone number or email address.' },
+    { id: 'message', msg: 'Write a short message.' }
+  ];
+  function check(f) {
+    var el = document.getElementById(f.id);
+    var bad = el.value.trim() === '';
+    el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+    document.getElementById(f.id + '-error').textContent = bad ? f.msg : '';
+    return !bad;
+  }
+  fields.forEach(function (f) { document.getElementById(f.id).addEventListener('input', function () { check(f); }); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var ok = true;
+    fields.forEach(function (f) { if (!check(f)) ok = false; });
+    if (!ok) { status.hidden = true; return; }
+    var who = document.getElementById('name').value.trim();
+    status.textContent = 'Thank you, ' + who + '. This is a sample site, so your message was not sent anywhere.';
+    status.hidden = false;
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio Halide | Photographer</title>
+<meta name="description" content="Studio Halide is a sample photographer website: a cyanotype blueprint gallery, packages, a date check and an enquiry form.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Karla:wght@400;500;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0A2554;
+  --bg2: #071B40;
+  --panel: rgba(255,255,255,0.06);
+  --panel-hi: rgba(255,255,255,0.11);
+  --line: rgba(191,233,255,0.30);
+  --line-hi: rgba(191,233,255,0.75);
+  --fg: #EAF6FF;
+  --muted: #A9CBEA;
+  --cyan: #8FDCFF;
+  --paper: #F2FAFF;
+  --ink: #06204A;
+  --film: #041433;
+  --f-display: "Instrument Serif", "Bodoni 72", "Didot", Georgia, serif;
+  --f-body: "Karla", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "Share Tech Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 17px; line-height: 1.6; overflow-x: hidden;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
+.wrap { max-width: 1140px; margin-inline: auto; overflow-x: clip; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; margin: 0; line-height: 0.98; letter-spacing: -0.01em; text-wrap: balance; }
+em { font-style: italic; }
+.eyebrow { font-family: var(--f-mono); font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+
+/* ambient blueprint sheet */
+.ambient { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: radial-gradient(120% 80% at 70% 0%, #12378A 0%, var(--bg) 55%, var(--bg2) 100%); }
+.g1, .g2 { position: absolute; inset: -120px; }
+.g1 { background-image: linear-gradient(rgba(191,233,255,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(191,233,255,.13) 1px, transparent 1px); background-size: 40px 40px; animation: gm 60s linear infinite; }
+.g2 { background-image: linear-gradient(rgba(191,233,255,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(191,233,255,.2) 1px, transparent 1px); background-size: 200px 200px; animation: gm 120s linear infinite; }
+@keyframes gm { to { transform: translate(200px, 200px); } }
+.mark { position: absolute; fill: none; stroke: var(--line-hi); stroke-width: 1.4; opacity: .55; will-change: transform; }
+.m1 { width: 150px; left: 5%; top: 62%; animation: mv1 42s ease-in-out infinite alternate; }
+.m2 { width: 110px; right: 6%; top: 18%; animation: mv2 36s ease-in-out infinite alternate; }
+.m3 { width: 220px; right: 18%; top: 72%; animation: mv1 50s ease-in-out infinite alternate-reverse; }
+@keyframes mv1 { from { transform: translate3d(0,0,0) rotate(0); } to { transform: translate3d(90px,-70px,0) rotate(90deg); } }
+@keyframes mv2 { from { transform: translate3d(0,0,0) rotate(0); } to { transform: translate3d(-80px,90px,0) rotate(-120deg); } }
+.vig { position: absolute; top: -10vh; left: -40vmax; width: 30vmax; height: 130vh; background: rgba(2,10,30,.55); filter: blur(70px); transform: rotate(14deg); animation: vp 55s linear infinite; }
+@keyframes vp { to { transform: translate3d(190vw,0,0) rotate(14deg); } }
+
+header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+.brand { font-family: var(--f-display); font-size: 2rem; text-decoration: none; letter-spacing: 0; }
+.brand i { display: inline-block; width: .5em; height: .5em; border: 2px solid var(--cyan); border-radius: 50%; margin-left: 8px; position: relative; top: -2px; }
+nav { display: flex; flex-wrap: wrap; gap: 0 26px; font-family: var(--f-mono); font-size: 0.9rem; letter-spacing: .1em; text-transform: uppercase; }
+nav a { text-decoration: none; color: var(--muted); padding: 12px 0; border-bottom: 2px solid transparent; }
+nav a:hover { color: var(--paper); border-bottom-color: var(--cyan); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px 40px; align-items: center; padding-top: clamp(28px, 6vw, 64px); }
+.hero > div { min-width: 0; }
+.hero h1 { font-size: clamp(3.4rem, 9.5vw, 7rem); margin: 14px 0 0; }
+.hero h1 em { color: var(--cyan); }
+.lead { font-size: 1.15rem; max-width: 44ch; color: var(--muted); margin: 22px 0 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 28px; font: 500 0.95rem var(--f-mono); letter-spacing: .14em; text-transform: uppercase; text-decoration: none; border: 1.5px solid var(--paper); color: var(--paper); background: transparent; cursor: pointer; transition: transform .18s, background .18s, box-shadow .18s; }
+.btn.primary { background: var(--paper); color: var(--ink); box-shadow: 6px 6px 0 rgba(143,220,255,.5); }
+.btn:hover { transform: translate(-2px,-2px); }
+.btn.primary:hover { box-shadow: 9px 9px 0 rgba(143,220,255,.6); }
+.btn:not(.primary):hover { background: var(--panel-hi); }
+
+.scene { perspective: 1100px; display: grid; place-items: center; min-height: 380px; }
+.rig { --mx: 0; --my: 0; width: min(88vw, 400px); transform-style: preserve-3d; transform: rotateY(calc(var(--mx) * 22deg)) rotateX(calc(var(--my) * -18deg)); transition: transform .2s ease-out; animation: sway 9s ease-in-out infinite; }
+@keyframes sway { 0%,100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+.rig svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 30px 30px rgba(0,5,25,.7)); }
+.ringtxt { font: 12px var(--f-mono); fill: var(--cyan); text-anchor: middle; letter-spacing: .06em; }
+.ringspin { transform-origin: 130px 130px; animation: spin 80s linear infinite reverse; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.blade { transform-origin: 130px 130px; transform: rotate(var(--a)); animation: iris 7s ease-in-out infinite; }
+@keyframes iris { 0%, 100% { rotate: 0deg; } 50% { rotate: 17deg; } }
+
+/* film strip */
+.strip { margin-top: 44px; overflow: hidden; border-block: 1px solid var(--line); background: var(--film); transform: rotate(-1deg); }
+.strip-track { display: flex; width: max-content; gap: 14px; padding: 22px 12px; animation: roll 70s linear infinite; position: relative; }
+.strip-track:hover { animation-play-state: paused; }
+@keyframes roll { to { transform: translateX(-50%); } }
+.mini { position: relative; flex: none; width: 150px; }
+.mini .pic { aspect-ratio: 4/5; }
+.mini .edge { padding: 2px 0 4px; font-size: .62rem; }
+
+.film { position: relative; background: var(--film); padding: 24px 9px; border: 1px solid var(--line); }
+.film::before, .film::after { content: ""; position: absolute; left: 6px; right: 6px; height: 7px; background: repeating-linear-gradient(90deg, var(--bg) 0 8px, transparent 8px 19px); }
+.film::before { top: 8px; } .film::after { bottom: 8px; }
+.edge { display: flex; justify-content: space-between; gap: 12px; font-family: var(--f-mono); font-size: .7rem; letter-spacing: .12em; color: var(--cyan); padding: 3px 2px; }
+.pic { display: block; overflow: hidden; aspect-ratio: 4/5; background: #06204A; }
+.pic svg { display: block; width: 100%; height: 100%; filter: url(#cyan); transition: filter .4s, transform .6s; }
+.gallery figure:hover .pic svg { filter: none; transform: scale(1.05); }
+
+section { padding-block: clamp(60px, 9vw, 112px) 0; scroll-margin-top: 8px; }
+.section-head { display: grid; gap: 10px; margin-bottom: 32px; max-width: 680px; }
+.section-head h2 { font-size: clamp(2.6rem, 7vw, 4.8rem); }
+.section-head p { margin: 0; color: var(--muted); }
+
+[data-tilt] { --rx: 0deg; --ry: 0deg; transform: perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)); transition: transform .25s ease-out; }
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 28px; }
+.filters button { font: 500 .9rem var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fg); background: transparent; border: 1.5px solid var(--line-hi); padding: 0 18px; min-height: 44px; cursor: pointer; }
+.filters button:hover { background: var(--panel-hi); }
+.filters button[aria-pressed="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); }
+.count { font-family: var(--f-mono); font-size: .85rem; color: var(--muted); margin-left: 8px; }
+.table { padding: clamp(14px, 3vw, 28px); border: 1.5px solid var(--line-hi); background: var(--panel); box-shadow: 0 0 0 6px rgba(255,255,255,.03), 0 40px 60px -40px #000; position: relative; }
+.table::before, .table::after { content: ""; position: absolute; width: 22px; height: 22px; border: 2px solid var(--cyan); }
+.table::before { left: -6px; top: -6px; border-right: 0; border-bottom: 0; } .table::after { right: -6px; bottom: -6px; border-left: 0; border-top: 0; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 26px 20px; }
+.gallery figure { margin: 0; min-width: 0; }
+.gallery figure[hidden] { display: none; }
+figcaption { padding-top: 10px; font-size: .92rem; color: var(--muted); }
+.title { display: block; color: var(--fg); font-family: var(--f-display); font-size: 1.4rem; line-height: 1.1; }
+.exif { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .04em; }
+.demo-note { margin-top: 26px; font-family: var(--f-mono); font-size: .82rem; color: var(--muted); }
+
+/* packages */
+.packages { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 28px; }
+.pkg { position: relative; padding: 30px 26px 26px; border: 1.5px solid var(--line-hi); background: linear-gradient(160deg, var(--panel-hi), var(--panel)); display: grid; gap: 12px; align-content: start; min-width: 0; box-shadow: 0 40px 60px -40px #000; }
+.pkg::before { content: attr(data-n); position: absolute; right: 16px; top: 10px; font-family: var(--f-mono); font-size: .8rem; letter-spacing: .14em; color: var(--cyan); }
+.pkg h3 { font-size: 2.3rem; }
+.len { font-family: var(--f-mono); font-size: .82rem; letter-spacing: .08em; color: var(--cyan); text-transform: uppercase; }
+.pkg p { margin: 0; color: var(--muted); }
+.price { font-family: var(--f-display); font-size: 3.4rem; line-height: 1; border-top: 1px dashed var(--line-hi); padding-top: 14px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.pkg-note { margin-top: 22px; font-family: var(--f-mono); font-size: .82rem; color: var(--muted); }
+
+/* about as a drawing title block */
+.about { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 40px 64px; align-items: start; }
+.about h2 { font-size: clamp(2.4rem, 5.6vw, 3.8rem); margin-top: 10px; }
+.about p { margin: 0 0 16px; color: var(--muted); }
+.facts { margin: 0; padding: 0; list-style: none; border: 1.5px solid var(--line-hi); background: var(--panel); }
+.facts li { display: grid; grid-template-columns: 8.5rem 1fr; gap: 16px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.facts li:last-child { border-bottom: 0; }
+.facts span:first-child { font-family: var(--f-mono); font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--cyan); align-self: center; }
+
+/* contact */
+.contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 40px 64px; padding: clamp(22px, 5vw, 56px); border: 1.5px solid var(--line-hi); background: var(--panel); box-shadow: 0 50px 70px -45px #000; }
+.contact h2 { font-size: clamp(2.6rem, 6vw, 4.2rem); margin: 10px 0 16px; }
+.contact p { margin: 0 0 12px; color: var(--muted); }
+address { font-style: normal; font-family: var(--f-mono); font-size: .92rem; line-height: 1.9; margin-top: 20px; }
+.datetile { display: inline-grid; grid-template-rows: auto 1fr; margin-top: 26px; width: 120px; border: 2px solid var(--paper); background: var(--paper); color: var(--ink); text-align: center; box-shadow: 8px 8px 0 rgba(143,220,255,.45); perspective: 500px; }
+.datetile .mo { background: var(--ink); color: var(--paper); font-family: var(--f-mono); font-size: .85rem; letter-spacing: .24em; padding: 4px 0; text-transform: uppercase; }
+.datetile .dd { font-family: var(--f-display); font-size: 4.4rem; line-height: 1.1; padding-block: 4px 6px; transform-origin: 50% 0; }
+.datetile .dd.flip { animation: flipd .5s cubic-bezier(.2,.8,.2,1); }
+@keyframes flipd { from { transform: rotateX(-90deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.datetile .yr { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .14em; padding-bottom: 6px; }
+form { display: grid; gap: 16px; min-width: 0; }
+label { display: grid; gap: 6px; font-family: var(--f-mono); font-size: .82rem; letter-spacing: .14em; text-transform: uppercase; color: var(--fg); }
+input, select, textarea { font: 400 1rem var(--f-body); letter-spacing: 0; text-transform: none; color: var(--fg); background: rgba(3,16,48,.7); border: 1.5px solid var(--line-hi); padding: 12px 14px; width: 100%; min-width: 0; min-height: 48px; border-radius: 0; }
+select option { background: #071B40; color: var(--fg); }
+textarea { min-height: 110px; resize: vertical; }
+input:focus-visible, select:focus-visible, textarea:focus-visible { border-color: var(--paper); outline-offset: 0; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 16px; align-items: start; }
+.field-error { color: var(--paper); font: 400 .88rem var(--f-body); letter-spacing: 0; text-transform: none; min-height: 1.2em; border-left: 3px solid var(--cyan); padding-left: 8px; visibility: hidden; }
+.field-error.show { visibility: visible; }
+input[aria-invalid="true"] { border-color: var(--cyan); box-shadow: 0 0 0 2px rgba(143,220,255,.35); }
+.status { padding: 14px 16px; background: rgba(3,16,48,.8); border: 1.5px solid var(--cyan); font-size: .98rem; }
+
+footer { margin-top: clamp(64px, 10vw, 120px); padding-block: 28px 44px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font-size: .9rem; color: var(--muted); }
+
+.js .reveal { opacity: 0; translate: 0 28px; transition: opacity .8s ease, translate .8s ease; }
+.js .reveal.in { opacity: 1; translate: 0 0; }
+@media (max-width: 640px) { .m1, .m3 { opacity: .3; } .scene { min-height: 320px; } .facts li { grid-template-columns: 1fr; gap: 2px; } .mini { width: 120px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .g1, .g2, .mark, .vig, .rig, .ringspin, .blade, .strip-track, .datetile .dd.flip { animation: none !important; }
+  .vig { display: none; }
+  .strip-track { overflow-x: auto; }
+  .strip { overflow-x: auto; }
+  .js .reveal { opacity: 1; translate: 0 0; transition: none; }
+  .rig, [data-tilt], .btn, .pic svg { transition: none; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="cyan" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values=".33 .33 .33 0 0  .33 .33 .33 0 0  .33 .33 .33 0 0  0 0 0 1 0"/>
+    <feComponentTransfer><feFuncR type="table" tableValues="0.02 0.9"/><feFuncG type="table" tableValues="0.1 0.97"/><feFuncB type="table" tableValues="0.3 1"/></feComponentTransfer>
+  </filter>
+</svg>
+
+<div class="ambient" aria-hidden="true">
+  <div class="g1"></div><div class="g2"></div>
+  <svg class="mark m1" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30"/><circle cx="50" cy="50" r="3"/><path d="M50 4v32M50 64v32M4 50h32M64 50h32"/></svg>
+  <svg class="mark m2" viewBox="0 0 100 100"><rect x="14" y="14" width="72" height="72"/><path d="M14 14L86 86M86 14L14 86"/></svg>
+  <svg class="mark m3" viewBox="0 0 200 40"><path d="M2 20h196M2 8v24M198 8v24M60 14v12M100 14v12M140 14v12"/></svg>
+  <div class="vig"></div>
+</div>
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="#top">Studio Halide<i aria-hidden="true"></i></a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#packages">Packages</a>
+      <a href="#about">About</a>
+      <a href="#enquire">Enquire</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Portraits, weddings and quiet places</p>
+        <h1>Pictures that keep the <em>light.</em></h1>
+        <p class="lead">Studio Halide is a one-photographer studio. Sessions are slow, edits are careful, and every gallery arrives within 14 days.</p>
+        <div class="actions">
+          <a class="btn primary" href="#work">See the work</a>
+          <a class="btn" href="#enquire">Check a date</a>
+        </div>
+      </div>
+      <div class="scene">
+        <div class="rig" id="rig">
+          <svg viewBox="0 0 260 260" role="img" aria-label="A camera lens aperture with seven blades slowly opening and closing, ringed by f-stop numbers">
+            <defs>
+              <radialGradient id="lens" cx=".38" cy=".32" r=".85"><stop offset="0" stop-color="#9BE3FF"/><stop offset=".35" stop-color="#2D74C8"/><stop offset="1" stop-color="#03102E"/></radialGradient>
+              <linearGradient id="bl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E7F6FF"/><stop offset=".5" stop-color="#6FA6E0"/><stop offset="1" stop-color="#16407F"/></linearGradient>
+              <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2FAFF"/><stop offset=".5" stop-color="#2A5BA8"/><stop offset="1" stop-color="#0A2554"/></linearGradient>
+            </defs>
+            <circle cx="130" cy="130" r="126" fill="#04163A" stroke="url(#rim)" stroke-width="3"/>
+            <circle cx="130" cy="130" r="92" fill="none" stroke="#8FDCFF" stroke-opacity=".5" stroke-dasharray="2 5"/>
+            <g class="ringspin">
+              <text class="ringtxt" x="130" y="22">1.4</text>
+              <text class="ringtxt" transform="rotate(45 130 130)" x="130" y="22">2</text>
+              <text class="ringtxt" transform="rotate(90 130 130)" x="130" y="22">2.8</text>
+              <text class="ringtxt" transform="rotate(135 130 130)" x="130" y="22">4</text>
+              <text class="ringtxt" transform="rotate(180 130 130)" x="130" y="22">5.6</text>
+              <text class="ringtxt" transform="rotate(225 130 130)" x="130" y="22">8</text>
+              <text class="ringtxt" transform="rotate(270 130 130)" x="130" y="22">11</text>
+              <text class="ringtxt" transform="rotate(315 130 130)" x="130" y="22">16</text>
+            </g>
+            <circle cx="130" cy="130" r="78" fill="url(#lens)"/>
+            <ellipse cx="108" cy="104" rx="20" ry="9" fill="#fff" opacity=".35" transform="rotate(-30 108 104)"/>
+            <g>
+              <path class="blade" style="--a:0deg" d="M124 52 L190 66 L166 128 L100 108Z" fill="url(#bl)" stroke="#EAF6FF" stroke-opacity=".8"/>
+              <path class="blade" style="--a:51.4deg" d="M124 52 L190 66 L166 128 L100 108Z" fill="url(#bl)" stroke="#EAF6FF" stroke-opacity=".8"/>
+              <path class="blade" style="--a:102.8deg" d="M124 52 L190 66 L166 128 L100 108Z" fill="url(#bl)" stroke="#EAF6FF" stroke-opacity=".8"/>
+              <path class="blade" style="--a:154.2deg" d="M124 52 L190 66 L166 128 L100 108Z" fill="url(#bl)" stroke="#EAF6FF" stroke-opacity=".8"/>
+              <path class="blade" style="--a:205.6deg" d="M124 52 L190 66 L166 128 L100 108Z" fill="url(#bl)" stroke="#EAF6FF" stroke-opacity=".8"/>
+              <path class="blade" style="--a:257deg" d="M124 52 L190 66 L166 128 L100 108Z" fill="url(#bl)" stroke="#EAF6FF" stroke-opacity=".8"/>
+              <path class="blade" style="--a:308.4deg" d="M124 52 L190 66 L166 128 L100 108Z" fill="url(#bl)" stroke="#EAF6FF" stroke-opacity=".8"/>
+            </g>
+            <circle cx="130" cy="130" r="82" fill="none" stroke="url(#rim)" stroke-width="10"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="strip" aria-hidden="true"><div class="strip-track" id="strip"></div></div>
+
+    <section id="work">
+      <div class="section-head reveal">
+        <p class="eyebrow">Selected frames</p>
+        <h2>Contact sheet</h2>
+        <p>Nine frames from recent shoots, printed as cyanotypes. Hover a frame to see it in colour. Filter by the kind of work you are after.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter frames">
+        <button type="button" data-cat="all" aria-pressed="true">All</button>
+        <button type="button" data-cat="portraits" aria-pressed="false">Portraits</button>
+        <button type="button" data-cat="weddings" aria-pressed="false">Weddings</button>
+        <button type="button" data-cat="places" aria-pressed="false">Places</button>
+        <span class="count" id="count" aria-live="polite"></span>
+      </div>
+      <div class="table reveal"><div class="gallery" id="gallery"></div></div>
+      <p class="demo-note">The frames on this page are drawn illustrations standing in for photographs.</p>
+    </section>
+
+    <section id="packages">
+      <div class="section-head reveal">
+        <p class="eyebrow">Packages</p>
+        <h2>What a booking includes</h2>
+        <p>Edited images arrive as full-resolution JPEGs and web-size copies, in a private online gallery.</p>
+      </div>
+      <div class="packages">
+        <div class="pkg reveal" data-tilt data-n="PKG-01">
+          <h3>Portrait session</h3><span class="len">1 hour, one location</span>
+          <p>25 edited images, a short styling chat beforehand, and two outfit changes. Best in the first or last hour of daylight.</p>
+          <div class="price">₹6,000</div>
+        </div>
+        <div class="pkg reveal" data-tilt data-n="PKG-02">
+          <h3>Event coverage</h3><span class="len">Half day, up to 4 hours</span>
+          <p>Engagements, birthdays, small launches. 120 edited images, with highlights delivered in 3 days.</p>
+          <div class="price">₹18,000</div>
+        </div>
+        <div class="pkg reveal" data-tilt data-n="PKG-03">
+          <h3>Wedding day</h3><span class="len">8 hours, one photographer</span>
+          <p>From getting ready to the first dance. 400 or more edited images and a printed 30-page album.</p>
+          <div class="price">₹65,000</div>
+        </div>
+      </div>
+      <p class="pkg-note">Travel outside the city is billed at cost. A 30% advance holds your date.</p>
+    </section>
+
+    <section id="about">
+      <div class="about">
+        <div class="reveal">
+          <p class="eyebrow">About</p>
+          <h2>Mostly natural light, always on time</h2>
+        </div>
+        <div class="reveal">
+          <p>I shoot with a mirrorless camera and one 35 mm film body for the frames that deserve grain. I would rather spend ten quiet minutes with you than direct forty poses.</p>
+          <ul class="facts">
+            <li><span>Shoots</span><span>Portraits, weddings, places</span></li>
+            <li><span>Lenses</span><span>35 mm, 50 mm, 85 mm</span></li>
+            <li><span>Delivery</span><span>Within 14 days</span></li>
+            <li><span>Film</span><span>On request, ₹2,500 per roll</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="enquire">
+      <div class="contact reveal">
+        <div>
+          <p class="eyebrow">Enquire</p>
+          <h2>Check a date</h2>
+          <p>Tell me what you are planning and when. I reply within one working day.</p>
+          <div class="datetile" id="datetile" aria-hidden="true"><div class="mo" id="dt-mo">Date</div><div class="dd" id="dt-dd">--</div><div class="yr" id="dt-yr">pick one</div></div>
+          <address>
+            hello@studiohalide.example<br>
+            +91 00000 00000<br>
+            Studio visits by appointment
+          </address>
+        </div>
+        <form id="enquiry-form" novalidate>
+          <div class="row">
+            <label for="name">Name
+              <input id="name" name="name" type="text" autocomplete="name" required>
+              <span class="field-error" id="name-error">Enter your name.</span>
+            </label>
+            <label for="email">Email
+              <input id="email" name="email" type="text" autocomplete="email" inputmode="email" required>
+              <span class="field-error" id="email-error">Enter an email address with an @ in it.</span>
+            </label>
+          </div>
+          <div class="row">
+            <label for="kind">Kind of shoot
+              <select id="kind" name="kind">
+                <option>Portrait session</option>
+                <option>Event coverage</option>
+                <option>Wedding day</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label for="date">Preferred date
+              <input id="date" name="date" type="date">
+            </label>
+          </div>
+          <label for="message">Tell me about it
+            <textarea id="message" name="message"></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send enquiry</button>
+          <div class="status" id="form-status" role="status" hidden></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Studio Halide is an imaginary studio. This is a sample website.</span>
+    <span>Portraits, weddings and quiet places</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var NS = 'xmlns="http://www.w3.org/2000/svg"';
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;"); }
+
+  var SCENES = {
+    dunes: function (p) {
+      return '<circle cx="240" cy="100" r="34" fill="' + p.light + '" opacity="0.92"/>' +
+        '<path d="M0 190 Q90 140 190 185 T400 170 V300 H0Z" fill="' + p.a + '"/>' +
+        '<path d="M0 232 Q110 185 220 225 T400 215 V300 H0Z" fill="' + p.b + '"/>' +
+        '<path d="M0 272 Q120 235 240 265 T400 255 V300 H0Z" fill="' + p.c + '"/>';
+    },
+    portrait: function (p) {
+      var dots = [[90, 70, 30], [310, 60, 38], [330, 190, 26], [70, 200, 34], [250, 110, 18], [140, 40, 20]]
+        .map(function (d) { return '<circle cx="' + d[0] + '" cy="' + d[1] + '" r="' + d[2] + '" fill="' + p.light + '" opacity="0.22"/>'; }).join("");
+      return dots +
+        '<path d="M110 300 Q112 238 200 224 Q288 238 290 300Z" fill="' + p.b + '"/>' +
+        '<rect x="184" y="188" width="32" height="42" rx="10" fill="' + p.a + '"/>' +
+        '<ellipse cx="200" cy="152" rx="46" ry="56" fill="' + p.a + '"/>' +
+        '<path d="M153 152 Q148 86 200 84 Q254 86 247 152 Q234 112 200 112 Q166 112 153 152Z" fill="' + p.c + '"/>' +
+        '<path d="M245 128 Q254 160 238 192" stroke="' + p.light + '" stroke-opacity="0.6" stroke-width="3" fill="none"/>';
+    },
+    wedding: function (p) {
+      var dots = [[80, 60, 26], [320, 80, 34], [60, 210, 22], [340, 220, 30], [200, 40, 18]]
+        .map(function (d) { return '<circle cx="' + d[0] + '" cy="' + d[1] + '" r="' + d[2] + '" fill="' + p.light + '" opacity="0.3"/>'; }).join("");
+      return dots +
+        '<path d="M126 300 V150 A74 74 0 0 1 274 150 V300" stroke="' + p.light + '" stroke-width="7" fill="none"/>' +
+        '<path d="M146 300 V152 A54 54 0 0 1 254 152 V300Z" fill="' + p.c + '" opacity="0.35"/>' +
+        '<circle cx="184" cy="196" r="27" stroke="' + p.a + '" stroke-width="7" fill="none"/>' +
+        '<circle cx="216" cy="196" r="27" stroke="' + p.b + '" stroke-width="7" fill="none"/>';
+    },
+    street: function (p) {
+      var B = [[0, 70, 140], [70, 60, 190], [130, 80, 120], [210, 70, 170], [280, 60, 130], [340, 70, 160]];
+      var out = "";
+      B.forEach(function (b, bi) {
+        var x = b[0], w = b[1], h = b[2], y = 250 - h;
+        out += '<rect x="' + x + '" y="' + y + '" width="' + (w - 3) + '" height="' + h + '" fill="' + p.a + '"/>';
+        for (var r = 0; r < Math.floor(h / 24); r++) {
+          for (var c = 0; c < Math.floor(w / 20); c++) {
+            var lit = (r * 3 + c + bi) % 3 === 0;
+            out += '<rect x="' + (x + 8 + c * 20) + '" y="' + (y + 10 + r * 24) + '" width="10" height="13" fill="' + (lit ? p.light : p.c) + '" opacity="' + (lit ? 0.95 : 0.55) + '"/>';
+          }
+        }
+      });
+      return out +
+        '<rect x="0" y="250" width="400" height="50" fill="' + p.c + '"/>' +
+        '<circle cx="200" cy="226" r="5" fill="' + p.light + '"/><rect x="196" y="232" width="8" height="18" fill="' + p.light + '"/>' +
+        '<rect x="150" y="268" width="100" height="4" fill="' + p.light + '" opacity="0.35"/>';
+    },
+    sea: function (p) {
+      var out = '<circle cx="200" cy="150" r="30" fill="' + p.light + '"/>' +
+        '<rect x="0" y="170" width="400" height="130" fill="' + p.a + '"/>' +
+        '<rect x="0" y="169" width="400" height="2" fill="' + p.b + '"/>';
+      for (var i = 0; i < 6; i++) {
+        var w = 76 - i * 10;
+        out += '<rect x="' + (200 - w / 2) + '" y="' + (178 + i * 17) + '" width="' + w + '" height="5" rx="2" fill="' + p.light + '" opacity="' + (0.75 - i * 0.1).toFixed(2) + '"/>';
+      }
+      return out;
+    },
+    mountain: function (p) {
+      return '<path d="M-20 235 L110 100 L240 235Z" fill="' + p.a + '"/>' +
+        '<path d="M120 245 L270 66 L420 245Z" fill="' + p.b + '"/>' +
+        '<rect x="0" y="170" width="400" height="80" fill="' + p.light + '" opacity="0.3"/>' +
+        '<path d="M0 240 Q100 205 200 238 T400 226 V300 H0Z" fill="' + p.c + '"/>';
+    }
+  };
+
+  var FRAMES = [
+    { type: "dunes", cat: "places", title: "Dunes at first light", exif: "f/8 · 1/500 s · ISO 100 · 35 mm", alt: "Layered sand dunes under a low sun", pal: { sky1: "#F6C58A", sky2: "#F3E2C8", a: "#C9803F", b: "#A5602B", c: "#6E3E1C", light: "#FFF1D6" } },
+    { type: "portrait", cat: "portraits", title: "Rooftop portrait", exif: "f/2.0 · 1/320 s · ISO 200 · 85 mm", alt: "Silhouetted portrait against soft blue bokeh", pal: { sky1: "#4B5F7A", sky2: "#9FB1C6", a: "#D8A47F", b: "#2F3A4C", c: "#1B1F2A", light: "#F8E7D2" } },
+    { type: "wedding", cat: "weddings", title: "Rings, haldi afternoon", exif: "f/2.8 · 1/250 s · ISO 400 · 50 mm", alt: "Two interlocked rings in front of an arch", pal: { sky1: "#E9B44C", sky2: "#F6E3B0", a: "#B8431F", b: "#7A2A5A", c: "#5A3A12", light: "#FFF6DD" } },
+    { type: "street", cat: "places", title: "Market lane, 6 pm", exif: "f/4 · 1/125 s · ISO 800 · 35 mm", alt: "A lone figure on a street between lit buildings", pal: { sky1: "#3B3A5C", sky2: "#E7A77B", a: "#2A2740", b: "#4B3C5E", c: "#17141F", light: "#FFD98A" } },
+    { type: "sea", cat: "places", title: "Low tide", exif: "f/11 · 1/200 s · ISO 100 · 35 mm", alt: "Sun over a calm sea with a glittering reflection", pal: { sky1: "#F0A57A", sky2: "#F9DCC0", a: "#3D6A7C", b: "#245061", c: "#102E3A", light: "#FFF3DA" } },
+    { type: "mountain", cat: "places", title: "Ridge in mist", exif: "f/9 · 1/160 s · ISO 100 · 50 mm", alt: "Two mountain ridges with mist in the valley", pal: { sky1: "#B9C8D6", sky2: "#E9EEF2", a: "#7D93A8", b: "#4F657B", c: "#2A3B4B", light: "#FFFFFF" } },
+    { type: "portrait", cat: "portraits", title: "Studio, window light", exif: "f/2.8 · 1/200 s · ISO 320 · 85 mm", alt: "Soft portrait lit from a window", pal: { sky1: "#6E5A5A", sky2: "#D9C3B4", a: "#E2B79A", b: "#4B3A3F", c: "#2A1E22", light: "#FFF0E2" } },
+    { type: "wedding", cat: "weddings", title: "Before the vows", exif: "f/1.8 · 1/400 s · ISO 250 · 50 mm", alt: "Arch and rings against a blush background", pal: { sky1: "#E8A9B8", sky2: "#F8DDE3", a: "#C98B2B", b: "#2F7F86", c: "#6B2C3E", light: "#FFFFFF" } },
+    { type: "street", cat: "places", title: "Rain on the crossing", exif: "f/2.8 · 1/60 s · ISO 1600 · 35 mm", alt: "A figure on a wet street at dusk", pal: { sky1: "#1F3A4D", sky2: "#6FA0B0", a: "#1C2C3A", b: "#2E4A5C", c: "#0E1822", light: "#BFF0E8" } }
+  ];
+
+  function svg(f, n, label) {
+    var p = f.pal, id = "g" + n;
+    return '<svg ' + NS + ' viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" ' + (label ? 'role="img" aria-label="' + esc(f.alt) + '"' : 'aria-hidden="true"') + '>' +
+      '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + p.sky1 + '"/><stop offset="1" stop-color="' + p.sky2 + '"/></linearGradient></defs>' +
+      '<rect width="400" height="300" fill="url(#' + id + ')"/>' + SCENES[f.type](p) + '</svg>';
+  }
+  function num(i) { return (i < 10 ? "0" : "") + i; }
+  function film(f, n, tag, label) {
+    return '<div class="film"><div class="edge"><span>HALIDE 400</span><span>&#9656; ' + num(n) + '</span></div>' +
+      '<div class="pic">' + svg(f, tag + n, label) + '</div>' +
+      '<div class="edge"><span>' + num(n) + 'A</span><span>&#9656;</span></div></div>';
+  }
+
+  /* scrolling film strip (decorative), doubled for a seamless loop */
+  var strip = document.getElementById("strip"), html = "";
+  for (var rep = 0; rep < 2; rep++) {
+    FRAMES.forEach(function (f, i) { html += '<div class="mini">' + film(f, i + 1, "s" + rep, false) + '</div>'; });
+  }
+  strip.innerHTML = html;
+
+  var gallery = document.getElementById("gallery");
+  FRAMES.forEach(function (f, i) {
+    var fig = document.createElement("figure");
+    fig.setAttribute("data-cat", f.cat);
+    fig.innerHTML = film(f, i + 1, "m", true) + '<figcaption><span class="title">' + esc(f.title) + '</span><span class="exif">' + esc(f.exif) + '</span></figcaption>';
+    gallery.appendChild(fig);
+  });
+
+  var count = document.getElementById("count");
+  var buttons = document.querySelectorAll(".filters button");
+  function apply(cat) {
+    var shown = 0;
+    gallery.querySelectorAll("figure").forEach(function (fig) {
+      var show = cat === "all" || fig.getAttribute("data-cat") === cat;
+      fig.hidden = !show;
+      if (show) shown++;
+    });
+    buttons.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-cat") === cat ? "true" : "false"); });
+    count.textContent = "Showing " + shown + " of " + FRAMES.length + " frames";
+  }
+  buttons.forEach(function (b) { b.addEventListener("click", function () { apply(b.getAttribute("data-cat")); }); });
+  apply("all");
+
+  /* reveal on scroll */
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !calm) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    items.forEach(function (el, i) { el.style.transitionDelay = (i % 3) * 90 + 'ms'; io.observe(el); });
+  } else { items.forEach(function (el) { el.classList.add('in'); }); }
+
+  if (fine && !calm) {
+    var rig = document.getElementById('rig');
+    window.addEventListener('pointermove', function (e) {
+      rig.style.setProperty('--mx', ((e.clientX / window.innerWidth) - 0.5).toFixed(3));
+      rig.style.setProperty('--my', ((e.clientY / window.innerHeight) - 0.5).toFixed(3));
+    });
+    document.querySelectorAll('[data-tilt]').forEach(function (c) {
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * 9).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - 0.5) * 9).toFixed(2) + 'deg');
+      });
+      c.addEventListener('pointerleave', function () { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  /* date tile follows the date field */
+  var dateEl = document.getElementById("date"), dd = document.getElementById("dt-dd");
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function tile() {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateEl.value);
+    if (!m) return;
+    document.getElementById("dt-mo").textContent = MONTHS[parseInt(m[2], 10) - 1];
+    dd.textContent = m[3];
+    document.getElementById("dt-yr").textContent = m[1];
+    dd.classList.remove("flip"); void dd.offsetWidth; dd.classList.add("flip");
+  }
+  dateEl.addEventListener("input", tile);
+  dateEl.addEventListener("change", tile);
+
+  /* Enquiry form: validates and shows a message. Nothing is sent. */
+  var form = document.getElementById("enquiry-form");
+  var status = document.getElementById("form-status");
+  var rules = [
+    { id: "name", ok: function (v) { return v.trim() !== ""; } },
+    { id: "email", ok: function (v) { return /^\S+@\S+$/.test(v.trim()); } }
+  ];
+  function check(r) {
+    var el = document.getElementById(r.id);
+    var good = r.ok(el.value);
+    el.setAttribute("aria-invalid", good ? "false" : "true");
+    document.getElementById(r.id + "-error").classList.toggle("show", !good);
+    return good;
+  }
+  rules.forEach(function (r) { document.getElementById(r.id).addEventListener("input", function () { check(r); }); });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var ok = true;
+    rules.forEach(function (r) { if (!check(r)) ok = false; });
+    if (!ok) { status.hidden = true; return; }
+    var who = document.getElementById("name").value.trim();
+    status.textContent = "Thanks, " + who + ". This is a sample site, so your enquiry was not sent anywhere.";
+    status.hidden = false;
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Admin · Meridian Public School</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<style>
+body{background:var(--sky)}
+.adm{width:min(1180px,100% - 32px);margin:0 auto;padding:24px 0 80px}
+.adm header{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
+.adm h1{font-size:1.9rem}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:22px}
+.tile{background:#fff;border:var(--ln);border-radius:16px;padding:14px 16px;box-shadow:4px 4px 0 var(--navy)}
+.tile b{display:block;font:800 1.8rem/1 'Baloo 2',sans-serif;color:var(--navy)}
+.tile span{font-size:.82rem;font-weight:700;color:var(--mut)}
+.bar2{display:flex;gap:12px;flex-wrap:wrap;align-items:end;margin-bottom:16px}
+.bar2 label{margin:0}
+.bar2 select,.bar2 input{width:auto;padding:8px 10px;border-radius:10px}
+.adm table{min-width:900px}
+.adm td{vertical-align:top;font-size:.9rem}
+.adm td input,.adm td select{padding:6px 8px;border-radius:8px;font-size:.9rem}
+.adm .mini{font:800 .8rem Nunito,sans-serif;border:2px solid var(--navy);background:#fff;border-radius:8px;padding:5px 10px;cursor:pointer}
+.adm .mini.del{color:var(--red)}
+.warn{background:#fff3cd;border:var(--ln);border-radius:14px;padding:12px 16px;margin-bottom:16px;font-weight:700}
+.msg{min-height:1.4em;font-weight:800;margin:8px 0}
+.msg.bad{color:var(--red)}.msg.ok{color:#0b7a54}
+.login{max-width:420px;margin:12vh auto}
+.badge{display:inline-block;border-radius:99px;border:2px solid var(--navy);padding:1px 9px;font-weight:800;font-size:.75rem;background:#fff}
+.badge.new{background:var(--gold)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+</style>
+</head>
+<body>
+<div class="adm">
+<div id="login" class="card login" style="--c:#F9B208" hidden>
+  <h1>Admin login</h1>
+  <p class="mut" style="margin:8px 0 8px">Meridian Public School office</p><p class="note" style="margin:0 0 14px"><b>Demo password: demo</b></p>
+  <form id="lf" novalidate><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password"><div class="msg bad" id="lm" role="alert"></div><button class="btn red" type="submit">Log in</button></form>
+  <p class="note"><a href="index.html">← Back to the school website</a></p>
+</div>
+
+<div id="app" hidden>
+  <header><div><h1>Admission office</h1><span class="mut">Meridian Public School · admin</span></div><div style="display:flex;gap:10px"><a class="btn sm ghost" href="index.html" target="_blank" rel="noopener">View website</a><button class="btn sm" id="out" type="button">Log out</button></div></header>
+  <div class="warn" style="background:#e6f1ff">Demo mode: this is a sample of the school office panel. Everything you do is saved in <b>your browser only</b>. Enquiries sent from the demo website appear here.</div>
+  <div class="warn" id="dw" hidden>You are using the default password. Set the ADMIN_PASSWORD setting on your server before going live.</div>
+  <div class="chips" role="tablist" aria-label="Admin sections">
+    <button class="chip" role="tab" aria-selected="true" data-tab="enq">Enquiries</button>
+    <button class="chip" role="tab" aria-selected="false" data-tab="ev">Events</button>
+    <button class="chip" role="tab" aria-selected="false" data-tab="fees">Fees and contacts</button>
+  </div>
+  <div class="msg" id="msg" aria-live="polite"></div>
+
+  <section id="tab-enq" style="padding:0">
+    <div class="tiles" id="tiles"></div>
+    <div class="bar2">
+      <div><label for="fc">Campus</label><select id="fc"></select></div>
+      <div><label for="fs">Status</label><select id="fs"><option value="">All</option><option>new</option><option>contacted</option><option>visited</option><option>admitted</option><option>closed</option></select></div>
+      <a class="btn sm ghost" href="/api/admin/enquiries.csv">Download CSV</a>
+    </div>
+    <div class="tw"><table><thead><tr><th>Received</th><th>Campus</th><th>Type</th><th>Parent</th><th>Phone</th><th>Class</th><th>Details</th><th>Status</th><th></th></tr></thead><tbody id="eb"></tbody></table></div>
+    <p class="note" id="enone" hidden>No enquiries yet. Submit the form on the website and it will appear here.</p>
+  </section>
+
+  <section id="tab-ev" style="padding:0" hidden>
+    <div class="card" style="--c:#2F6FDE;margin-bottom:22px"><h3>Add an event</h3><form id="evf" class="bar2" style="margin:12px 0 0" novalidate>
+      <div><label for="nm">Month</label><select id="nm"></select></div><div><label for="nd">Day</label><input id="nd" type="number" min="1" max="31" style="width:80px"></div>
+      <div style="flex:1;min-width:200px"><label for="nt">Title</label><input id="nt" style="width:100%"></div><div><label for="nc">Campus</label><select id="nc"></select></div><div><label for="nk">Type</label><input id="nk" placeholder="Sports" style="width:120px"></div>
+      <button class="btn sm" type="submit">Add</button></form></div>
+    <div class="tw"><table><thead><tr><th>Month</th><th>Day</th><th>Title</th><th>Campus</th><th>Type</th><th></th></tr></thead><tbody id="evb"></tbody></table></div>
+  </section>
+
+  <section id="tab-fees" style="padding:0" hidden>
+    <div class="card" style="--c:#D7263D;margin-bottom:22px"><h3>Annual tuition by class (before campus multiplier)</h3><form id="bf" novalidate><div class="grid2" id="bi" style="margin:14px 0"></div><button class="btn sm red" type="submit">Save fees</button></form></div>
+    <div class="card" style="--c:#7B4BD6"><h3>Campus contact and fee settings</h3><p class="mut">WhatsApp number: digits only with country code, e.g. 919876543210. Leave empty to show WhatsApp’s chat picker.</p>
+    <div class="tw" style="margin-top:14px;box-shadow:none"><table><thead><tr><th>Campus</th><th>Phone</th><th>WhatsApp</th><th>Fee multiplier</th><th>Admission fee ₹</th><th></th></tr></thead><tbody id="cb"></tbody></table></div></div>
+  </section>
+</div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/demo-api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

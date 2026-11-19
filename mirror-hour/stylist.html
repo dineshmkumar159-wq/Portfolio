@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Stylist desk · Mirror Hour Salon</title>
+<meta name="theme-color" content="#150a18">
+<link rel="manifest" href="stylist.webmanifest">
+<link rel="icon" href="icons/stylist-192.png"><link rel="apple-touch-icon" href="icons/stylist-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<main id="login" class="login wrap">
+  <h1>🪞 Stylist desk</h1>
+  <p style="color:var(--mut)">Mirror Hour Salon &amp; Studio. See your day, update each client and block time off.</p>
+  <form id="lf" class="card" autocomplete="off">
+    <label for="who">Your name</label><select id="who" required></select>
+    <label for="pin">4-digit PIN</label><input id="pin" class="pin" inputmode="numeric" maxlength="4" pattern="\d{4}" autocomplete="off" required>
+    <div id="lmsg" class="msg" role="alert"></div>
+    <button class="btn" type="submit" style="width:100%">Log in</button>
+    <div id="demohint" class="hint" hidden></div>
+  </form>
+</main>
+
+<div id="app" hidden>
+  <header class="top"><div class="in">
+    <div class="brand"><i id="me-e">🌸</i><div><b id="me-n">Stylist</b><small id="me-r"></small></div></div>
+    <div style="display:flex;gap:8px;align-items:center"><button class="btn sm ghost install" id="inst" type="button">Install app</button><button class="btn sm ghost" id="out" type="button">Log out</button></div>
+  </div></header>
+  <div class="wrap">
+    <div class="tabs desk" role="tablist" id="dtabs"></div>
+    <section id="p-day">
+      <div class="tiles" id="tiles"></div>
+      <div class="bar"><div class="seg"><button id="dprev" type="button" aria-label="Previous day">←</button><button id="dtoday" type="button">Today</button><button id="dnext" type="button" aria-label="Next day">→</button></div><strong id="dlabel" style="align-self:center"></strong></div>
+      <div id="dlist"></div>
+    </section>
+    <section id="p-walk" hidden>
+      <div class="card"><h2>Add a walk-in</h2>
+        <p style="color:var(--mut);margin:0 0 6px">For a client at the desk with no booking. Only your free times are shown.</p>
+        <label>Services you offer</label><div id="wsv" class="dows"></div>
+        <div class="form"><div><label for="wn">Client name</label><input id="wn" maxlength="60"></div><div><label for="wp">Mobile number</label><input id="wp" inputmode="numeric" maxlength="14"></div>
+        <div><label for="wt">Start time</label><select id="wt"><option value="">Pick services first</option></select></div></div>
+        <div id="wmsg" class="msg" role="alert"></div><button class="btn" id="wgo" type="button">Add walk-in</button>
+      </div>
+    </section>
+    <section id="p-off" hidden>
+      <div class="card"><h2>Block time off</h2>
+        <div class="form"><div><label for="od">Date</label><input id="od" type="date"></div><div><label for="oa">Whole day?</label><select id="oa"><option value="1">Whole day</option><option value="0">Part of the day</option></select></div>
+        <div id="otw" hidden><label for="os">From</label><input id="os" type="time" value="13:00"></div><div id="otw2" hidden><label for="oe">To</label><input id="oe" type="time" value="15:00"></div>
+        <div class="full"><label for="on">Note (optional)</label><input id="on" maxlength="80" placeholder="Doctor visit, lunch, training"></div></div>
+        <div id="omsg" class="msg" role="alert"></div><button class="btn" id="ogo" type="button">Block this time</button></div>
+      <h2 style="margin:18px 0 8px">Your upcoming time off</h2><div id="olist"></div>
+    </section>
+    <section id="p-week" hidden><div class="tiles" id="wk"></div></section>
+  </div>
+  <nav class="bot" id="bnav"></nav>
+</div>
+<script src="js/seed.js"></script>
+<script src="js/core.js"></script>
+<script src="js/demo-api.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/stylist.js"></script>
+</body>
+</html>

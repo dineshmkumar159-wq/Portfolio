@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admissions · Meridian Public School</title>
+<meta name="description" content="How to apply, key dates, a fee calculator for each campus and a simple enquiry form.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shapes" aria-hidden="true"></div>
+<div class="topinfo"><div class="wrap"><span>Admissions 2027-28 now open at all five campuses</span><span>Call <a data-phone href="tel:+914441000100">+91 44 4100 0100</a></span></div></div>
+<header class="top"><div class="wrap bar">
+<a class="logo" href="index.html" aria-label="Meridian Public School home"><span class="mk" aria-hidden="true"></span><span>Meridian<small>Public School</small></span></a>
+<nav class="main" id="nav" aria-label="Main"><a href="index.html">Home</a><a href="about.html">About</a><a href="academics.html">Academics</a><a href="admissions.html" aria-current="page">Admissions</a><a href="campus-life.html">Campus life</a><a href="branches.html">Campuses</a><a href="contact.html">Contact</a><a class="navapply apply" href="admissions.html#enquire">Apply now</a></nav>
+<label class="pick"><span class="sr" style="position:absolute;left:-9999px">Your campus</span><select id="campus-pick" aria-label="Your campus"></select></label>
+<a class="btn sm apply" href="admissions.html#enquire">Apply</a>
+<button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+</div></header>
+<main id="main">
+
+<section class="phero" style="--c:#D7263D">
+<span class="fw bob" aria-hidden="true" style="--l:62%;--t:6%;--fs:6rem;--col:#fff;--k:18;--rot:-4deg">LEARN</span><span class="fw" aria-hidden="true" style="--l:74%;--t:48%;--fs:5rem;--col:#fff;--k:-12;--rot:3deg">GROW</span>
+<div class="wrap"><p class="crumbs"><a href="index.html">Home</a> / Admissions</p><span class="eyebrow">Admissions</span><h1>Admissions <em style="font-style:normal">2027-28</em></h1><p class="lead">Four simple steps. Estimate fees for any campus and class in a minute.</p></div></section>
+<section><div class="wrap"><div class="sec-head"><span class="eyebrow">How to apply</span><h2>Four steps, no stress.</h2></div><div class="steps"><div class="card rv" style="--c:#D7263D"><h3>Enquire</h3><p>Send the short form below or call a campus office.</p></div><div class="card rv" style="--c:#F9B208"><h3>Visit</h3><p>Take a 30-minute campus tour and meet the principal.</p></div><div class="card rv" style="--c:#2F6FDE"><h3>Interact</h3><p>A friendly conversation with your child. No written test below Class III.</p></div><div class="card rv" style="--c:#1B998B"><h3>Join</h3><p>Receive the offer, complete documents and pay the admission fee.</p></div></div></div></section>
+<section class="band" id="fees"><div class="wrap"><div class="sec-head"><span class="eyebrow">Fee calculator</span><h2>What will it cost?</h2><p>Pick a campus, a class and transport. Fees are samples; a real build would use the school’s approved fee structure.</p></div>
+<div class="split" style="align-items:start"><form id="fee" class="card" style="--c:#F9B208" novalidate><div class="grid" style="gap:16px"><div><label for="f-camp">Campus</label><select id="f-camp"></select></div><div><label for="f-band">Class</label><select id="f-band"></select></div><div><label for="f-tr">School transport</label><select id="f-tr"><option value="0">Not needed</option><option value="1">Up to 3 km</option><option value="2">3 to 6 km</option><option value="3">Above 6 km</option></select></div></div></form>
+<div class="result" id="f-out" aria-live="polite"><span class="mut" style="color:#c9d4ec" id="o-label"></span><h3>First-year total</h3><div class="big" id="o-total"></div>
+<dl><dt>Annual tuition</dt><dd id="o-tu"></dd><dt>One-time admission fee</dt><dd id="o-ad"></dd><dt>Transport (yearly)</dt><dd id="o-tp"></dd><dt>Each of 3 terms (tuition + transport)</dt><dd id="o-term"></dd></dl><p class="note" id="o-note" style="color:#c9d4ec"></p><a class="btn sm" id="o-book" href="#enquire" style="margin-top:12px">Book a tour for this campus</a></div></div></div></section>
+<section><div class="wrap split" style="align-items:start"><div><span class="eyebrow">Key dates</span><h2>Mark your calendar.</h2><div class="tw" style="margin-top:22px"><table style="min-width:0"><tbody><tr><td>Registration opens</td><td>1 December 2026</td></tr><tr><td>Campus open days</td><td>5 Dec, 7 Mar</td></tr><tr><td>Interaction rounds</td><td>January to February 2027</td></tr><tr><td>Offers released</td><td>Mid-February 2027</td></tr><tr><td>Academic year begins</td><td>June 2027</td></tr></tbody></table></div></div>
+<div><span class="eyebrow">FAQ</span><h2 style="margin-bottom:22px">Quick answers.</h2><details><summary>What age can my child start Pre-KG?</summary><p>Children who are three years old by 31 May of the joining year can start Pre-KG.</p></details><details><summary>Can I apply to more than one campus?</summary><p>Yes. Use one form and mention a second choice. We will tell you where seats are open.</p></details><details><summary>Can my child move between campuses later?</summary><p>Yes, subject to seats. Curriculum is common across the four CBSE campuses. Porur follows Cambridge.</p></details><details><summary>Is school transport compulsory?</summary><p>No. It is optional and priced by distance. Routes cover 30+ localities.</p></details><details><summary>Which documents do we need?</summary><p>Birth certificate, address proof, passport photos, previous report card (from Class II) and a transfer certificate (from Class II).</p></details><details><summary>Are the fees fixed?</summary><p>The fees on this page are samples. A real school would publish its approved fee structure here.</p></details></div></div></section>
+<section class="band" id="enquire"><div class="wrap split" style="align-items:start"><div><span class="eyebrow">Enquire</span><h2>Book a tour in two minutes.</h2><p class="lead">Tell us who you are and which campus you would like to see. The campus office will reply on WhatsApp the same day.</p></div><div class="card" style="--c:#D7263D"><div class="enqwrap"><form class="f" data-enq="enquire" novalidate>
+<h3>Tell us about your child</h3>
+<div class="row2"><div><label for="enquire-parent">Parent’s name</label><input id="enquire-parent" name="parent" autocomplete="name"><div class="err"></div></div>
+<div><label for="enquire-phone">Phone</label><input id="enquire-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"><div class="err"></div></div></div>
+<div class="row2"><div><label for="enquire-camp">Campus</label><select id="enquire-camp" name="campus"></select><div class="err"></div></div><div><label for="enquire-grade">Class applying for</label><select id="enquire-grade" name="grade"></select><div class="err"></div></div></div>
+<div class="row2"><div><label for="enquire-child">Child’s name (optional)</label><input id="enquire-child" name="child"></div><div><label for="enquire-date">Preferred tour day</label><select id="enquire-date" name="date"></select></div></div>
+<div><label for="enquire-msg">Anything we should know? (optional)</label><textarea id="enquire-msg" name="msg"></textarea></div>
+<div><button class="btn red" type="submit">Send on WhatsApp</button></div>
+<p class="note">This opens WhatsApp with your message ready to send. Nothing is stored on this site.</p>
+</form>
+<div class="done" hidden role="status"><h3>WhatsApp is opening</h3><p>Thank you, <b data-who></b>. Your message is ready; just press send in WhatsApp. If nothing opened, use the button below.</p>
+<p class="note" data-saved hidden></p><div class="cb"><a class="btn sm wl" target="_blank" rel="noopener" href="https://wa.me/">Open WhatsApp again</a><button type="button" class="btn sm ghost" data-again>Send another</button></div></div></div></div></div></section>
+
+</main>
+<footer class="foot"><div class="wrap">
+<div class="fgrid">
+<div><a class="logo" href="index.html" style="color:#fff"><span class="mk" aria-hidden="true"></span><span>Meridian<small style="color:#c9d4ec">Public School</small></span></a><p style="margin-top:14px;font-size:.95rem">Five campuses across Chennai. One way of learning: curious, kind and brave.</p></div>
+<div><h4>Campuses</h4><a href="branch-adyar.html">Adyar</a><a href="branch-anna-nagar.html">Anna Nagar</a><a href="branch-velachery.html">Velachery</a><a href="branch-tambaram.html">Tambaram</a><a href="branch-porur.html">Porur</a></div>
+<div><h4>Explore</h4><a href="about.html">About us</a><a href="academics.html">Academics</a><a href="admissions.html">Admissions</a><a href="campus-life.html">Campus life</a><a href="branches.html">Compare campuses</a></div>
+<div><h4>Get in touch</h4><a data-phone href="tel:+914441000100">+91 44 4100 0100</a><a href="contact.html">Contact directory</a><a href="admissions.html#enquire">Book a tour</a></div>
+</div>
+<p class="disc">Meridian Public School is an imaginary school created as a sample website by M Dinesh Kumar. All names, numbers, fees, dates and people on this site are samples, not real.</p>
+</div></footer>
+<a class="wa" id="wa-float" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp us</a>
+<script src="js/data.js"></script>
+<script src="js/demo-api.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
